@@ -29,7 +29,14 @@ timeacceleration: This is essentially the time acceleartion module from blackeag
 https://github.com/Ghostrider-DbD-/-timeManagement
 
 mapaddons: this replaces the mapaddons module of blackeagles. Simply export any map addons you have laid out in the Eden editor and add the resulting file to the appropriate location in the folder structure of mapaddons then add the file name to the list of files called for the mod/map.
+https://github.com/Ghostrider-DbD-/mapAddons
 
-Support: I'll do my best to continue to support these modules. I monitor epochmod discord and our ghostridergaming discord. 
+Support: I'll do my best to continue to support these modules. 
+I monitor epochmod discord 
+https://discord.com/channels/133057507928047616/297429261227130881
+
+and our ghostridergaming discord
+https://discord.com/channels/330496695982882827/642575445757394954
+
 
 
