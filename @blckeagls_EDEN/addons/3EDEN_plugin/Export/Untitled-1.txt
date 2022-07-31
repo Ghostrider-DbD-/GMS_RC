@@ -1,0 +1,11 @@
+
+all3DENEntities params ["_objects"];
+{
+     diag_log format [
+               "classname %1 | position %2 | direction %3 | isSimple = %4",
+               (_x get3DENAttribute "ItemClass") select 0, 
+               (_x get3DENAttribute "position") select 0, 
+               ((_x get3DENAttribute "rotation") select 0) select 2,
+               (_x get3DENAttribute "objectIsSimple") select 0
+          ];
+} forEach _objects;
