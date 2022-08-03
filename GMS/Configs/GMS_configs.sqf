@@ -240,18 +240,18 @@ switch (GMSCore_modType) do
 									//  The chance of paratroops dropping from the heli is defined by GMS_chancePara(Blue|Red|Green|Orange) above.
 									// Recommend setting the change = 1 if you wish to spawn multiple helis at a mission.
 	GMS_patrolHelisBlue = _GMS_littleBirds;
-	GMS_noPatrolHelisBlue = 1;
+	GMS_noPatrolHelisBlue = 0;
 	
 	GMS_chanceHeliPatrolRed = 0.75; // 0.4;
 	GMS_patrolHelisRed = _GMS_littleBirds;
-	GMS_noPatrolHelisRed = 1;
+	GMS_noPatrolHelisRed = 0;
 	
 	GMS_chanceHeliPatrolGreen = 0.85;
-	GMS_patrolHelisGreen = _GMS_armed_hellcats + _cup_Helis_missiles;  // _GMS_armed_orcas + _GMS_armed_ghosthawks;  //_GMS_littleBirds;
+	GMS_patrolHelisGreen = _GMS_armed_hellcats + _GMS_armed_orcas;  // _GMS_armed_orcas + _GMS_armed_ghosthawks;  //_GMS_littleBirds;
 	GMS_noPatrolHelisGreen = 1;
 	
 	GMS_chanceHeliPatrolOrange = 0.95;
-	GMS_patrolHelisOrange = _GMS_armed_heavyAttackHelis + _GMS_armed_attackHelis;  //_GMS_littleBirds;
+	GMS_patrolHelisOrange = _GMS_armed_orcas + _GMS_armed_ghosthawks;  //_GMS_armed_heavyAttackHelis + _GMS_armed_attackHelis;  //_GMS_littleBirds;
 	GMS_noPatrolHelisOrange = 1;
 
 	////////////////////

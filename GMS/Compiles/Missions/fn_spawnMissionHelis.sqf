@@ -17,10 +17,12 @@ params[
 ];
 private _helis = [];
 private _units = [];
+if (_missionHelis isEqualto []) then {_noChoppers = -1};
 for "_i" from 0 to (_noChoppers) do
 {
 	private _spawnPos = _coords getPos[30,random(359)];
 	private _heli = selectRandom _missionHelis;
+	diag_log format["GMS_fnc_spawnMissionHelis: _difficulty %1 | _heli %2",_difficulty,_heli];
 	private _noCrew = [_heli,false] call BIS_fnc_crewCount;
 	#define patrolArea [1000,1000]
 	private _crewGroup = [_spawnPos,_noCrew,_difficulty,patrolArea,_uniforms,_headGear,_vests,_backpacks,_weaponList, _sideArms] call GMS_fnc_spawnGroup;
