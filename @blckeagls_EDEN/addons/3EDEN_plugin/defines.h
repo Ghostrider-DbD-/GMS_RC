@@ -16,7 +16,7 @@
 */
 class CfgPatches
 {
-	class blckeagls_3den
+	class GMS_3den
 	{
 		requiredVersion = 0.1;
 		requiredAddons[] = {3DEN};
@@ -37,8 +37,8 @@ class CfgFunctions
 		class Export
 		{
 			file = "3EDEN_plugin\Export";
-			class exportDynamic {};
-			class exportStatic {};
+			//class exportDynamic {};
+			//class exportStatic {};
 		};
 
 		class Core 
@@ -53,8 +53,12 @@ class CfgFunctions
 			class display {};			
 			class displayGarrisonMarkers {};
 			class displayLootMarkers {};
+			class exportDynamic {};			
 			class getGarrisonInfo {};
 			class getLootVehicleInfo {};
+			class initialize {
+				postInit = 1;
+			};
 			class isInside {};
 			class loadCratesTiming {};
 			class onDrag {};
@@ -151,7 +155,7 @@ class display3DEN
 
 				class Blackeagls
 				{
-					text = "Blackeagls";
+					text = "GMS";
 					items[] = {
 						"blckAbout3EDENPlugin",
 						"blckSeparator",
@@ -171,7 +175,7 @@ class display3DEN
 						//"blck_getLootVehicleInfo",
 						//"blck_getMissionLootVehicleInfo",
 						"blckSeparator",						
-						"blckSaveStaticMission", 
+						//"blckSaveStaticMission", 
 						"blckSaveDynamicMission",
 						"blckSeparator",
 						"blck3EDENPluginHelp"
@@ -180,7 +184,7 @@ class display3DEN
 
 				class blckAbout3EDENPlugin 
 				{
-					text = "3EDEN Plugin Version 1.0 for BlckEagls by Ghostrider-GRG-";
+					text = "3EDEN Plugin Version 1.0 for GMS by Ghostrider-GRG-";
 					action = "call blck3EDEN_fnc_about";
 				};
 
@@ -469,7 +473,7 @@ class display3DEN
 				class blckSaveDynamicMission
 				{
 					text = "Save Dynamic Mission";
-					action = "call blck3DEN_fnc_exportDynamic";
+					action = "systemChat 'saving dynamic mission';call blck3DEN_fnc_exportDynamic";
 					picture = "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\save_ca.paa";
 				};
 

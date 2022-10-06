@@ -1,12 +1,16 @@
 /*
-	blckeagls 3EDEN Editor Plugin
+	GMS 3DEN Editor Plugin
 	by Ghostrider-GRG-
 	Copyright 2020
 	
 */
+
+systemChat "Staring exportDynamic.sqf";
+if (true) then exitWith {}
+
 #define oddsOfGarrison 0.67
 #define maxGarrisonUnits 4
-
+if (true) exitWith{diag_log "Exiting at line 9"};
 objectAtMissionCenter = getText(configFile >> "CfgBlck3DEN"  >> "configs" >> "objectAtMissionCenter");
 blck_minAI = getNumber(configFile >> "CfgBlck3DEN"  >> "configs" >> "minAI");
 blck_maxAI = getNumber(configFile >> "CfgBlck3DEN"  >> "configs" >> "maxAI");
@@ -23,7 +27,7 @@ lootVehicleVariableName = getText(configFile >> "CfgBlck3DEN"  >> "configs" >> "
 buildingPosGarrisonVariableName = getText(configFile >> "CfgBlck3DEN"  >> "configs" >> "buildingPosGarrisonVariableName");
 buildingATLGarrisionVariableName = getText(configFile >> "CfgBlck3DEN"  >> "configs" >> "buildingATLGarrisionVariableName");
 
-CENTER = [0,0,0];
+//Mission_CENTER = [0,0,0];
 
 diag_log format["Dynamic Export called at %1",diag_tickTime];
 diag_log format["With blck_MissionDifficulty = %1",blck_MissionDifficulty];
@@ -384,40 +388,41 @@ _lines pushBack "";
 _lines pushBack "/*";
 _lines pushBack "	Use the parameters below to customize your mission - see the template or blck_configs.sqf for details about each them";
 _lines pushBack "*/";
-_lines pushBack format["_chanceHeliPatrol = blck_chanceHeliPatrol%1;",blck_MissionDifficulty];  
-_lines pushBack format["_noChoppers = blck_noPatrolHelis%1;",blck_MissionDifficulty];
-_lines pushBack format["_missionHelis = blck_patrolHelis%1;",blck_MissionDifficulty];
-_lines pushBack format["_chancePara = blck_chancePara%1;",blck_MissionDifficulty]; 
-_lines pushBack format["_noPara = blck_noPara%1;",blck_MissionDifficulty];  
+_lines pushBack format["_chanceHeliPatrol = GMS_chanceHeliPatrol%1;",blck_MissionDifficulty];  
+_lines pushBack format["_noChoppers = GMS_noPatrolHelis%1;",blck_MissionDifficulty];
+_lines pushBack format["_missionHelis = GMS_patrolHelis%1;",blck_MissionDifficulty];
+_lines pushBack format["_chancePara = GMS_chancePara%1;",blck_MissionDifficulty]; 
+_lines pushBack format["_noPara = GMS_noPara%1;",blck_MissionDifficulty];  
 _lines pushBack format["_paraTriggerDistance = 400;"]; 				
 _lines pushBack format["_paraSkill = '%1';",blck_MissionDifficulty];  
 _lines pushBack format["_chanceLoot = 0.0;"]; 
-_lines pushBack format["_paraLoot = blck_BoxLoot_%1;",blck_MissionDifficulty];
-_lines pushBack format["_paraLootCounts = blck_lootCounts%1;",blck_MissionDifficulty];  
+_lines pushBack format["_paraLoot = GMS_BoxLoot_%1;",blck_MissionDifficulty];
+_lines pushBack format["_paraLootCounts = GMS_lootCounts%1;",blck_MissionDifficulty];  
 _lines pushBack format['_missionLandscapeMode = "precise";'];
-_linse pushBack "_useMines = blck_useMines;";  
-_lines pushBack "_uniforms = blck_SkinList;";  
-_lines pushBack "_headgear = blck_headgear;";  
-_lines pushBack "_vests = blck_vests;";
-_lines pushBack "_backpacks = blck_backpacks;";
-_lines pushBack "_sideArms = blck_Pistols;";
+_linse pushBack "_useMines = GMS_useMines;";  
+_lines pushBack "_uniforms = GMS_SkinList;";  
+_lines pushBack "_headgear = GMS_headgear;";  
+_lines pushBack "_vests = GMS_vests;";
+_lines pushBack "_backpacks = GMS_backpacks;";
+_lines pushBack "_sideArms = GMS_Pistols;";
 _lines pushBack format['_spawnCratesTiming = "%1";',blck_spawnCratesTiming];
 _lines pushBack format['_loadCratesTiming = "%1";',blck_loadCratesTiming];
 _lines pushBack format['_endCondition = "%1";',blck_missionEndCondition];
-_lines pushBack format["_minNoAI = blck_MinAI_%1;",blck_MissionDifficulty];
-_lines pushBack format["_maxNoAI = blck_MaxAI_%1;",blck_MissionDifficulty];
-_lines pushBack format["_noAIGroups = blck_AIGrps_%1;",blck_MissionDifficulty];
-_lines pushBack format["_noVehiclePatrols = blck_SpawnVeh_%1;",blck_MissionDifficulty];
-_lines pushBack format["_noEmplacedWeapons = blck_SpawnEmplaced_%1;",blck_MissionDifficulty];
-_lines pushBack format["_minNoAI = blck_MinAI_%1;",blck_MissionDifficulty];  
-_lines pushBack format["_maxNoAI = blck_MaxAI_%1;",blck_MissionDifficulty]; 
-_lines pushBack format["_noAIGroups = blck_AIGrps_%1;",blck_MissionDifficulty];  
-_lines pushBack format["_noVehiclePatrols = blck_SpawnVeh_%1;",blck_MissionDifficulty];  
-_lines pushBack format["_noEmplacedWeapons = blck_SpawnEmplaced_%1;",blck_MissionDifficulty];
+_lines pushBack format["_minNoAI = GMS_MinAI_%1;",blck_MissionDifficulty];
+_lines pushBack format["_maxNoAI = GMS_MaxAI_%1;",blck_MissionDifficulty];
+_lines pushBack format["_noAIGroups = GMS_AIGrps_%1;",blck_MissionDifficulty];
+_lines pushBack format["_noVehiclePatrols = GMS_SpawnVeh_%1;",blck_MissionDifficulty];
+_lines pushBack format["_noEmplacedWeapons = GMS_SpawnEmplaced_%1;",blck_MissionDifficulty];
+_lines pushBack format["_minNoAI = GMS_MinAI_%1;",blck_MissionDifficulty];  
+_lines pushBack format["_maxNoAI = GMS_MaxAI_%1;",blck_MissionDifficulty]; 
+_lines pushBack format["_noAIGroups = GMS_AIGrps_%1;",blck_MissionDifficulty];  
+_lines pushBack format["_noVehiclePatrols = GMS_SpawnVeh_%1;",blck_MissionDifficulty];  
+_lines pushBack format["_noEmplacedWeapons = GMS_SpawnEmplaced_%1;",blck_MissionDifficulty];
 _lines pushBack "_submarinePatrols = 0; // Default number of submarine patrols at pirate missions";
 _lines pushBack "_scubaPatrols = 0; // Default number of scuba diver patrols at pirate missions";
 _lines pushBack "";
-_lines pushBack '#include "\q\addons\custom_server\Compiles\Missions\GMS_fnc_missionSpawner.sqf";';
+#include ;
+_lines pushBack '#include"\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";';
 
 diag_log ["dynamic"] call blck3EDEN_fnc_versionInfo;
 uiNameSpace setVariable ["Display3DENCopy_data", ["dynamicMission.sqf", _lines joinString _lineBreak]];
