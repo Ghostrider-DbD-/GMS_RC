@@ -525,10 +525,11 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 		GMS_otherExplosives = ["1Rnd_HE_Grenade_shell","3Rnd_HE_Grenade_shell","DemoCharge_Remote_Mag","SatchelCharge_Remote_Mag"];
 		GMS_explosives = GMS_throwableExplosives + GMS_otherExplosives;
 		GMS_medicalItems = ["FAK"];
-		GMS_specialItems = GMS_throwableExplosives + GMS_medicalItems;		
+		GMS_specialItems = GMS_throwableExplosives + GMS_medicalItems;	
+		GMS_binocs = ["Binocular","Rangefinder","Laserdesignator"];	
 		GMS_NVG = ["NVG"];
         GMS_buildingMaterials = [];
-
+		GMS_loot = [];
 		GMS_UMS_uniforms = 
 		[
 			"U_I_Wetsuit",

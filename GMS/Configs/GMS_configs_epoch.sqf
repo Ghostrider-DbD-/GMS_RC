@@ -152,10 +152,10 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 	
 	//GMS_AIPatrolVehicles = ["B_G_Offroad_01_armed_EPOCH","B_LSV_01_armed_F","I_C_Offroad_02_LMG_F","B_T_LSV_01_armed_black_F","B_T_LSV_01_armed_olive_F","B_T_LSV_01_armed_sand_F"]; // Type of vehicle spawned to defend AI bases	
 	GMS_AIPatrolVehicles = GMS_lightlyArmed_CUP;
-	GMS_AIPatrolVehiclesBlue = GMS_lightlyArmed_CUP;  //["B_G_Offroad_01_armed_EPOCH","B_LSV_01_armed_F","I_C_Offroad_02_LMG_F","B_T_LSV_01_armed_black_F","B_T_LSV_01_armed_olive_F","B_T_LSV_01_armed_sand_F"];
-	GMS_AIPatrolVehiclesRed = GMS_lightlyArmed_CUP; //["O_MBT_02_cannon_F","O_APC_Tracked_02_AA_F","O_APC_Tracked_02_cannon_F"];  // I recomend you switch Red and Green here
-	GMS_AIPatrolVehiclesGreen = GMS_lightlyArmed_CUP; //["B_G_Offroad_01_armed_EPOCH","B_LSV_01_armed_F","I_C_Offroad_02_LMG_F","B_T_LSV_01_armed_black_F","B_T_LSV_01_armed_olive_F","B_T_LSV_01_armed_sand_F"];
-	GMS_AIPatrolVehiclesOrange = GMS_lightlyArmed_CUP; //["O_MBT_02_cannon_F","O_APC_Tracked_02_AA_F","O_APC_Tracked_02_cannon_F"];
+	GMS_AIPatrolVehiclesBlue = ["B_G_Offroad_01_armed_EPOCH","B_LSV_01_armed_F","I_C_Offroad_02_LMG_F","B_T_LSV_01_armed_black_F","B_T_LSV_01_armed_olive_F","B_T_LSV_01_armed_sand_F"];
+	GMS_AIPatrolVehiclesRed = ["O_MBT_02_cannon_F","O_APC_Tracked_02_AA_F","O_APC_Tracked_02_cannon_F"];  // I recomend you switch Red and Green here
+	GMS_AIPatrolVehiclesGreen = ["B_G_Offroad_01_armed_EPOCH","B_LSV_01_armed_F","I_C_Offroad_02_LMG_F","B_T_LSV_01_armed_black_F","B_T_LSV_01_armed_olive_F","B_T_LSV_01_armed_sand_F"];
+	GMS_AIPatrolVehiclesOrange = ["O_MBT_02_cannon_F","O_APC_Tracked_02_AA_F","O_APC_Tracked_02_cannon_F"];
 	
 	// Blacklisted itesm
 	GMS_blacklistedOptics = ["optic_Nightstalker","optic_tws","optic_tws_mg"];
@@ -607,8 +607,9 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 				"ItemBottlePlastic_Clean", "atropine_epoch", "ItemWaterPurificationTablets", "ItemPainKillers", "ItemDefibrillator", 
 				"ItemBloodBag_Empty", "ItemBloodBag_Full", "ItemAntibiotic", "nanite_cream_epoch", "nanite_pills_epoch"];
 		GMS_specialItems = GMS_throwableExplosives + GMS_medicalItems;	
-		GMS_binocs = ["Binocular","Rangefinder"];	
+		GMS_binocs = ["Binocular","Rangefinder","Laserdesignator"];			
 		GMS_NVG = ["NVG_EPOCH"];
+		GMS_loot = [];
 		GMS_epochValuables = ["PartOreGold","PartOreSilver","PartOre","ItemGoldBar","ItemSilverBar",
 			"ItemGoldBar10oz","ItemTopaz","ItemOnyx","ItemSapphire","ItemAmethyst",
 			"ItemEmerald","ItemCitrine","ItemRuby","ItemQuartz","ItemJade",
@@ -618,8 +619,6 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
         GMS_epochVehicleRepair = ["EngineParts","FuelTank","SpareTire","ItemGlass",
            "ItemDuctTape","VehicleRepair"];
         GMS_buildingMaterials = GMS_epochBuildingSupplies + GMS_epochVehicleRepair;
-		GMS_tools = [];
-		GMS_loot = GMS_buildingMaterials + GMS_tools;
 
 /***************************************************************************************
 DEFAULT CONTENTS OF LOOT CRATES FOR EACH MISSION
