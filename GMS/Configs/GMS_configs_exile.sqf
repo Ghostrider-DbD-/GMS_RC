@@ -218,10 +218,11 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 	GMS_AIPatrolVehiclesGreen = GMS_light_AT_ARMA3 + GMS_tracked_APC_ARMA3;
 	GMS_AIPatrolVehiclesOrange = GMS_Tanks_ARMA3 + GMS_light_AT_ARMA3;
 
-	GMS_AIPatrolVehiclesBlue = GMS_AIPatrolVehiclesBlue + GMS_open_armed_CUP;
-	GMS_AIPatrolVehiclesRed = GMS_AIPatrolVehiclesRed + GMS_closed_armed_CUP;
-	GMS_AIPatrolVehiclesGreen = GMS_AIPatrolVehiclesGreen + GMS_APC_CUP;
-	GMS_AIPatrolVehiclesOrange = GMS_AIPatrolVehiclesOrange + GMS_Tanks_CUP;
+	// Use these if you wish to add CUP vehicles at missions from the lists above.
+	//GMS_AIPatrolVehiclesBlue = GMS_AIPatrolVehiclesBlue + GMS_open_armed_CUP;
+	//GMS_AIPatrolVehiclesRed = GMS_AIPatrolVehiclesRed + GMS_closed_armed_CUP;
+	//GMS_AIPatrolVehiclesGreen = GMS_AIPatrolVehiclesGreen + GMS_APC_CUP;
+	//GMS_AIPatrolVehiclesOrange = GMS_AIPatrolVehiclesOrange + GMS_Tanks_CUP;
 
 	
 	// Blacklisted itesm

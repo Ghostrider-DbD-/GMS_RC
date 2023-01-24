@@ -229,7 +229,7 @@ switch (GMSCore_modType) do
 	
 	GMS_blacklisted_heli_ammo = ["24Rnd_missiles","24Rnd_PG_missiles","12Rnd_PG_missiles","2Rnd_LG_scalpel","6Rnd_LG_scalpel","8Rnd_LG_scalpel","M_Scalpel_AT ","14Rnd_80mm_rockets","38Rnd_80mm_rockets"];
 	GMS_blacklisted_heli_weapons = ["missiles_SCALPEL","missiles_titan","rockets_Skyfire","missiles_DAGR","missiles_DAR"];
-	_cup_helis = ["uh1h_armed_EPOCH","uh1h_armed_plus_EPOCH"];
+	//_cup_helis = ["uh1h_armed_EPOCH","uh1h_armed_plus_EPOCH"];
 	_cup_Helis_missiles = ["CUP_B_412_dynamicLoadout_HIL","CUP_B_AW159_RN_Blackcat","CUP_B_AW159_RN_Blackcat"];
 	_cup_attack_helis = [];
 	///////////////////////////////
@@ -240,18 +240,18 @@ switch (GMSCore_modType) do
 									//  The chance of paratroops dropping from the heli is defined by GMS_chancePara(Blue|Red|Green|Orange) above.
 									// Recommend setting the change = 1 if you wish to spawn multiple helis at a mission.
 	GMS_patrolHelisBlue = _GMS_littleBirds;
-	GMS_noPatrolHelisBlue = 0;
+	GMS_noPatrolHelisBlue = 1;
 	
 	GMS_chanceHeliPatrolRed = 0.75; // 0.4;
 	GMS_patrolHelisRed = _GMS_littleBirds;
-	GMS_noPatrolHelisRed = 0;
+	GMS_noPatrolHelisRed = 1;
 	
 	GMS_chanceHeliPatrolGreen = 0.85;
-	GMS_patrolHelisGreen = _GMS_armed_hellcats + _GMS_armed_orcas;  // _GMS_armed_orcas + _GMS_armed_ghosthawks;  //_GMS_littleBirds;
+	GMS_patrolHelisGreen = _GMS_armed_hellcats + _cup_Helis_missiles;  // _GMS_armed_orcas + _GMS_armed_ghosthawks;  //_GMS_littleBirds;
 	GMS_noPatrolHelisGreen = 1;
 	
 	GMS_chanceHeliPatrolOrange = 0.95;
-	GMS_patrolHelisOrange = _GMS_armed_orcas + _GMS_armed_ghosthawks;  //_GMS_armed_heavyAttackHelis + _GMS_armed_attackHelis;  //_GMS_littleBirds;
+	GMS_patrolHelisOrange = _GMS_armed_heavyAttackHelis + _GMS_armed_attackHelis;  //_GMS_littleBirds;
 	GMS_noPatrolHelisOrange = 1;
 
 	////////////////////
@@ -263,7 +263,7 @@ switch (GMSCore_modType) do
 		
 	//Set to -1 to disable. Values of 2 or more force the mission spawner to spawn copies of that mission - this feature is not recommended because you may run out of available groups.
 	GMS_enableOrangeMissions = 1;  
-	GMS_enableGreenMissions = 1;
+	GMS_enableGreenMissions = 2;
 	GMS_enableRedMissions = 2;
 	GMS_enableBlueMissions = 1;
 	GMS_numberUnderwaterDynamicMissions = 0;  // Values from -1 (no UMS) to N (N Underwater missions will be spawned; static UMS units and subs will be spawned.	
@@ -469,7 +469,7 @@ switch (GMSCore_modType) do
 	GMS_removeNVG = false; // When true, NVG will be removed from AI when they are killed.
 	GMS_useLaunchers = true;  // When true, some AI will be spawned with RPGs; they do not however fire on vehicles for some reason so I recommend this be set to false for now
 	//GMS_launcherTypes = ["launch_NLAW_F","launch_RPG32_F","launch_B_Titan_F","launch_I_Titan_F","launch_O_Titan_F","launch_B_Titan_short_F","launch_I_Titan_short_F","launch_O_Titan_short_F"];
-	GMS_launcherTypes = ["launch_RPG32_F","CUP_launch_RPG7V"];  //
+	GMS_launcherTypes = ["launch_RPG32_F"];  //["CUP_launch_RPG7V"];  //
 	GMS_launchersPerGroup = 1;  // Defines the number of AI per group spawned with a launcher
 	GMS_launcherCleanup = false;// When true, launchers and launcher ammo are removed from dead AI.
 	GMS_minimumPatrolRadius = 22;  // AI will patrol within a circle with radius of approximately min-max meters. note that because of the way waypoints are completed they may more more or less than this distance.
@@ -584,7 +584,7 @@ switch (GMSCore_modType) do
 	GMS_chanceBinoc = 0.75;
 
 	private _configToLoad = format["\GMS\Configs\GMS_configs_%1.sqf",tolower(GMSCore_modtype)];
-	diag_log format["[GMS] _configToLoad = %1",_configToLoad];
+	//diag_log format["[GMS] _configToLoad = %1",_configToLoad];
 	[] call compileFinal preprocessFileLineNumbers _configToLoad;
 
 	if (GMS_useConfigsGeneratedLoadouts) then 

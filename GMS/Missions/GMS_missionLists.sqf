@@ -31,6 +31,7 @@ private _missionListBlue = [
 		"Service_point",  // OK build 224
 		//"Toxin",  //  OK but too difficult for a blue mission
 		"default"  //  Spawns OK Debug = 4 Build 246
+		//"ForgottenHQ"
 	];
 
 private _pathRed = "Red";
