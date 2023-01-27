@@ -71,7 +71,7 @@ _missionEmplacedWeapons = [
 
 _missionPatrolVehicles = [
      [selectRandom GMS_AIPatrolVehiclesOrange,[-47.8262,-23.5137,-0.321316],0.0016802],
-     ["CUP_B_Hilux_igla_BLU_G_F",[-30.4395,13.2695,-0.321565],0.00168791]
+     [selectRandom GMS_AIPatrolVehiclesGreen,[-30.4395,13.2695,-0.321565],0.00168791]
      //[selectRandom GMS_tracked_APC_ARMA3,[-14.084,-61.1504,-0.321593],0.0016711],
      //[selectRandom GMS_Tanks_ARMA3,[-8.88086,27.3223,-0.312962],0.000197464],
      //[selectRandom GMS_light_AT_ARMA3,[29.0449,-42.6465,-0.319407],0.00168023],

@@ -84,7 +84,7 @@ _missionGroups =
 _missionPatrolVehicles = [
 	//[selectRandom GMS_AIPatrolVehiclesGreen,[27.8945,100.275,0],0,[true,false]],
 	[selectRandom GMS_AIPatrolVehiclesGreen,[-84.7793,72.2617,9.53674e-007],0,[true,false]],
-	["CUP_B_Hilux_igla_BLU_G_F",[-87.8457,-109.947,7.15256e-007],0,[true,false]]
+	[selectRandom GMS_AIPatrolVehiclesGreen,[-87.8457,-109.947,7.15256e-007],0,[true,false]]
 ];  // can be used to define the spawn positions of vehicle patrols
 
 //  Change _useMines to true/false below to enable mission-specific settings.

@@ -76,8 +76,8 @@ _missionPatrolVehicles = [
      ["O_T_LSV_02_armed_F",[47086.9,35887,0],205.251],
      ["O_T_LSV_02_AT_F",[47207.8,35877.4,0],0],
      ["O_T_APC_Tracked_02_AA_ghex_F",[47094.1,35924.2,2.38419e-007],297.601],
-     [selectRandom _CUP_Tanks,[47099.8,35845.4,0],227.158],
-     [selectRandom _CUP_Tanks,[47184.5,35932.1,0],29.7763],
+     [selectRandom GMS_Tanks_ARMA3,[47099.8,35845.4,0],227.158],
+     [selectRandom GMS_Tanks_ARMA3,[47184.5,35932.1,0],29.7763],
      ["O_T_APC_Tracked_02_AA_ghex_F",[47194.1,35850.3,2.38419e-007],109.403]
 ];
 

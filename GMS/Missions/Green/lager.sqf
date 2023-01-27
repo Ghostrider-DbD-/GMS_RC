@@ -141,7 +141,7 @@ _missionLootVehicles = [
 _missionPatrolVehicles = [
      //["Exile_Car_Hunter",[24.8054,-67.8333,0.00875282],89.6558],
      [selectRandom GMS_AIPatrolVehiclesGreen,[24.8997,69.1799,-0.00138235],91.5468],
-     ["CUP_B_Hilux_igla_BLU_G_F",[74.0911,1.21655,-0.0377212],359.999]
+     [selectRandom GMS_AIPatrolVehiclesGreen,[74.0911,1.21655,-0.0377212],359.999]
 ];
 
 _submarinePatrolParameters = [

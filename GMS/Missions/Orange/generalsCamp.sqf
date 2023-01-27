@@ -81,7 +81,7 @@ _missionLootVehicles = [
 _missionPatrolVehicles = [
     #ifdef GMS_milServer
      [selectRandom GMS_AIPatrolVehiclesOrange,[-53.3984,-32.1953,-0.0238545],0.00168023],
-     ["CUP_B_Hilux_igla_BLU_G_F",[-41.373,21.6543,-0.023375],0.00167416]
+     [selectRandom GMS_AIPatrolVehiclesGreen,[-41.373,21.6543,-0.023375],0.00167416]
      //[selectRandom GMS_tracked_AA_ARMA3,[3.89844,48.4082,-0.0219693],0.00167182],
      //[selectRandom GMS_Tanks_ARMA3,[12.877,-54.4258,-0.0238872],0.00167124],
      //[selectRandom GMS_light_AT_ARMA3,[55.5371,-12.541,-0.0210321],0.00167126],

@@ -187,7 +187,7 @@ _missionLootVehicles = [
 
 _missionPatrolVehicles = [
     [selectRandom GMS_AIPatrolVehiclesOrange,[-62.7971,0.422119,-0.0236669],0.00164848],
-    ["CUP_B_Hilux_igla_BLU_G_F",[31.9084,-7.18774,-0.0238085],0.00168349]
+    [selectRandom GMS_AIPatrolVehiclesGreen,[31.9084,-7.18774,-0.0238085],0.00168349]
 ];
 
 _submarinePatrolParameters = [

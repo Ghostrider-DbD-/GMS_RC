@@ -51,7 +51,7 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 	GMS_maximumItemPriceInAI_Loadouts = 1000;
 	
 	GMS_open_armed_vehicles = [
-		"nameNoGoodOpen",
+		//"nameNoGoodOpen",
 		"Exile_Car_BTR40_MG_Green",
 		"Exile_Car_HMMWV_M134_Green",
 		"Exile_Car_HMMWV_M2_Green",
@@ -62,7 +62,7 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 	];
 	
 	GMS_lightlyArmed_ARMA3 = [
-		"nameNoGoodClosed",
+		//"nameNoGoodClosed",
 		"B_MRAP_01_gmg_F", 
 		"B_MRAP_01_hmg_F",
 		"O_MRAP_02_gmg_F",  
@@ -687,8 +687,7 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 			"Exile_Boat_SDV_Grey"
 		];
 		
-		GMS_UMS_crates =	["Exile_Container_SupplyBox"];
-
+	GMS_UMS_crates =	["Exile_Container_SupplyBox"];
 
 	GMS_UMS_unarmedSurfaceVessels = 
 	[

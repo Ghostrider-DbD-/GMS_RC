@@ -102,7 +102,7 @@ _missionLootVehicles = [
 
 _missionPatrolVehicles = [
      [selectRandom GMS_AIPatrolVehiclesOrange,[-48.9414,-27.9336,-0.00839043],0.014744],
-     ["CUP_B_Hilux_igla_BLU_G_F",[-43.2539,15.6504,0.0234108],359.996]
+     [selectRandom GMS_AIPatrolVehiclesGreen,[-43.2539,15.6504,0.0234108],359.996]
      //[selectRandom GMS_light_AT_ARMA3,[-27.0313,26.8213,-0.022541],0.00204721],
      //[selectRandom GMS_tracked_AA_ARMA3,[-12.9023,47.8105,0.0262032],359.999],
      //[selectRandom GMS_tracked_APC_ARMA3,[-0.851563,-70.9072,-0.02915],0.0194982],

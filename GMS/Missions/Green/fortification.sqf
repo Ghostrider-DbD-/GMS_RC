@@ -153,7 +153,7 @@ _missionLootVehicles = []; //  Parameters are "Box Item Code", array defining th
 
 _missionPatrolVehicles = [
     [selectRandom GMS_AIPatrolVehiclesGreen,[21.4174,19.0781,0.00804281],90.3115],
-    ["CUP_B_Hilux_igla_BLU_G_F",[27.5131,-53.1431,0.00819397],268.528]
+    [selectRandom GMS_AIPatrolVehiclesGreen,[27.5131,-53.1431,0.00819397],268.528]
 ];
 
 _submarinePatrolParameters = [];
