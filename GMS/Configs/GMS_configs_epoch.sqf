@@ -150,8 +150,8 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 		"CUP_O_BMP1_TKA"
 	];	
 	
-	//GMS_AIPatrolVehicles = ["B_G_Offroad_01_armed_EPOCH","B_LSV_01_armed_F","I_C_Offroad_02_LMG_F","B_T_LSV_01_armed_black_F","B_T_LSV_01_armed_olive_F","B_T_LSV_01_armed_sand_F"]; // Type of vehicle spawned to defend AI bases	
-	GMS_AIPatrolVehicles = GMS_lightlyArmed_CUP;
+	GMS_AIPatrolVehicles = ["B_G_Offroad_01_armed_EPOCH","B_LSV_01_armed_F","I_C_Offroad_02_LMG_F","B_T_LSV_01_armed_black_F","B_T_LSV_01_armed_olive_F","B_T_LSV_01_armed_sand_F"]; // Type of vehicle spawned to defend AI bases	
+	//GMS_AIPatrolVehicles = GMS_lightlyArmed_CUP;
 	GMS_AIPatrolVehiclesBlue = ["B_G_Offroad_01_armed_EPOCH","B_LSV_01_armed_F","I_C_Offroad_02_LMG_F","B_T_LSV_01_armed_black_F","B_T_LSV_01_armed_olive_F","B_T_LSV_01_armed_sand_F"];
 	GMS_AIPatrolVehiclesRed = ["O_MBT_02_cannon_F","O_APC_Tracked_02_AA_F","O_APC_Tracked_02_cannon_F"];  // I recomend you switch Red and Green here
 	GMS_AIPatrolVehiclesGreen = ["B_G_Offroad_01_armed_EPOCH","B_LSV_01_armed_F","I_C_Offroad_02_LMG_F","B_T_LSV_01_armed_black_F","B_T_LSV_01_armed_olive_F","B_T_LSV_01_armed_sand_F"];
