@@ -4,9 +4,11 @@
 	
 	*Ensure GMS_Core is installed prior to this script otherwise it will not work!*
 	
+	You can download this addon at: https://github.com/Ghostrider-DbD-/GMSCore
+
 //Step 1;
 
-	Download the file "GMS_RC" from the master branch and extract it to your documents folder.
+	Download the file "GMS_RC-master" from the master branch and extract it to your documents folder.
 
 //Step 2;
 
