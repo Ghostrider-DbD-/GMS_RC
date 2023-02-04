@@ -6,7 +6,7 @@
 	
 //Step 1;
 
-	Download the file "GMS_AI-master" and unextract it to your documents.
+	Download the file "GMS_RC" from the master branch and extract it to your documents folder.
 
 //Step 2;
 
