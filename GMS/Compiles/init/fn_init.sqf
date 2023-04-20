@@ -203,7 +203,12 @@ if (GMS_maxCrashSites > 0) then
 [] spawn GMS_fnc_mainThread;
 private _version = getText(configFile >> "GMSBuild" >> "Version");
 private _build = getText(configFile >> "GMSBuild" >> "Build");
-private _date = getText(configFile >> "GMSBuile" >> "Date");
-[format["Version %1 Build %2 Date %4 Loaded in %3 seconds",_version,_build,diag_tickTime - _loadingStartTime,_date]] call GMS_fnc_log;
+private _date = getText(configFile >> "GMSBuild" >> "Date");
+[format["Version %1 Build %2 Date %4 Loaded in %3 seconds",
+	_version,
+	_build,
+	diag_tickTime - _loadingStartTime,
+	_date]
+] call GMS_fnc_log;
 
 

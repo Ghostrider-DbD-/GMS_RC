@@ -12,9 +12,9 @@
 */
 
  class GMSBuild {
-	 Version = "7.142";
-	 Build = "259"; 
-	 Date = "01-24-2023";
+	 Version = "7.143";
+	 Build = "260"; 
+	 Date = "04-20-2023";
  };
 
 class CfgPatches {

@@ -60,17 +60,17 @@ while {true} do
 	};
 	if (diag_tickTime > _timer5min) then 
 	{
-		private _clientID = if (clientOwner == 2) then {"server"} else {"Headless Client"};
+		private _clientID = if (clientOwner == 2) then {"Dedicated Server"} else {"Headless Client"};
 		[
-			format["Timstamp %1 | Running on %2 | Missions Running %2 | Vehicles %3 | Groups %4 | Missions Run %5 | Server FPS %6 | Server Uptime %7 Min",
+			format["Timstamp %1 | Missions Running %2 | Vehicles %3 | Groups %4 | Missions Run %5 | Server FPS %6 | Server Uptime %7 Min | Running on %8",
 				diag_tickTime,
-				_clientID,
 				GMS_missionsRunning,
 				count GMS_monitoredVehicles,
 				count GMS_monitoredMissionAIGroups,
 				GMS_missionsRun,
 				diag_FPS,
-				floor(diag_tickTime/60)
+				floor(diag_tickTime/60),
+				_clientID
 			]
 		] call GMS_fnc_log;
 		if (GMS_debugLevel > 0) then 
