@@ -120,7 +120,6 @@ switch (GMSCore_modtype) do {
 
 if (_creditKill) then 
 {
-	
 	[_instigator,1] call GMSCore_fnc_updatePlayerKills;
 	private _msg = format[
 		"%1 killed %2 with %3 at %4 meters %5X KILLSTREAK",
@@ -130,8 +129,8 @@ if (_creditKill) then
 		_unit distance _instigator,
 		_killstreak
 	];
-	[_msg] remoteExec["systemChat",-2];
-	//[["showScore",[_reward,"",_kills],""],[_instigator]] call blck_fnc_messageplayers;
-	[unit, _instigator, _reward, _experience, _killstreak] remoteExec ["GMSCore_fnc_killedMessages",_instigator];
+	private _players = allPlayers deleteAt (allPlayers find _instigator);
+	[_instigator, _reward, _experience, name _unit, _unit distance _instigator, getText(configFile >> "CfgWeapons" >> currentWeapon _instigator >> "displayName"), _killstreak, GMS_killMessageToAllPlayers] remoteExec ["GMSCore_fnc_killedMessages",_players];	
+	[_instigator, _reward, _experience, name _unit, _unit distance _instigator, getText(configFile >> "CfgWeapons" >> currentWeapon _instigator >> "displayName"), _killstreak, GMS_killMessageTypesKiller] remoteExec ["GMSCore_fnc_killedMessages",[_instigator]];
 };
 

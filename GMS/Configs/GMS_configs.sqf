@@ -52,8 +52,35 @@
 	///////////////////////////////
 	//  Kill message configurations
 	// These determine whether and when messages are sent to players regarding AI Kills or illegal kills that might damage a vehicle.
-	GMS_useKillMessages = true;  // when true a message will be broadcast to all players each time an AI is killed; may impact server performance.
-	GMS_useKillScoreMessage = true; // when true a tile is displayed to the killer with the kill score information
+GMS_killMessageToAllPlayers = [
+	/*
+		These settings are used by GMSCore to determine what kinds of messages to use to notify players of a kill.
+		SystemChat can be broadcast to all players.
+		Comment out all options to disable this function (faster)
+	*/
+
+	//"toast",  // Exile only 
+	//"epochMsg", // Epoch only 
+	//"hint",
+	//"cutText",
+	//"dynamic",  // A display with information about rewards formated in a list on the left side of the screen
+				  // Not recommended
+	//"systemChat"
+]; 
+GMS_killMessageTypesKiller = [
+	/*
+		These settings are used by GMSCore to determine what kinds of messages to use to notify players of a kill.
+		SystemChat can be broadcast to all players.
+		The other notifications will only be viewed by the player reponsible for the kill.
+	*/
+
+	//"toast",  // Exile only 
+	//"epochMsg", // Epoch only 
+	//"hint",
+	//"cutText",
+	"dynamic",  // A display with information about rewards formated in a list on the left side of the screen
+	"systemChat"
+];
 	GMS_useIEDMessages = true;  // Displayes a message when a player vehicle detonates and IED (such as would happen if a player killed AI with a forbidden weapon).
 
 GMS_rewards = [[0,0],[0,0],[0,0],[0,0]];
