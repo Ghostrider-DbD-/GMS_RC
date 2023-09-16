@@ -28,9 +28,9 @@ diag_log format["[GMS] GMSCore_modtype = %1 | GMSCore_side %2 | GMSCore_unitType
 
 // This block waits for the mod to start but is disabled for now
 if ((toLowerANSI GMSCore_modtype) isEqualto "epoch") then {
-	//diag_log "[GMS] Waiting until EpochMod is ready...";
-	//waitUntil {!isnil "EPOCH_SERVER_READY"};
-	//diag_log "[GMS] EpochMod is ready...loading GMS";
+	diag_log "[GMS] Waiting until EpochMod is ready...";
+	waitUntil {!isnil "EPOCH_SERVER_READY"};
+	diag_log "[GMS] EpochMod is ready...loading GMS";
 };
 if ((toLowerANSI GMSCore_modtype) isEqualTo "exile") then
 {

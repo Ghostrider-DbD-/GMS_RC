@@ -129,8 +129,7 @@ if (_creditKill) then
 		_unit distance _instigator,
 		_killstreak
 	];
-	private _players = allPlayers deleteAt (allPlayers find _instigator);
-	[_instigator, _reward, _experience, name _unit, _unit distance _instigator, getText(configFile >> "CfgWeapons" >> currentWeapon _instigator >> "displayName"), _killstreak, GMS_killMessageToAllPlayers] remoteExec ["GMSCore_fnc_killedMessages",_players];	
-	[_instigator, _reward, _experience, name _unit, _unit distance _instigator, getText(configFile >> "CfgWeapons" >> currentWeapon _instigator >> "displayName"), _killstreak, GMS_killMessageTypesKiller] remoteExec ["GMSCore_fnc_killedMessages",[_instigator]];
+	
+	[_instigator, _reward, _experience, name _unit, _unit distance _instigator, getText(configFile >> "CfgWeapons" >> currentWeapon _instigator >> "displayName"), _killstreak, GMS_killMessageToAllPlayers,GMS_killMessageTypesKiller,GMS_killMessagingRadius] remoteExec ["GMSCore_fnc_killedMessages",allPlayers];	
 };
 

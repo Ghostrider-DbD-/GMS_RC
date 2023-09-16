@@ -49,9 +49,13 @@
 	
 	***********************************************************/
 	
-	///////////////////////////////
-	//  Kill message configurations
-	// These determine whether and when messages are sent to players regarding AI Kills or illegal kills that might damage a vehicle.
+///////////////////////////////
+//  Kill message configurations
+
+// This is the radius within which nearby players will receive any messages regaring AI Kills by other players 
+// the location of the killer is the center of this area
+GMSAI_killMessagingRadius = 3000; 	
+
 GMS_killMessageToAllPlayers = [
 	/*
 		These settings are used by GMSCore to determine what kinds of messages to use to notify players of a kill.
