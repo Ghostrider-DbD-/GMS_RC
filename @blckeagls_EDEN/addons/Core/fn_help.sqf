@@ -1,0 +1,9 @@
+/*
+	GMS 3EDEN Editor Plugin
+	by Ghostrider-GRG-
+	Copyright 2020
+	
+*/
+private _m = format["Help called at %1",diag_tickTime];
+systemChat _m;
+diag_log _m;
