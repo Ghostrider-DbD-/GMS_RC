@@ -1,0 +1,266 @@
+_tools = [
+			"Exile_Item_Matches",
+			"Exile_Item_CookingPot",
+			"Exile_Item_CanOpener",
+			"Exile_Item_Handsaw",
+			"Exile_Item_Pliers",
+			"Exile_Item_Grinder",
+			"Exile_Item_Foolbox",
+			"Exile_Item_Hammer",
+			"Exile_Item_CordlessScrewdriver",
+			"Exile_Item_FireExtinguisher",
+			"Exile_Item_OilCanister",
+			"Exile_Item_Screwdriver",
+			"Exile_Item_Shovel",
+			"Exile_Item_Wrench",	
+			"Exile_Item_CordlessScrewdriver",
+			"Exile_Item_FireExtinguisher",
+			"Exile_Item_OilCanister",
+			"Exile_Item_Screwdriver",			
+			/*
+
+			"Exile_Item_Shovel",
+			"Exile_Item_Wrench",
+			"Exile_Item_SleepingMat",
+			"Exile_Item_ToiletPaper",
+			"Exile_Item_ZipTie",
+			"Exile_Item_BurlapSack",
+			"Exile_Item_Bullets_556",
+			"Exile_Item_Bullets_762",
+			"Exile_Item_WeaponParts",
+			*/
+			"Exile_Item_DuctTape",
+			"Binocular",
+			"Rangefinder",
+			/*
+			"Laserdesignator",
+			"Laserdesignator_02",
+			"Laserdesignator_03",
+			*/
+			
+			"ItemGPS",
+			"ItemMap",
+			"ItemCompass",
+			"ItemRadio",
+			"ItemWatch",
+			"Exile_Item_XM8"
+];
+
+_firstAid = [
+			"Exile_Item_InstaDoc",
+			"Exile_Item_Bandage",
+			"Exile_Item_Vishpirin",
+			"Exile_Item_Heatpack",
+
+			// Not available in 0.9.4!
+			"Exile_Item_Defibrillator"
+];
+
+_explosives = [
+			"HandGrenade",
+			"MiniGrenade",
+			"B_IR_Grenade",
+			"O_IR_Grenade",
+			"I_IR_Grenade",
+			"1Rnd_HE_Grenade_shell",
+			"3Rnd_HE_Grenade_shell",
+			"APERSBoundingMine_Range_Mag",
+			"APERSMineDispenser_F",  // Laws of War Mines
+			"APERSMine_Range_Mag",
+			"APERSTripMine_Wire_Mag",
+			"ClaymoreDirectionalMine_Remote_Mag",
+			"DemoCharge_Remote_Mag",
+			"IEDLandBig_Remote_Mag",
+			"IEDLandSmall_Remote_Mag",
+			"IEDUrbanBig_Remote_Mag",
+			"IEDUrbanSmall_Remote_Mag",
+			"SatchelCharge_Remote_Mag",
+			"SLAMDirectionalMine_Wire_Mag"
+];
+
+_laserDesignators = [
+			"O_Static_Designator_02_weapon_F",
+			"Laserdesignator_01_khk_F",
+			"Laserdesignator_02_ghex_F",
+			"Laserdesignator",
+			"Laserdesignator_02",
+			"Laserdesignator_03",
+			"LaserBatteries"
+];
+
+_launchers = [
+			"launch_NLAW_F",
+			"launch_RPG32_F",
+			"launch_B_Titan_F",
+			"launch_I_Titan_F",
+			"launch_O_Titan_F",
+			"launch_B_Titan_short_F",
+			"launch_I_Titan_short_F",
+			"launch_O_Titan_short_F",
+			"launch_RPG7_F",
+			"launch_O_Vorona_brown_F",
+			"launch_O_Vorona_green_F"
+];
+
+_launcherRounds = [
+			"NLAW_F",
+			"RPG32_F",
+			"RPG32_HE_F",
+			"Titan_AA",
+			"Titan_AT",
+			"Titan_AP",
+			"RPG7_F",
+			"vorona_HEAT",
+			"Vorona_HE"	
+];
+
+_buildingMaterials = [
+			"Exile_Item_ExtensionCord",
+			"Exile_Item_FuelCanisterEmpty",
+			"Exile_Item_JunkMetal",
+			"Exile_Item_LightBulb",
+			"Exile_Item_MetalBoard",
+			"Exile_Item_MetalPole",
+			"Exile_Item_SafeKit",
+			"Exile_Item_CamoTentKit",
+			"Exile_Item_CodeLock",
+			"Exile_Item_MetalScrews",
+			"Exile_Item_MetalWire",			
+			"Exile_Item_BaseCameraKit",	
+			"Exile_Item_Rope",				
+			"Exile_Item_Laptop"
+];
+
+			[// Materials and supplies				
+				["Exile_Item_Matches",1,2],["Exile_Item_CookingPot",1,2],
+				["Exile_Item_Rope",1,2],["Exile_Item_DuctTape",1,8],["Exile_Item_ExtensionCord",1,8],["Exile_Item_FuelCanisterEmpty",1,2],
+				["Exile_Item_JunkMetal",1,10],["Exile_Item_LightBulb",1,10],["Exile_Item_MetalBoard",1,10],["Exile_Item_MetalPole",1,10],["Exile_Item_CamoTentKit",1,10],["Exile_Item_WorkBenchKit",1,10],
+				["Exile_Item_WoodWindowKit",1,10],["Exile_Item_WoodWallKit",1,10],["Exile_Item_WoodStairsKit",1,10],["Exile_Item_WoodGateKit",1,10],["Exile_Item_WoodDoorwayKit",1,10],["Exile_Item_MetalBoard",1,10],
+				["Exile_Item_MetalBoard",1,10],["Exile_Item_ExtensionCord",1,10],["Exile_Item_MetalPole",1,10],["Exile_Item_Sand",3,10],["Exile_Item_Cement",3,10],["Exile_Item_MetalWire",3,10],["Exile_Item_MetalScrews",3,10]
+				//
+			],
+			[//Items
+				["Exile_Item_InstaDoc",1,2],["NVGoggles",1,2],["Rangefinder",1,2],["Exile_Item_Bandage",1,3],["Exile_Item_Vishpirin",1,3],  
+				["Exile_Item_Catfood",1,3],["Exile_Item_Surstromming",1,3],["Exile_Item_BBQSandwich",1,3],["Exile_Item_ChristmasTinner",1,3],["Exile_Item_SausageGravy",1,3],["Exile_Item_GloriousKnakworst",1,3],
+				["Exile_Item_BeefParts",1,3],["Exile_Item_Cheathas",1,3],["Exile_Item_Noodles",1,3],["Exile_Item_SeedAstics",1,3],["Exile_Item_Raisins",1,3],["Exile_Item_Moobar",1,3],["Exile_Item_InstantCoffee",1,3],["Exile_Item_EMRE",1,3],
+				["Exile_Item_PlasticBottleCoffee",1,3],["Exile_Item_PowerDrink",1,3],["Exile_Item_PlasticBottleFreshWater",1,3],["Exile_Item_Beer",1,3],["Exile_Item_EnergyDrink",1,3],["Exile_Item_MountainDupe",1,3]	
+
+
+	blck_lootCountsOrange = [8,32,8,30,16,1];   // Orange
+	blck_contructionLoot = [
+			[  
+			[// Weapons	
+								
+			],
+			[//Magazines
+							
+			],			
+			[  // Optics
+				
+			],
+			[// Materials and supplies				
+				
+				//
+				["Exile_Item_Matches",1,2],["Exile_Item_CookingPot",1,2],["Exile_Item_Rope",1,2],["Exile_Item_DuctTape",1,8],["Exile_Item_ExtensionCord",1,8],["Exile_Item_FuelCanisterEmpty",1,2],
+				["Exile_Item_JunkMetal",1,10],["Exile_Item_LightBulb",1,10],["Exile_Item_MetalBoard",1,10],["Exile_Item_MetalPole",1,10],["Exile_Item_CamoTentKit",1,10],["Exile_Item_MetalScrews",3,10]
+			],
+			[//Items
+				["Exile_Item_Matches","Exile_Item_CookingPot","Exile_Item_CanOpener","Exile_Item_Handsaw","Exile_Item_Pliers","Exile_Item_Grinder","Exile_Item_Foolbox","Exile_Item_Hammer",
+				"Exile_Item_CordlessScrewdriver","Exile_Item_FireExtinguisher","Exile_Item_OilCanister","Exile_Item_Screwdriver","Exile_Item_Shovel","Exile_Item_Wrench","Exile_Item_CordlessScrewdriver",
+				"Exile_Item_FireExtinguisher","Exile_Item_OilCanister","Exile_Item_Screwdriver","Exile_Item_DuctTape","Binocular","Rangefinder","ItemGPS","ItemMap","ItemCompass","ItemRadio","ItemWatch",
+				"Exile_Item_XM8"];				
+			],
+			[ // Backpacks
+				
+			]
+		];
+	blck_supportLoot = [
+			[  
+				[// Weapons	
+
+				],
+				[//Magazines
+								
+				],			
+				[  // Optics
+					
+				],
+				[// Materials and supplies				
+					
+				],
+				[//Items
+					[Exile_Item_Matches",2,4],["Exile_Item_CookingPot",2,4],["Exile_Item_CanOpener",2,4],
+					["Exile_Item_InstaDoc",1,2],["NVGoggles",1,2],["Rangefinder",1,2],["Exile_Item_Bandage",1,3],["Exile_Item_Vishpirin",1,3],  
+					["Exile_Item_Catfood",1,3],["Exile_Item_Surstromming",1,3],["Exile_Item_BBQSandwich",1,3],["Exile_Item_ChristmasTinner",1,3],["Exile_Item_SausageGravy",1,3],["Exile_Item_GloriousKnakworst",1,3],
+					["Exile_Item_BeefParts",1,3],["Exile_Item_Cheathas",1,3],["Exile_Item_Noodles",1,3],["Exile_Item_SeedAstics",1,3],["Exile_Item_Raisins",1,3],["Exile_Item_Moobar",1,3],["Exile_Item_InstantCoffee",1,3],["Exile_Item_EMRE",1,3],
+					["Exile_Item_PlasticBottleCoffee",1,3],["Exile_Item_PowerDrink",1,3],["Exile_Item_PlasticBottleFreshWater",1,3],["Exile_Item_Beer",1,3],["Exile_Item_EnergyDrink",1,3],["Exile_Item_MountainDupe",1,3]						
+				],
+				[ // Backpacks
+					
+				]
+			]
+		];
+	blck_highPoweredLoot = 	blck_supportLoot = [
+			[  
+				[// Weapons	
+					["MMG_01_hex_F","150Rnd_93x64_Mag"],
+					["MMG_01_tan_F","150Rnd_93x64_Mag"],
+					["MMG_02_black_F","150Rnd_93x64_Mag"],
+					["MMG_02_camo_F","150Rnd_93x64_Mag"],
+					["MMG_02_sand_F","150Rnd_93x64_Mag"],
+					["srifle_DMR_02_camo_F","10Rnd_338_Mag"],
+					["srifle_DMR_02_F","10Rnd_338_Mag"],
+					["srifle_DMR_02_sniper_F","10Rnd_338_Mag"],
+					["srifle_DMR_03_F","10Rnd_338_Mag"],
+					["srifle_DMR_03_tan_F","10Rnd_338_Mag"],
+					["srifle_DMR_04_Tan_F","10Rnd_338_Mag"],
+					["srifle_DMR_05_hex_F","10Rnd_338_Mag"],
+					["srifle_DMR_05_tan_F","10Rnd_338_Mag"],
+					["srifle_DMR_06_camo_F","10Rnd_338_Mag"],				
+					["srifle_DMR_04_F","10Rnd_127x54_Mag"],
+					["srifle_DMR_05_blk_F","10Rnd_93x64_DMR_05_Mag"],
+					["srifle_DMR_06_olive_F","20Rnd_762x51_Mag"],
+					["launch_NLAW_F","NLAW_F"],
+					["launch_RPG32_F","RPG7_F"],
+					["launch_B_Titan_F","Titan_AT",],
+					["launch_I_Titan_F","Titan_AT",],
+					["launch_O_Titan_F","Titan_AP"],
+					["launch_B_Titan_short_F","Titan_AA"],
+					["launch_I_Titan_short_F","Titan_AA"],
+					["launch_O_Titan_short_F","Titan_AA"],
+					["launch_RPG7_F","RPG32_F"],
+					["launch_O_Vorona_brown_F","vorona_HEAT"],
+					["launch_O_Vorona_green_F","Vorona_HE"]									
+				],
+				[//Magazines
+					["NLAW_F",1,3],
+					["RPG32_F",1,3],
+					["RPG32_HE_F",1,3],
+					["Titan_AA",1,3],
+					["Titan_AT",1,3],
+					["Titan_AP",1,3],
+					["RPG7_F",1,3],
+					["vorona_HEAT",1,3],
+					["Vorona_HE",1,3],
+					//["10Rnd_338_Mag",1,5],
+					["10Rnd_338_Mag",3,5],				
+					//["10Rnd_127x54_Mag" ,1,5],
+					["10Rnd_127x54_Mag",3,5],
+					["10Rnd_93x64_DMR_05_Mag" ,3,5],
+					//["10Rnd_93x64_DMR_05_Mag" ,1,5],
+					["150Rnd_93x64_Mag",2,5],
+					["130Rnd_338_Mag",3,5]
+				],			
+				[  // Optics
+					
+				],
+				[// Materials and supplies				
+					
+				],
+				[//Items
+				],
+				[ // Backpacks
+					
+				]
+			]
+		];

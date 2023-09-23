@@ -1,0 +1,80 @@
+
+GMS_3DEN is a plugin for the Arma 3 3DEN editor.
+The plugin allows you to set many settings for missions such as difficulty.
+The plugin automatically configures all scripts and variables used by the mission spawner and exports them to the Arma 3 clipboard.
+
+Usage:
+1. Adjust Mission Settings 
+	- the Configure MIssion menu provides drop down menus to addjust the following parameters:
+		- Difficulty: 4 levels of AI difficulty are available and are defined in GMS_configs.sqf 
+		- Static vs. Dynamic: 
+			- A static mission is spawned and respawned at the location at which it is placed in the editor each time. 
+			- A dynamic mission is spawned in a random location that will usually be different every time. 
+		- When loot crates spawn 
+			- Crates will be spawned either at the time the mission is spawned or when the mission is complete based on this setting. 
+		- When Crates are Loaded 
+			- Crates will be loaded when spawned or when the mission is complete based on this setting. 
+		- How crates spawn 
+			- Crates will be spawn on the ground or dropped on a parachute based on this setting. 
+		- Criteria for Mission Completion 
+			- All Units Killed: The mission complete only when all units are killed, or the percentage of units that must be killed (GMS_config.sqf) is reached. 
+			- Player near mission center: any player has come gotten near the mission center 
+			- All Units Killed or Player near mission center: if either condition is met, the mission will be completed. 
+
+			Note - using All units killed or Player near center assures missions can be completed if an AI glitches or AI vehicle goes out of the mission area.
+
+
+2. Lay out your mission. 
+	- Mission Markers 
+		- The plugin will use the first marker placed as the type/color/shape/size of the marker that will denote the mission. 
+		- when you place a marker, assume its location will be the center of the mission. 
+		- if no marker is placed in the editor, the mission spawner will create one using default settings. 
+
+	- the road cone (optional)
+		- You can use a road cone to denote the precise mission center while you lay things out. 
+		- The plugin will use the roadcone as the alternative means of defining the mission center if no marker is found.
+		- simply comment out the line defining the spawn location for any roadcones in the .sqf file for the mission if you do not wish it spawned for players.
+
+	- Define the mission center for the most accurate representation of your mission when spawned.
+		- The mission center will be placed at the center of the first marker placed in the editor OR at the location of the first road cone of any kind.
+
+	- Plece objects (barracks, bunkers, walls, etc) 
+		- simple objects are allowed when the game engine supports them for that item type. 
+
+	- place loot chests (optional)
+		- any item of type "Reammobox_F" can be used 
+		- these can be place in the open, on top of, under or inside a building 
+		- if none are placed, the mission spawner will place one near the center of the mission 
+
+	- Place Vehicles (optional)
+		- Place any vehicles you would like to have patrolling the mission 
+		- The center of the area patrolled will be the location at which you place the vehicle 
+		- If no vehicles are placed, the mission spawner will spawn vehicles according to the settings in GMS_configs.sqf and any mod-specific configs. 
+
+	- Place Turrets (optional)
+		- Place turrets of any type you wish to have spawned. 
+		- Turrets may be in the open, on top of or inside buildings, or even under objects. 
+		- The mission spawner will attempt to place turrects in exactly the same place relative to any buildings or other structures when the turret is inside, above or below an object. 
+		- The mission spawner will spawn turrets according to settings in GMS_congig.sqf if none are definee. 
+	
+	- Place units (optiona)
+		- The plugin assumes the location of the unit is the center of a region to be patrolled by a group. 
+		- Thus, the mission spawner will spawn a group of units that will patrol the mission area using the location of the unit as the center of its patrol. 
+		- The parameters for each group include minimum number of units, maximum number of units and difficulty. 
+		- These parameters are included in the output of the plugin and can be edited later if you like. 
+		- The type of unit, uniform and weapons are set by the mission spawner based on GMS_config.sqf and mod-specific configs. 
+		- Units can be place inside or on top of ojbects in which case only a single unit will be spawned at the location specified in the editor. That unit will stand in that location until killed or deleted by the mission spawner. 
+		- The mission spawner will spawn groups throughout the mission area if none are defined in the mission. 
+
+3. Export the mission. 
+	- Select Export Mission from the Export menu. 
+	- A dialog will appear when the mission script has been generated.
+	- Select copy, then paste the copied text into a text editor. 
+	- Save the file in a folder within the GMS\Missions folder tree.
+	- Make any changes needed, such as adding a start and end message, or changing mission names or marker settings. 
+	- Add the name of the file to GMS\Missions\GMS_missionLists.sqf 
+	- Start your server and enjoy your new mission! 
+
+	Note:
+		- to be sure only the mission you created is spawned for testing purposes, comment other missions listed for this mission difficulty (such as all missions in _missionListBlue)
+		- To speed up spawning of missions, in GMS_configs set GMS_debugLevel = 1;  
