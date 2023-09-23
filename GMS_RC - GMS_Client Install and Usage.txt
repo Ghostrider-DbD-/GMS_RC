@@ -1,0 +1,3 @@
+
+At this time GMS_Client is no longer used for sending messagages about missions and AI kills but is included for backwards compatability for some missions (hostage rescue and bandit capture) 
+My plan is to move all of the code for the specialize missions relating to configuring animaations and having the hostage flee the mission site to the server. These will be streamed as part of the JIP handoff. 
