@@ -3,6 +3,15 @@ GMS_3DEN is a plugin for the Arma 3 3DEN editor.
 The plugin allows you to set many settings for missions such as difficulty.
 The plugin automatically configures all scripts and variables used by the mission spawner and exports them to the Arma 3 clipboard.
 
+INSTALLING THE PLUGIN. 
+- place @GMS_3DEN and all of its contents in a convenient location such as \Documents\mods 
+- open the Arma 3 Launcher 
+- Select Mods 
+- Select Local Mods (top center or right of the dialog)
+- Find and select on @GMS_3DEN  
+- Launch Arma 
+- The plugin should be available once you start the 3DEN Editor 
+
 Usage:
 1. Adjust Mission Settings 
 	- the Configure MIssion menu provides drop down menus to addjust the following parameters:
