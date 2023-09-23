@@ -1,0 +1,54 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+//GMS_RC Install Instructions//
+	
+	*Ensure GMS_Core is installed prior to this script otherwise it will not work!*
+	
+	You can download this addon at: https://github.com/Ghostrider-DbD-/GMSCore
+
+//Step 1;
+
+	Download the file "GMS_RC-master" from the master branch and extract it to your documents folder.
+
+//Step 2;
+
+	Open the folder - GMS_RC-master\GMS and edit the following files as needed for your prefrences(Remember to save any changes!);
+
+	GMS_cofigs.sqf - General settings.
+
+	GMS_configs_default.sqf - Default settings.
+
+	GMS_configs_epoch.sqf - Epoch server settings.
+
+	GMS_config_exile.sqf - Exile server settings.
+
+	GMS_custom_config.sqf - Custom settings.
+	
+//Step 3;
+
+	Go back 1 folder into "GMS_RC-main" and pack the folder "GMS" into a pbo.
+
+	Add the "GMS.pbo" file to your server addons folder (@Exileserver\addons or @Epochhive\addons).
+
+//Step 4;
+
+	Open your mpmission file such as Epoch.Altis/Exile.Altis and copy the folder "GMS_Client" into the the root of your mpmission file.
+	(It could be placed into the following for example: Epoch.Atlis\addons - you would just need to change the directory within the init call function)
+
+	Open your init.sqf/initPlayerLocal.sqf and add the following line:
+
+	[] execVM "GMS_Client\GMS_client.sqf"; - //(If adding to "addons/custom folder you would need to edit the line to show the correct file location E.G; [] execVM "Custom\GMS_Client\GMS_client.sqf";
+
+	Repack your mpmission file to a pbo and upload to your server.
+
+	Restart your server and if you run into any issues check your client/server RPT for errors.
+
+//Additional script links from GhostriderGaming [GRG];
+
+	GMS_Core: https://github.com/Ghostrider-DbD-/GMSCore
+
+	*Optional addition to GMS series - GMS_AI: https://github.com/Ghostrider-DbD-/GMSAIGMS_AI: https://github.com/Ghostrider-DbD-/GMS_AI
+
+	Repair/Rearm/Refule: https://github.com/Ghostrider-DbD-/Rearm-Repair-Refuel-
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////
