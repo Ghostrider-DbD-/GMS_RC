@@ -18,7 +18,10 @@ private ["_abort","_crates","_aiGroup","_objects","_groupPatrolRadius","_mission
 		"_chanceHeliPatrol","_noPara","_chanceLoot","_heliCrew","_loadCratesTiming","_useMines","_GMS_AllMissionAI","_delayTime","_groupPatrolRadius","_simpleObjects",
 		"_wait","_missionStartTime","_playerInRange","_missionTimedOut","_temp","_patrolVehicles","_vehToSpawn","_noChoppers","_chancePara","_paraSkill","_marker","_vehicleCrewCount",
 		"_defaultMissionLocations","_garrisonedbuildings_buildingposnsystem","_garrisonedBuilding_ATLsystem", "_isScubaMission","_markerlabel","_missionLootBoxes","_airpatrols",
-		"_submarinePatrols","_scubaPatrols","_maxMissionRespawns"];
+		"_submarinePatrols","_scubaPatrols","_maxMissionRespawns",
+		// New private variables
+		"_chanceMissionSpawned",
+		"_rewardVehicles "];
 		
 params["_markerName",["_aiDifficultyLevel","Red"]];
 if (isNil "_markerLabel") then {_markerLabel = _markerMissionName};
@@ -68,7 +71,12 @@ if (isNil "_lootCrates") then {_lootCrates = GMS_crateTypes};
 if (isNil "_lootCratePositions") then {_lootCratePositions = []};
 if (isNil "_isScubaMission") then {_isScubaMission = false};
 if (isNil "_missionLootBoxes") then {_missionLootBoxes = []};
+
+// New in Sept 2023 - reward vehicles are spawned after a mission is cleared.
+if (isNil "_rewardVehicles") then {_rewardVehicles = []};
+
 if (isNil "_defaultMissionLocations") then {_defaultMissionLocations = []};
+if (isNil "_chanceMissionSpawned") then {_chanceMissionSpawned = 100};
 if (isNil "_maxMissionRespawns") then {_maxMissionRespawns = -1};
 if (isNil "_simpleObjects") then {_simpleObjects = []};
 if (isNil "_missionemplacedweapons") then 
@@ -77,19 +85,22 @@ if (isNil "_missionemplacedweapons") then
 	diag_log format["[GMS] _missionSpawner: setting _missionemplacedweapons to its default value of %1",_missionemplacedweapons];
 };
 
+// Allow for and capture any custom difficult setting in the mission
+if !(isNil "_difficulty") then {_aiDifficultyLevel = _difficulty}; 
+
 _markerType params["_markerType",["_markersize",[250,250]],["_markerBrush","GRID"]];
 private _paraSkill = _aiDifficultyLevel;
 
 
 if !(_spawnCratesTiming in GMS_validLootSpawnTimings) then 
 {
-	[format['Invalid crate spawn timing %1 found in mission %2 :: default value "atMissionSpawnGround" used',_spawnCratesTiming,_markerMissionName],"<WARNING>"] call GMS_fnc_log;
-	_spawnCratesTiming = "atMissionSpawnGround";
+	[format['Invalid crate spawn timing %1 found in mission %2 :: default value atMissionSpawnGround used',_spawnCratesTiming,_markerMissionName],"<WARNING>"] call GMS_fnc_log;
+	_spawnCratesTiming = atMissionSpawnGround;
 };
 if !(_loadCratesTiming in GMS_validLootLoadTimings) then 
 {
-	[format['Invalid crate loading timing %1 found in mission %2 :: default "atMissionSpawn" value used',_loadCratesTiming,_markerMissionName],"<WARNING>"] call GMS_fnc_log;
-	_loadCratesTiming = "atMissionSpawn";
+	[format['Invalid crate loading timing %1 found in mission %2 :: default atMissionSpawn value used',_loadCratesTiming,_markerMissionName],"<WARNING>"] call GMS_fnc_log;
+	_loadCratesTiming = atMissionSpawn;
 };
 if !(_endCondition in GMS_validEndStates) then 
 {
@@ -166,6 +177,7 @@ private _missionMessages = [
 ];
 
 private _timesSpawned = 0;
+private _isSpawned = false;
 private _table = [
 	_aiDifficultyLevel,
 	_markerConfigs,
@@ -177,7 +189,8 @@ private _table = [
 	_paraConfigs,	
 	_defaultMissionLocations,
 	_maxMissionRespawns,
-	_timesSpawned		
+	_timesSpawned,
+	_isSpawned	
 ];
 //[format["_missionSpawner (182): _defaultMissionLocations %1 | _maxMissionRespawns %2 | _timesSpawned %3",_defaultMissionLocations,_maxMissionRespawns,_timesSpawned]] call GMS_fnc_log;
 _table

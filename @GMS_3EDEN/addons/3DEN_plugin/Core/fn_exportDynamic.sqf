@@ -118,27 +118,32 @@ if !(isNull _centerMarkerObject) then
 	diag_log format["Place such an object or a marker to ensure the mission is accurately stored and spawned"];
 };
 
-private["_m1","_markerPos","_markerType","_markerShape","_markerColor","_markerText","_markerBrush","_markerSize","_markerAlpha"];
+private["_m1","_markerPos","_markerType","_markerShape","_markerColor","_markerText","_markerBrush","_markerSize","_markerAlpha","_markerLabel"];
 /*
 	pull info on the first marker found 
 	If Mission_CENTER was not set above then try to set it based on the first marker identified.
 */
 
-if (_markers isEqualTo []) then
+private _centerSet = false;
+if !(_markers isEqualTo []) then
 {
-	diag_log "No Marker Found, no Marker Definitions Will Be generated";
-} else {
 	private _m1 = _markers select 0;
 	_markerPosition = 	(_m1 get3DENAttribute "Position") select 0;  // Returns expected value
 	_markerText = 		(_m1 get3DENAttribute "Text") select 0;	 // Returns expected value 
 	_markerColor = 		(_m1 get3DENAttribute "baseColor") select 0;   //Returns Null 	
-	_markerShape = 		(_m1 get3DENAttribute "markerType") select 0;   // Returns [-1] if not a rectangular or elipsoid marker] 	
+	_markerShape = 		((_m1 get3DENAttribute "markerType") select 0);   // Returns [-1] if not a rectangular or elipsoid marker] 	
 	_markerAlpha = 		_m1 get3DENAttribute "alpha";
 	_markerType = 		(_m1 get3DENAttribute "itemClass") select 0;	 // Returns "" if not an icon type marker 	
 	_markerBrush = 		(_m1 get3DENAttribute "brush") select 0;
 	_markerSize =		(_m1 get3DENAttribute "size2") select 0;
 	_markerRotation = 	(_m1 get3DENAttribute "rotation") select 0;
-
+	diag_log format["Line 140: _markerShape = %1 | _markerType = %2 _m1 get3DENAttribute markerType = %3",_markerShape,_markerType, _m1 get3DENAttribute "markerType"];
+	switch (_markerShape) do 
+	{
+		case -1: {};
+		case 0:{_markerType = "RECTANGLE"};
+		case 1: {_markerType = "ELLIPSE"};
+	};
 	/*
 		use the coordinates of that marker as mission center of no object demarkating the center is found 
 	*/
@@ -152,6 +157,28 @@ if (_markers isEqualTo []) then
 	};
 };
 
+if (Mission_CENTER isEqualTo [0,0,0]) then {
+	Mission_CENTER = position (_objects select 0);
+	diag_log format["<WARNING> Mission Center set to the position of the first object"];
+};
+
+if (_markers isEqualTo []) then 
+{
+	_markerPosition = Mission_CENTER;
+	_markerLabel = "";
+	_markerText = "";
+	_markerColor = "";
+	_markerShape = "ELLIPSE";
+	_markerAlpha = 1.0;
+	_markerType = _markerShape;
+	_markerBrush = "GRID";
+	_markerSize = [150,150];
+	_markerRotation = 0;
+};
+
+private _markerMissionName = "TODO: Set this to an appropriate name";
+
+diag_log format["Line 175: _markerType = %1",_markerType];
 private _m = format["Line 152: Mission_CENTER = %1",Mission_CENTER];
 systemChat _m;
 diag_log _m;
@@ -252,7 +279,15 @@ GMS_missionSimpleObjects = [];
 			/*
 				Treat this like an ordinary building 
 			*/
-			GMS_objectsToSpawn pushBack format['     ["%1",%2,%3]',typeOf _obj,(getPosATL _obj) vectorDiff Mission_CENTER,getDir _obj];
+			private _allowDamage = (_obj get3DENAttribute "allowDamage") select 0;
+			private _enableSimulation = (_obj get3DENAttribute "enableSimulation") select 0;
+			diag_log format["_Line 278: _building %1 | _allowDamage %2 | _enableSimulation %3",_obj,_allowDamage,_enableSimulation] ;
+			GMS_objectsToSpawn pushBack format['     ["%1",%2,%3,[%4,%5]]',
+				typeOf _obj,
+				(getPosATL _obj) vectorDiff Mission_CENTER,getDir _obj,
+				_allowDamage,  
+				_enableSimulation
+				];
 		} else {
 			/*
 				Treat this like a garrisoned building  
@@ -356,15 +391,15 @@ switch (GMS_missionLocations) do
 _lines pushBack '#include "\GMS\Compiles\Init\GMS_defines.hpp"';
 _lines pushBack '#include "\GMS\Missions\GMS_privateVars.sqf" ';
 _lines pushBack "";
+_lines pushBack format['_difficulty = "%1";',GMS_difficulty];
+_lines pushBack format["_chanceMissionSpawned = %1;",GMS_chanceMissionSpawned];
 _lines pushBack format["_defaultMissionLocations = %1;",GMS_defaultMissionLocations];
 _lines pushBack format["_maxMissionRespawns = -1; // Chage this to either zero for no respawns or a positive number if you want to limit the number of times a mission spawns at the same location"];
 
-if (_markerType isEqualTo "") then 
-{
-	_markerType = ["rectangle","elipse"] select _markerShape;
-};
-_lines pushBack format["_markerType = %1",format['["%1",%2,"%3"];',_markerType,_markerSize,_markerBrush]];
+_lines pushBack format['_markerLabel = "%1";',_markerLabel];
+_lines pushBack format['_markerType = %1;',[_markerType,_markerSize,_markerBrush]];
 _lines pushBack format['_markerColor = "%1";',_markerColor];
+_lines pushBack format['_markerMissionName = "%1";',_markerMissionName];
 
 _lines pushBack format['_startMsg = "%1";',GMS_dynamicStartMessage];
 _lines pushBack format['_endMsg = "%1";',GMS_dynamicEndMessage];
@@ -436,8 +471,8 @@ _lines pushBack "_headgear = GMS_headgear;";
 _lines pushBack "_vests = GMS_vests;";
 _lines pushBack "_backpacks = GMS_backpacks;";
 _lines pushBack "_sideArms = GMS_Pistols;";
-_lines pushBack format['_spawnCratesTiming = "%1";',GMS_spawnCratesTiming];
-_lines pushBack format['_loadCratesTiming = "%1";',GMS_loadCratesTiming];
+_lines pushBack format['_spawnCratesTiming = "%1;"',GMS_spawnCratesTiming];
+_lines pushBack format['_loadCratesTiming = "%1;"',GMS_loadCratesTiming];
 diag_log format["Line 520: typeName GMS_missionEndCondition =  %1 | GMS_missionEndCondition =  = %2",typeName GMS_missionEndCondition,GMS_missionEndCondition];
 _lines pushBack format['_endCondition = %1;',	GMS_missionEndCondition];
 _lines pushBack format["_minNoAI = GMS_MinAI_%1;",GMS_difficulty];

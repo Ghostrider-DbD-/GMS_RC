@@ -1,4 +1,7 @@
-
+/*
+	Setup classes that add toolbar menus and define them and the code that is executed by them. 
+	Copyright 2023 by Ghostrider[GRG]
+*/
 
 class ctrlMenuStrip;
 class display3DEN
@@ -61,14 +64,149 @@ class display3DEN
                       "GMS_crateSpawn",
                       "GMS_lootSpawn",
                       "GMS_location_Respawns",
-                      "GMS_MissionCompletionMode"
+                      "GMS_MissionCompletionMode",
+					  "GMS_missionSpawnChance",
+					  "GMS_minAI",
+					  "GMS_maxAI"
 					  //"GMS_editMissionSettings"
                     };
                     text = "Configure Mission";
                     toolTip = "Adjust Mission Settings";
                 };
+				
+				class GMS_maxAI 
+				{
+					text = "Max AI per Infantry Group";
+					tooltip = "set the maximum AI per Infantry Group";
+					items[] = {
+						"GMS_maxThree",
+						"GMS_maxFour",
+						"GMS_maxFive",
+						"GMS_maxSix",
+						"GMS_maxEight",
+						"GMS_maxNine"
+					};
+				};
+				class GMS_maxThree 
+				{
+					text = "set max AI = 3";
+					action = "[3] call gms3DEN_fnc_setMaxAI";					
+				};
+				class GMS_maxFour
+				{
+					text = "set max AI = 4";
+					action = "[4] call gms3DEN_fnc_setMaxAI";					
+				};
+				class GMS_maxFive 
+				{
+					text = "set max AI = 5";
+					action = "[5] call gms3DEN_fnc_setMaxAI";					
+				};
+				class GMS_maxSix
+				{
+					text = "set max AI = 6";
+					action = "[6] call gms3DEN_fnc_setMaxAI";					
+				};
+				class GMS_maxSeven 
+				{
+					text = "set max AI = 7";
+					action = "[7] call gms3DEN_fnc_setMaxAI";					
+				};
+				class GMS_maxEight
+				{
+					text = "set max AI = 8";
+					action = "[8] call gms3DEN_fnc_setMaxAI";					
+				};		
+				class GMS_maxNine
+				{
+					text = "set max AI = 9";
+					action = "[9] call gms3DEN_fnc_setMaxAI";					
+				};	
 
-                class GMS_difficulty {
+				class GMS_minAI 
+				{
+					text = "Min AI per Infantry Group";
+					tooltip = "Set the minimum AI per infantry group";
+					items[] = {
+						"GMS_minOne",
+						"GMS_minTwo",
+						"GMS_minThree",
+						"GMS_minFour",
+						"GMS_minFive",
+						"GMS_minSix"
+					};
+				};
+				class GMS_minOne 
+				{
+					text = "set min AI = 1";
+					action = "[1] call gms3DEN_fnc_setMinAI";
+				};
+				class GMS_minTwo 
+				{
+					text = "set min AI = 2";
+					action = "[2] call gms3DEN_fnc_setMinAI";
+				};	
+				class GMS_minThree 
+				{
+					text = "set min AI = 3";
+					action = "[3] call gms3DEN_fnc_setMinAI";
+				};								
+				class GMS_minFour 
+				{
+					text = "set min AI = 4";
+					action = "[4] call gms3DEN_fnc_setMinAI";
+				};	
+				class GMS_minFive
+				{
+					text = "set min AI = 5";
+					action = "[5] call gms3DEN_fnc_setMinAI";
+				};	
+				class GMS_minSix
+				{
+					text = "set min AI = 6";
+					action = "[6] call gms3DEN_fnc_setMinAI";
+				};	
+
+
+				class GMS_missionSpawnChance 
+				{
+					text = "Spawn Chance";
+					toolTip = "Set the chance the mission will spawn";
+					items[] = {
+						"GMS_spawnTwenty",
+						"GMS_spawnFourty",
+						"GMS_spawnSixty",
+						"GMS_spawnEighty",
+						"GMS_spawnHundred"
+					};
+				};
+                class GMS_spawnTwenty 
+				{
+					text = "Spawn chance 20%";
+					action = "[0.20] call gms3DEN_fnc_setSpawnChance;";
+				};
+                class GMS_spawnFourty
+				{
+					text = "Spawn chance 40%";
+					action = "[0.40] call gms3DEN_fnc_setSpawnChance;";
+				};	
+				class GMS_spawnSixty 
+				{
+					text = "Spawn chance 60%";
+					action = "[0.60] call gms3DEN_fnc_setSpawnChance;";
+				};
+				class GMS_spawnEighty
+				{
+					text = "Spawn chance 80%";
+					action = "[0.80] call gms3DEN_fnc_setSpawnChance;";
+				};
+				class GMS_spawnHundred
+				{
+					text = "Spawn chance 100%";
+					action = "[1.00] call gms3DEN_fnc_setSpawnChance;";
+				};				
+
+				class GMS_difficulty {
                     text = "Difficulty";
                     toolTip = "Set Mission Difficulty";
                     items[] = {

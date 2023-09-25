@@ -30,7 +30,8 @@ for "_i" from 1 to (count _missionsList) do
 		"_triggered",					// 2  // integer - specifies if mission was triggered by a player or scripting such as debug setting
 		"_missionData",					// 4  //  variable containing information specific to this instance of the mission such as location and objects
 		"_missionConfigs",			// 5  // Variables regarding the configuration of the dynamic mission
-		"_spawnPara"
+		"_spawnPara",
+		"_isStatic"
 	];
 	#define triggered 2
 	#define spawnPara 5
@@ -58,7 +59,11 @@ for "_i" from 1 to (count _missionsList) do
 			"_missionLootConfigs",
 			"_aiConfigs",
 			"_missionMessages",	
-			"_paraConfigs"
+			"_paraConfigs",	
+			"_defaultMissionLocations",
+			"_maxMissionRespawns",
+			"_timesSpawned",
+			"_isSpawned"
 		];	
 
 		private _missionComplete = -1;
@@ -80,8 +85,11 @@ for "_i" from 1 to (count _missionsList) do
 			private _playerIsNearCrates = [_crates,20,true] call GMS_fnc_playerInRangeArray;
 			private _playerIsNearCenter = [_coords,20,true] call GMS_fnc_playerInRange;
 			private _playerIsNear = if (_playerIsNearCrates || {_playerIsNearCenter}) then {true} else {false};
+			GMS_playerIsNear = _playerIsnear;
+
 			private _minNoAliveForCompletion = (count _missionInfantry) - (round(GMS_killPercentage * (count _missionInfantry)));			
 			private _aiKilled = if (({alive _x} count _missionInfantry) <= _minNoAliveForCompletion)  then {true} else {false}; // mission complete
+			GMS_aiKilled = _aiKilled; 
 
 			if (_endIfPlayerNear && {_playerIsNear}) then {throw 1}; // mission complete
 			if (_endIfAIKilled && {_aiKilled}) then {throw 1};			
@@ -188,7 +196,9 @@ for "_i" from 1 to (count _missionsList) do
 				"_spawnCratesTiming", 
 				"_loadCratesTiming",		
 				"_crateLoot", 
-				"_lootCounts"  //  A trunkated list of variables is parsed as we do not need all of them
+				"_lootCounts",
+				"_missionLootBoxes",
+				"_missionLootVehicles"
 			];
 
 			_missionMessages params [
@@ -271,8 +281,9 @@ for "_i" from 1 to (count _missionsList) do
 						["_isScuba",false],
 						["_endCode",-1]
 					*/
-					[format["_monitorSpawnedMissions (case 1): _markerConfigs %1 | _endMsg %2",_markerConfigs,_endMsg]] call GMS_fnc_log;
+					//[format["_monitorSpawnedMissions (case 1): _markerConfigs %1 | _endMsg %2",_markerConfigs,_endMsg]] call GMS_fnc_log;
 					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 1] call GMS_fnc_endMission;
+					_missionConfigs set [isSpawned,false];
 					//[format["_monitorSpawnedMissions (265): _markerMissionName %1: end of case 1 for mission completion",_markerMissionName]] call GMS_fnc_log;
 				};
 
@@ -288,7 +299,8 @@ for "_i" from 1 to (count _missionsList) do
 						["_endCode",-1]
 					*/			
 					//[format["_monitorSpawnedMissions (case 2): _markerConfigs %1 | _endMsg %2",_markerConfigs,_endMsg]] call GMS_fnc_log;							
-					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs, _isscubamission, 2] call GMS_fnc_endMission;								
+					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs, _isscubamission, 2] call GMS_fnc_endMission;	
+					_missionConfigs set [isSpawned,false];												
 				};
 
 				case 3: {  // Abort, key asset killed			
@@ -302,7 +314,8 @@ for "_i" from 1 to (count _missionsList) do
 						["_endCode",-1]
 					*/		
 					//[format["_monitorSpawnedMissions (case 3): _markerConfigs %1 | _assetKilledMsg %2",_markerConfigs,_assetKilledMsg]] call GMS_fnc_log;						
-					[_key, _missionData, _assetKilledMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 3] call GMS_fnc_endMission;							
+					[_key, _missionData, _assetKilledMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 3] call GMS_fnc_endMission;	
+					_missionConfigs set [isSpawned,false];											
 				};
 
 				case 4: {
@@ -318,7 +331,8 @@ for "_i" from 1 to (count _missionsList) do
 						["_endCode",-1]
 					*/
 					//diag_log format["_monitorSpawnedMissions: (286): _crates = %1 | _mines = %2",_crates,_mines];					
-					[_key, _missionData, "DEBUG SETTING >= 4", _markerConfigs, _missionLootConfigs, _isscubamission, 4] call GMS_fnc_endMission;												
+					[_key, _missionData, "DEBUG SETTING >= 4", _markerConfigs, _missionLootConfigs, _isscubamission, 4] call GMS_fnc_endMission;
+					_missionConfigs set [isSpawned,false];																
 				};
 				
 				case 5: {  // SIMULATED Normal Mission End
@@ -387,6 +401,7 @@ for "_i" from 1 to (count _missionsList) do
 					//diag_log format["_monitorSpawnedMissions: (360):_crates = %1",_crates];
 
 					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 5] call GMS_fnc_endMission;
+					_missionConfigs set [isSpawned,false];					
 					//[format["_monitorSpawnedMissions (363): _markerMissionName %1: end of case 1 for mission completion",_markerMissionName]] call GMS_fnc_log;
 				};				
 			};

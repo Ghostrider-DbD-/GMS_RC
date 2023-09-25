@@ -1,18 +1,9 @@
 /*
-
-	[_missionEmplacedWeapons,_noEmplacedWeapons,_aiDifficultyLevel,_coords,_uniforms,_headGear] call GMS_fnc_spawnEmplacedWeaponArray;
 	By Ghostrider [GRG]
-	
-	--------------------------
-	License
-	--------------------------
-	All the code and information provided here is provided under an Attribution Non-Commercial ShareAlike 4.0 Commons License.
-
-	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
 #include "\GMS\Compiles\Init\GMS_defines.hpp"
 
-params["_coords",["_missionEmplacedWeapons",[]],["_useRelativePos",true],["_noEmplacedWeapons",0],["_aiDifficultyLevel","red"],["_uniforms",[]], ["_headGear",[]],["_vests",[]],["_backpacks",[]],["_weaponList",[]],["_sideArms",[]]];
+params["_coords",["_missionEmplacedWeapons",[]],["_useRelativePos",true],["_aiDifficultyLevel","red"],["_uniforms",[]], ["_headGear",[]],["_vests",[]],["_backpacks",[]],["_weaponList",[]],["_sideArms",[]]];
 if (_uniforms isEqualTo []) 		then {_uniforms = [_aiDifficultyLevel] call GMS_fnc_selectAIUniforms};
 if (_headGear  isEqualTo [])		then {_headGear = [_aiDifficultyLevel] call GMS_fnc_selectAIHeadgear};
 if (_vests isEqualTo []) 			then {_vests = [_aiDifficultyLevel] call GMS_fnc_selectAIVests};
@@ -20,7 +11,7 @@ if (_backpacks  isEqualTo []) 		then {_backpacks = [_aiDifficultyLevel] call GMS
 if (_weaponList  isEqualTo []) 	then {_weaponList = [_aiDifficultyLevel] call GMS_fnc_selectAILoadout};
 if (_sideArms isEqualTo []) 		then {[_aiDifficultyLevel] call GMS_fnc_selectAISidearms};
 
-private["_emplacedWeps","_emplacedAI","_wep","_units","_gunner","_abort","_pos","_mode","_useRelativePos","_useRelativePos"];
+private["_emplacedWeps","_emplacedAI","_wep","_units","_gunner","_abort","_pos","_mode"];
 _emplacedWeps = [];
 _emplacedAI = [];
 _units = [];
@@ -28,20 +19,8 @@ _abort = false;
 _pos = [];
 
 private _emplacedWepData = +_missionEmplacedWeapons;  //  So we dont overwrite this for the next instance of the mission
-//diag_log format["_spawnEmplacedWeaponArray(30): _noEmplacedWeapons = %1 | _emplacedWepData = %2",_noEmplacedWeapons,_emplacedWepData];
-
-// Define _emplacedWepData if not already configured.
-if (_emplacedWepData isEqualTo []) then
-{
-	private _wepPositions = [_coords,_noEmplacedWeapons,35,50] call GMS_fnc_findPositionsAlongARadius;
-	{
-		_static = selectRandom GMS_staticWeapons;
-		_emplacedWepData pushback [_static,_x];
-	} forEach _wepPositions;
-	_useRelativePos = false;
-};
-
-//diag_log format["_spawnEmplacedWeaponArray(45): _noEmplacedWeapons = %1 | _emplacedWepData = %2",_noEmplacedWeapons,_emplacedWepData];
+//diag_log format["_spawnEmplacedWeaponArray(31): _useRelativePos = %1",_useRelativePos];
+//diag_log format["_spawnEmplacedWeaponArray(32): count _emplacedWepData = %1 | _emplacedWepData = %2",count _emplacedWepData,_emplacedWepData];
 
 {
 	_x params [["_static",""],["_pos",[0,0,0]],["_dir",0]];
@@ -88,6 +67,7 @@ if (_emplacedWepData isEqualTo []) then
     _wep setVariable["GMS_vehType","emplaced"];	
 	_emplacedWeps pushback _wep;
 	[_wep,_empGroup] call GMSCore_fnc_loadVehicleCrew;
+	//diag_log format["_spawnEmplacedWeaponArray(91): _wep = %1 | getPos _wep = %2 | _static = %3",_wep, getPosATL _wep, _static];
 	//_gunner setVariable["GRG_vehType","emplaced"];	
 	_emplacedAI append _units;		
 } forEach _emplacedWepData;

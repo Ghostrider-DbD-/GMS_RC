@@ -161,7 +161,7 @@ switch (GMSCore_modType) do
 	GMS_spawnCratesTiming = "atMissionSpawnGround"; // Choices: "atMissionSpawnGround","atMissionSpawnAir","atMissionEndGround","atMissionEndAir".
 							 // Crates spawned in the air will be spawned at mission center or the position(s) defined in the mission file and dropped under a parachute.
 							 //  This sets the default value but can be overridden by defining  _spawnCrateTiming in the file defining a particular mission.
-	GMS_loadCratesTiming = "atMissionCompletion"; //""atMissionSpawn"; // valid choices are "atMissionCompletion" and "atMissionSpawn"; 
+	GMS_loadCratesTiming = "atMissionCompletion"; //"atMissionSpawn"; // valid choices are "atMissionCompletion" and "atMissionSpawn"; 
 							// Pertains only to crates spawned at mission spawn.
 							// This sets the default but can be overridden for specific missions by defining _loadCratesTiming
 							
@@ -170,7 +170,7 @@ switch (GMSCore_modType) do
 							// To spawn crates at mission start but load gear only after the mission is completed set GMS_spawnCratesTiming = "atMissionSpawnGround" && GMS_loadCratesTiming = "atMissionCompletion"
 							// To spawn crates on the ground at mission completion set GMS_spawnCratesTiming = "atMissionEndGround" // Note that a loaded crate will be spawned.
 							// To spawn crates in the air and drop them by chutes set GMS_spawnCratesTiming = "atMissionEndAir" // Note that a loaded crate will be spawned.
-	GMS_allowClaimVehicle = true; // Set this to true if you wish to allow players to claim vehicles using one of the claim vehicle scripts floating around.
+	GMS_allowClaimVehicle = false; // Set this to true if you wish to allow players to claim vehicles using one of the claim vehicle scripts floating around.
 
 	///////////////////////////////
 	// PLAYER PENALTIES
@@ -267,13 +267,11 @@ switch (GMSCore_modType) do
 	//  Heli Patrol Settings
 	///////////////////////////////
 
-	GMS_chanceHeliPatrolBlue = 0.5;  //[0 - 1]  Set to 0 to deactivate and 1 to always have a heli spawn over the mission center and patrol the mission area. 
-									//  The chance of paratroops dropping from the heli is defined by GMS_chancePara(Blue|Red|Green|Orange) above.
-									// Recommend setting the change = 1 if you wish to spawn multiple helis at a mission.
-	GMS_patrolHelisBlue = _GMS_littleBirds;
-	GMS_noPatrolHelisBlue = 1;
+	GMS_chanceHeliPatrolBlue = 1.0;  //[0 - 1]  The chance a heli will be spawned 
+	GMS_patrolHelisBlue = _GMS_littleBirds; // The default helis 
+	GMS_noPatrolHelisBlue = 1;  // The default number of helis
 	
-	GMS_chanceHeliPatrolRed = 0.75; // 0.4;
+	GMS_chanceHeliPatrolRed = 1.0; // 0.4;
 	GMS_patrolHelisRed = _GMS_littleBirds;
 	GMS_noPatrolHelisRed = 1;
 	
@@ -293,11 +291,14 @@ switch (GMSCore_modType) do
 	GMS_maxSpawnedMissions = 15;
 		
 	//Set to -1 to disable. Values of 2 or more force the mission spawner to spawn copies of that mission - this feature is not recommended because you may run out of available groups.
-	GMS_enableOrangeMissions = 1;  
-	GMS_enableGreenMissions = 2;
-	GMS_enableRedMissions = 2;
-	GMS_enableBlueMissions = 1;
-	GMS_numberUnderwaterDynamicMissions = 0;  // Values from -1 (no UMS) to N (N Underwater missions will be spawned; static UMS units and subs will be spawned.	
+	GMS_enableOrangeMissions = -1;  
+	GMS_enableGreenMissions = -2;
+	GMS_enableRedMissions = -2;
+	GMS_enableBlueMissions = -1;
+	GMS_numberUnderwaterDynamicMissions = -1;  // Values from -1 (no UMS) to N (N Underwater missions will be spawned; static UMS units and subs will be spawned.	
+
+	// sets the maximum number of static missions to spawn - set to -1 to disable spawning them. 
+	GMS_enableStaticMissions = 3; 
 
 	#ifdef GRGserver
 	GMS_enableHunterMissions = 1;
@@ -315,7 +316,8 @@ switch (GMSCore_modType) do
 	GMS_TMin_Blue = 300;
 	GMS_TMin_Red = 360;
 	GMS_TMin_UMS = 300;	
-	
+	GMS_TMin_Statics = 60 * 35;  // minimum time for RESPAWN of static missions
+
 	#ifdef GRGserver
 	GMS_TMin_Hunter = 340;
 	GMS_TMin_Scouts = 300;
@@ -328,6 +330,9 @@ switch (GMSCore_modType) do
 	GMS_TMax_Blue = 360;
 	GMS_TMax_Red = 420;
 	GMS_TMax_UMS = 400;
+	GMS_TMax_Statics = GMS_TMin_Statics + 60; // Maximum time for RESAPWN of static missions
+											  // Be sure the minimum is > than the time at which objects from the previous instance of a static mission are deleted 
+											  // That is set in GMS_cleanupCompositionTimer
 
 	#ifdef GRGserver
 	GMS_TMax_Hunter = 400;
@@ -335,6 +340,7 @@ switch (GMSCore_modType) do
 	GMS_TMax_Crashes = 360;
 	#endif
 	
+	// 
 	///////////////////////////////
 	// AI VEHICLE PATROL PARAMETERS
 	///////////////////////////////	

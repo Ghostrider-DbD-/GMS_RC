@@ -180,8 +180,7 @@ if (GMS_numberUnderwaterDynamicMissions > 0) then
 		[_missionListUMS,_pathUMS,"UMSMarker","Red",GMS_TMin_UMS,GMS_TMax_UMS,GMS_numberUnderwaterDynamicMissions] call GMS_fnc_addMissionToQue;
 	};
 };
-#ifdef GRGserver
-["Running GhostriderGaming Version"] call GMS_fnc_log;
+
 if (GMS_enableScoutsMissions > 0) then
 {
 	[_missionListScouts,_pathScouts,"ScoutsMarker","red",GMS_TMin_Scouts,GMS_TMax_Scouts,GMS_enableScoutsMissions] call GMS_fnc_addMissionToQue;
@@ -197,7 +196,38 @@ if (GMS_maxCrashSites > 0) then
 {
 	[] execVM "\GMS\Missions\HeliCrashs\Crashes2.sqf";
 };
-#endif
+
+diag_log format ["_init:  Evaluating Static Missions"];
+if (GMS_enableStaticMissions > 0) then // GMS_enableStaticMissions should be an integer between 1 and N
+{
+	//diag_log format["fn_init: _pathStatics = %1",_pathStatics];
+	//diag_log format["fn_init: _missionListStatics = %1",_missionListStatics];
+	private _staticsToSpawn = [];
+	private _isStatic = true;
+	for "_i" from 1 to GMS_enableStaticMissions do 
+	{
+		if (_i > (count _missionListStatics)) exitWith {};
+		private _mission = selectRandom _missionLIstStatics;
+		//diag_log format["_init: static _mission selected = %1",_mission];
+		_staticsToSpawn pushBack _mission; 
+		_missionLIstStatics deleteAt (_missionLIstStatics find _mission);
+		//diag_log format["_init: _missionListStatics truncated to %1",_missionListStatics];
+	};
+	/*
+		params[
+			["_missionList",[]],
+			["_path",""],
+			["_marker",""],
+			["_difficulty","Red"],
+			["_tMin",60],
+			["_tMax",120],
+			["_noMissions",1],
+			["_isStatic",false]];
+	*/
+	//diag_log format["_init: _staticsToSpawn = %1:", _staticsToSpawn];
+	[_staticsToSpawn,_pathStatics,"StaticsMarker","orange",GMS_TMin_Statics,GMS_TMax_Statics,GMS_enableStaticMissions,_isStatic] call GMS_fnc_addMissionToQue;
+	["_init (229):  Returned from _addMissionToQue"] call GMS_fnc_log;
+};
 
 //  start the main thread for the mission system which monitors missions running and stuff to be cleaned up
 [] spawn GMS_fnc_mainThread;

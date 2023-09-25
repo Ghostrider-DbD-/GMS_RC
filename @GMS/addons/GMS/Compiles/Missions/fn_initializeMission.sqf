@@ -7,7 +7,7 @@
 	[_mrkr,_difficulty,_m] call GMS_fnc_initializeMission;
 
 	Returns one of the following values:
-	 0 - the search for a position was unsuccessful - _coords == [] 
+	 0 - this is a static mission that has been spawned and has not been completed 
 	 1 - the mission was successfully initialized at _coords != [0,0,0]
 	 2 - the mission has been run the maximum allowed times. 
 */
@@ -18,7 +18,8 @@ private ["_coords","_coordArray","_return"];
 params[
 	"_key",  			// This key can be used to seach the list of available mission types to update that list when a mission is completed or times out
 	"_missionConfigs",  // Selfevident but this is an array with all configs for the mission 
-	"_missionCount"		// The number of missions run thus far which is used to unsure each marker has a unique name 
+	"_missionCount",		// The number of missions run thus far which is used to unsure each marker has a unique name 
+	"_isStatic"
 ];
 
  _missionConfigs params [
@@ -32,7 +33,8 @@ params[
 	"_paraConfigs",	
 	"_defaultMissionLocations",
 	"_maxMissionRespawns",
-	"_timesSpawned"
+	"_timesSpawned",
+	"_isSpawned"
 ];
 
 _markerConfigs params[
@@ -45,6 +47,9 @@ _markerConfigs params[
 ];
 
 [format["_initializeMission (39): _markerName %1 | _key %2 | _missionCount %3 | _maxMissionRespawns %4 | _timesSpawned %5",_markerName,_key,_missionCount,_maxMissionRespawns,_timesSpawned]] call GMS_fnc_log;
+
+// If the mission is a static mission and it has been spawned but not cleared then pass back a code indicating that
+if (_isStatic &&_isSpawned) exitWith {private _initialized = 3; _initialized};
 
 private _initialized = 0;
 /*
@@ -99,7 +104,8 @@ if !(GMS_preciseMapMarkers) then
 	_markerPos = [_coords,75] call GMS_fnc_randomPosition;
 };
 
-if (GMS_debugLevel >= 3) then 
+/*
+if (GMS_debugLevel >=30) then 
 {
 	{
 		diag_log format["_initializeMission (95) %1 = %2",_x,_markerConfigs select _forEachIndex];
@@ -110,6 +116,8 @@ if (GMS_debugLevel >= 3) then
 		"_markerBrush"
 	];
 };
+*/
+
 private _markerError = false;
 if !(toLowerANSI (_markerType) in ["ellipse","rectangle"] || {isClass(configFile >> "CfgMarkers" >> _markerType)} ) then 
 {
@@ -119,6 +127,7 @@ if !(toLowerANSI (_markerType) in ["ellipse","rectangle"] || {isClass(configFile
 	_markerBrush = "GRID";
 	_markerError = true;
 };
+
 if !(isClass(configFile >> "CfgMarkerColors" >> _markerColor)) then 
 {
 	//[format["_markerColor set to 'default': Illegal color %1 used for mission %2 of difficulty %3",_markerColor,_markerMissionName,_difficulty],"warning"] call GMS_fnc_log;
@@ -164,13 +173,13 @@ private _missionData = [
 	hiddenObjects, 
 	crates, 
 	missionAI, 
-	assetSpawned, 
+	assetSpawned,   /// Used for missions for which a hostage or target is spawned.
 	missionVehicles, 
 	lootVehicles,
 	_markers
 ];
 private _spawnPara = -1;
-GMS_initializedMissionsList pushBack [_key, missionTimeoutAt, triggered, _missionData, _missionConfigs, _spawnPara];
+GMS_initializedMissionsList pushBack [_key, missionTimeoutAt, triggered, _missionData, _missionConfigs, _spawnPara,_isSpawned,_isStatic];
 //[format["_initializeMission (163): count GMS_initializedMissionsList = %1",count GMS_initializedMissionsList]] call GMS_fnc_log;
 _initialized = 1;
 _initialized

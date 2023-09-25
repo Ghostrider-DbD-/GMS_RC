@@ -7,6 +7,8 @@
 
 GMS_difficulty = getText(configFile >> "CfgGMS3DEN"  >> "CfgDefaults" >> "defaultMissionDifficulty");
 diag_log format["configs returned defaultMissionDifficulty = %1",GMS_difficulty];
+GMS_chanceMissionSpawned = 1.0; 
+diag_log format["GMS_chanceMissionSpawned set to default setting of 100%"];
 GMS_lootcrateSpawnTiming = getText(configFile >> "CfgGMS3DEN" >> "CfgDefaults" >> "defaultLootcrateSpawnTiming");
 diag_log format["configs returned defaultLootcrateSpawnTiming = %1",GMS_lootcrateSpawnTiming];
 GMS_lootcrateLoadTiming = getText(configFile >> "CfgGMS3DEN" >> "CfgDefaults" >> "defaultLootcrateLoadTiming");

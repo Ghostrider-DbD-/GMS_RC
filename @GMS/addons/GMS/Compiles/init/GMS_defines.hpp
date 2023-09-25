@@ -49,6 +49,9 @@
 #define atMissionEndGround 2 
 #define atMissionEndAir 3 
 
+// Defines for mission spawning functions 
+#define isSpawned 11 
+
 //  defines for static group spawners
 #define staticPatrolTriggerRange 2000
 #define groupParameters 0

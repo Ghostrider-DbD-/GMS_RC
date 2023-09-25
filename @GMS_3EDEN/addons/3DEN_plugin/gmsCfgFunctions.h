@@ -20,7 +20,8 @@ class CfgFunctions
 			class display {};			
 			class displayGarrisonMarkers {};
 			class displayLootMarkers {};
-			class exportDynamic {};			
+			class exportDynamic {};		
+			class garrisonApplyChanges {};	
 			class initialize {};
 			class initializeAttributes {};
 			class isInfantryUnit {};
@@ -33,7 +34,6 @@ class CfgFunctions
 			class onAttributeSaveGarrison {};
 			class onAttributeSaveGarrisonColor {};
 			class onAttributeSaveLootVeh {};	
-			class onAttributeSaveLootVehColor {};		
 			class onDrag {};
 			class onLoadGarrison {};
 			class onLoadGarrisonColor {};
@@ -46,7 +46,10 @@ class CfgFunctions
 			class setCompletionMode {}
 			class setGarrison {};
 			class setLoadCratesTiming {};			
-			class setLootVehicle {};
+			class setLootVehColor {};
+			class setMaxAI {}; 
+			class setMinAI {};
+			class setSpawnChance {};
 			class setSpawnLocations {};
 			class spawnCratesTiming {};
             class versionInfo {};

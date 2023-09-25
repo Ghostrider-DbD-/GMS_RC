@@ -24,7 +24,6 @@ while {true} do
 	
 	if (diag_tickTime > _timer2sec) then 
 	{			
-		[] spawn GMS_fnc_monitorSpawnedMissions;
 		if (GMS_showCountAliveAI) then
 		{
 			{
@@ -38,6 +37,8 @@ while {true} do
 	{
 		_timer5sec = diag_tickTime + 5;
 		if (GMS_simulationManager isEqualTo GMS_useBlckeaglsSimulationManagement) then {[] call GMS_fnc_simulationMonitor};
+		[] spawn GMS_fnc_monitorSpawnedMissions;
+		[] call GMS_fnc_scanForPlayersNearVehicles;		
 		[] call GMS_fnc_vehicleMonitor;		
 		#ifdef GRGserver
 		[] call GMS_fnc_broadcastServerFPS;
@@ -46,9 +47,8 @@ while {true} do
 	if (diag_tickTime > _timer10Sec) then 
 	{
 		_timer10Sec = diag_tickTime + 10;
-		[] call GMS_fnc_scanForPlayersNearVehicles;
 		[] call GMS_fnc_spawnNewMissions; 			
-		[] spawn GMS_fnc_monitorInitializedMissions;
+		[] call GMS_fnc_monitorInitializedMissions;
 	};
 	
 	if ((diag_tickTime > _timer1min)) then

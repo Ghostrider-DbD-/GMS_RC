@@ -14,11 +14,10 @@
 #include "\GMS\Compiles\Init\GMS_defines.hpp"
 
 params[
-	"_coords",
-	"_noVehiclePatrols",
-	"_skillAI",
-	"_missionPatrolVehicles"
-	,["_useRelativePos",true],
+	["_coords",[]],
+	["_skillAI","Red"],
+	["_missionPatrolVehicles",[]],
+	["_useRelativePos",true],
 	["_uniforms",[]], 
 	["_headGear",[]],
 	["_vests",[]],
@@ -32,23 +31,8 @@ params[
 private["_spawnPos"];
 private _vehicles = [];
 private _missionAI = [];
-private _abort = false;
 private _patrolsThisMission = +_missionPatrolVehicles;
-//diag_log format["_spawnMissionVehiclePatrols(30): _noVehiclePatrols = %1 | _patrolsThisMission = %2",_noVehiclePatrols,_patrolsThisMission];
-if (_patrolsThisMission isEqualTo []) then
-{
-	_useRelativePos = false;
-	private _spawnLocations = [_coords,_noVehiclePatrols,60,100] call GMS_fnc_findPositionsAlongARadius;
-	//diag_log format["_spawnMissionVehiclePatrols (35): _spawnLocations = %1",_spawnLocations];
-	{
-
-		private _veh = [_skillAI] call GMS_fnc_selectPatrolVehicle;
-		[format["GMS_fnc_spawnMissionVehiclePatrols: _veh %1 = %2",_forEachIndex,_veh]] call GMS_fnc_log;
-		_patrolsThisMission pushBack [_veh, _x];
-		//diag_log format["_spawnMissionVehiclePatrols(36): _v = %1 | _patrolsThisMission = %2",_v,_patrolsThisMission];
-	}forEach _spawnLocations;
-};
-//diag_log format["_spawnMissionVehiclePatrols(42): _patrolsThisMission = %1",_patrolsThisMission];
+//diag_log format["_spawnMissionVehiclePatrols(42): count _patrolsThisMission = %1 | _patrolsThisMission = %2",count _patrolsThisMission, _patrolsThisMission];
 #define configureWaypoints false
 {
 	_x params["_vehName","_pos"];
@@ -84,5 +68,5 @@ if (_patrolsThisMission isEqualTo []) then
 } forEach _patrolsThisMission;
 GMS_landVehiclePatrols append _vehicles;
 GMS_monitoredVehicles append _vehicles;
-[_vehicles, _missionAI, _abort];
+[_vehicles, _missionAI];
 

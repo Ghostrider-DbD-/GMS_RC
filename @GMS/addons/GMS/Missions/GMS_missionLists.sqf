@@ -101,6 +101,15 @@ private _missionListOrange = [/*"default","default2","medicalCamp","redCamp","re
 		/*,"temple"*/
 	];
 
+private _pathStatics = "Statics";
+private _missionListStatics = [
+	/// The format for these is filename 
+	/// Do NOT include the extension here.
+	/// You will need to add the mission files to the statics folder. 
+	"saltflatsone"
+
+];
+
 private _pathUMS = "UMS\dynamicMissions";
 private _missionListUMS = ["default"];
 

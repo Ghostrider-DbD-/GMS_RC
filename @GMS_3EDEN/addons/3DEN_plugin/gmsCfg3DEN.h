@@ -1,13 +1,6 @@
-class Default;
-class Title: Default
-{
-	class Controls 
-	{
-		class Title;
-	};
-};
-class RscCheckBox;
-class Checkbox;
+/*
+	
+*/
 
 class cfg3DEN 
 {
@@ -20,132 +13,79 @@ class cfg3DEN
 			//onHistoryChange = "call gms3DEN_fnc_updateObjects";
 		};
 	};
-	class Mission 
-	{
-		class gms3DENmissionSettings 
-		{
-			displayName = "Mission Settings";
-			// display = "Display3DENEditAttributesPreview"; // Optional - display for attributes window. Must have the same structure and IDCs as the default Display3DENEditAttributes 
-			class AttributeCategories 
-			{
-				class gms3DENCategory 
-				{
-					class Attributes 
-					{
-						class missionStartMessage  
-						{
-							property = "gmsMissionStartMessage";
-						};
-						class missionEndMessage 
-						{
-							property = "gmsMissionEndMessage";
-						};
-						class missionDifficulty 
-						{
-							property = "gmsMissionDifficulty";
-						};
-					};
-				};
-			};
-		};
-	};
 	class Attributes 
 	{
+		class Default; 
 
-		class gms3DENCheckBoxGarrisonsControl: Title
+		class Title: Default 
 		{
-			onload = "call gms3DEN_fnc_onLoadGarrison;";
-			onUnload = "diag_log 'onUnload for garrisons'";
-			onCheckedChanged = "diag_log format['onCheckedChanged %1',_this];";
-			attributeLoad = "(_this controlsGroupCtrl 100) ctrlSetText _value; [_this,_value] call gms3DEN_fnc_onAttributeLoadGarrison;";
-			attributeSave = "[cbChecked (this controlsGroupCtrl 100)] call gms3DEN_fnc_onAttributeSaveGarrison;"; 
-						
-			class Controls: Controls 
+			class Controls 
 			{
-				class Title: Title {};
-				class Value: CheckBox {};
-			};
-
-		};
-		class gmsGarrisonColorControl: Title
-		{
-			onload = "call gms3DEN_fnc_onLoadGarrisonColor;";
-			//onUnload = "diag_log 'onUnload for garrisons'";
-			attributeLoad = "[_this,_value] call gms3DEN_fnc_onAttributeLoadGarrisonColor;";
-			attributeSave = "[_this,_value] call gms3DEN_fnc_onAttributeSaveGarrisonColor;"; 
-			class Controls: Controls 
-			{
-				class Title: Title {};
-				class Value: CheckBox
-				{ 
-					idc = 101;
-				};
-			};
-		};		
-		class gms3DENCheckboxLootVehControl: Title 
-		{
-			onload = "call gms3DEN_fnc_onLoadLootVeh;";
-			//onUnload = "diag_log 'onUnload for loot veh'";
-			onAttributeLoad = "[_this,_value] call gms3DEN_fnc_onAttributeLoadLootVeh;";
-			onAttributeSave = "[_this,_value] call gms3DEN_fnc_onAttributeSaveLootVeh;";
-			class Controls: Controls 
-			{
-				class Title: Title {};
-				class Value: CheckBox
-				{ 
-					idc = 102;
-				};
+				class Title;
 			};
 		};
-		class gms3DENCLootVehicleColorControl: Title 
+		class CheckBox; 
+		class gms3DENCheckboxLootVehControl: CheckBox 
 		{
-			onload = "call gms3DEN_fnc_onLoadLootVehColor;";
+			/*
+				Use on: Display, Control
+				Fired on: Fires when UI container is created, but no action is taken. The onLoad event for display fires after the onLoad events for all controls it contains are fired.
+				Returns: Display or control, for controls it also returns the control's config (since
+				Arma 3 logo black.png
+				1.56
+				).
+
+				params ["_displayOrControl", ["_config", configNull]];			
+			*/
+			
+			onload = "\
+				params ['_displayOrControl', ['_config', configNull]];\
+				diag_log format['_displayControl = %1 | _config = %2',_displayControl,_config];\
+				[] call gms3DEN_fnc_onLoadLootVeh;\
+				";
 			//onUnload = "diag_log 'onUnload for loot veh'";
-			onAttributeLoad = "[_this,_value] call gms3DEN_fnc_onAttributeLoadLootVehColor;";
-			onAttributeSave = "[_this,_value] call gms3DEN_fnc_onAttributeSaveLootVeh;";
-			class Controls: Controls 
-			{
-				class Title: Title {};
-				class Value: CheckBox
-				{ 
-					idc = 103;
-				};
-			};
+			AttributeLoad = "\
+				_checked = switch (true) do {\
+					case (_value isequaltype 0): {([false,true] select (_value max 0 min 1))};\
+					case (_value isequaltype ''): {([false,true] select ((parsenumber _value) max 0 min 1))};\
+					default {_value};\
+				};\
+				(_this controlsGroupCtrl 100) cbsetchecked _checked;\
+				diag_log format['onAttributeLoad:lootVehControl: _checked = %1',_checked];\
+				";
+			AttributeSave = "\
+				cbchecked (_this controlsGroupCtrl 100);\
+				diag_log format['onattributesave:lootVehControl: _checked = %1',cbchecked (_this controlsGroupCtrl 100)];\
+				";
+		};
+		class gms3DENCLootVehicleColorControl: CheckBox 
+		{
+			onload = "\
+				params ['_displayOrControl', ['_config', configNull]];\
+				diag_log format['_displayControl = %1 | _config = %2',_displayControl,_config];\
+				[] call gms3DEN_fnc_onLoadLootVehColor;\
+			";
+			//onUnload = "diag_log 'onUnload for loot veh'";
+			AttributeLoad = "\
+					_checked = switch (true) do {\
+						case (_value isequaltype 0): {([false,true] select (_value max 0 min 1))};\
+						case (_value isequaltype ''): {([false,true] select ((parsenumber _value) max 0 min 1))};\
+						default {_value};\
+				};\
+				(_this controlsGroupCtrl 100) cbsetchecked _checked;\
+				diag_log format['onAttributeLoad:lootVehControlColor: _checked = %1',_checked];\
+				";
+			AttributeSave = "\
+				cbchecked (_this controlsGroupCtrl 100);\
+				diag_log format['onattributesave:lootVehColorControl: _checked = %1',cbchecked (_this controlsGroupCtrl 100)];\
+				[cbchecked (_this controlsGroupCtrl 100)] call gms3DEN_fnc_setLootVehColor;\
+			";
 		};		
 	};
-
 	class Object 
 	{
 		class AttributeCategories 
 		{
-			class gms3DENgarrisonedAttribute
-			{
-				displayName = "Garrisons";
-				collapsed = 1;				
-				class Attributes 
-				{
-					class GarrisonedAttribute 
-					{
-						displayName = "Garrison";
-						tooltip = "Mark as part of a garrison";
-						property = "gmsIsGarrison";
-						control = "gms3DENCheckBoxGarrisonsControl";
-						//condition = "";
-						expression = "_this setVariable ['%s',_value];";							
-						defaultValue = "false";
-					};
-					class GarrisonedColorAttribute 
-					{
-						displayName = "Color On";
-						tooltip = "Check to color this garrisoned object"
-						property = "gmsGarrisonColor";
-						control = "gmsGarrisonColorControl";
-						//condition = "";
-						expression = "_this setVariable ['%s',_value];";							
-						defaultValue = "false";						
-					};
-				};
-			};
 			class gms3DENlootVehicles 
 			{
 				displayName = "Loot Vehicle";
@@ -158,7 +98,7 @@ class cfg3DEN
 						tooltip = "Set box to checked for loot vehicles";
 						property = "gmsIsLootVehicle";
 						control = "gms3DENCheckboxLootVehControl";
-						//condition = "";
+						condition = "objectVehicle ";
 						expression = "_this setVariable ['%s',_value];";	
 						defaultValue = "false";	
 					};
@@ -168,12 +108,12 @@ class cfg3DEN
 						tooltip = "Check box to color this loot vehicle";
 						property = "gmsLootVehicleColor";
 						control = "gms3DENCLootVehicleColorControl";
-						//condition = "";
+						condition = "objectVehicle ";
 						expression = "_this setVariable ['%s',_value];";	
 						defaultValue = "false";							
 					};
 				};
 			};
 		};			
-	};
+	};	
 };

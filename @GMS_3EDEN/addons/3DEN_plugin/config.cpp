@@ -12,7 +12,6 @@
 #include "gmsCfgFunctions.h"
 #include "gmsCfg3DENVersion.h"
 #include "gmsCfg3DENsettings.h"
-//#include "settings.h"
 #include "gmsCfg3DEN.h"
 #include "gmsCfg3DENDisplay.h"
 

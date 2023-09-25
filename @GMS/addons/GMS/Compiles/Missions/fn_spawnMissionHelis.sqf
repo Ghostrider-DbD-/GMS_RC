@@ -5,7 +5,6 @@
 #include "\GMS\Compiles\Init\GMS_defines.hpp"
 params[
 	["_coords",[0,0,0]],
-	["_noChoppers",0],
 	["_missionHelis",[]],
 	["_difficulty","Red"],
 	["_uniforms",[]],
@@ -17,16 +16,16 @@ params[
 ];
 private _helis = [];
 private _units = [];
-for "_i" from 0 to (_noChoppers) do
+//diag_log format["_spawnMissionHelis (19): GMS_monitoringInitPass = %3 | count _missionHelis = %1 | _missionHelis = %2",count _missionHelis,_missionHelis, GMS_monitoringInitPass];
 {
-	private _spawnPos = _coords getPos[30,random(359)];
-	private _heli = selectRandom _missionHelis;
+	_x params["_heli","_relPos","_direction"];
 	private _noCrew = [_heli,false] call BIS_fnc_crewCount;
+	private _spawnPos = _coords vectorDiff _relPos;	
 	#define patrolArea [1000,1000]
 	private _crewGroup = [_spawnPos,_noCrew,_difficulty,patrolArea,_uniforms,_headGear,_vests,_backpacks,_weaponList, _sideArms] call GMS_fnc_spawnGroup;
 	_crewGroup setVariable["GMS_group",true];
 	_units append (units _crewGroup);
-	
+	//diag_log format["_spawnMissionHelis(27): _noCrew = %1 | _crewGroup = %2| _heil = %3 | _relPos = %4",_noCrew, _crewGroup, _heli, _relPos];
 	#define heliDir 0 
 	#define heliHeight 100 
 	#define heliRemoveFuel 0.2 	
@@ -34,7 +33,7 @@ for "_i" from 0 to (_noChoppers) do
 	#define vehHitCode [GMS_fnc_vehicleHit] 
 	#define vehKilledCode [GMS_fnc_vehicleKilled]								
 	private _releaseToPlayers = GMS_allowClaimVehicle;
-	// the function returns the vehicle object spawned (_aircraft)
+	// GMSCore_fnc_spawnPatrolAircraft returns the vehicle object spawned (_aircraft)
 	/*
 		params[
 			["_className",""],
@@ -50,9 +49,10 @@ for "_i" from 0 to (_noChoppers) do
 			["_vehKilledCode",[]]
 		];	
 	*/
-
-	private _aircraft = [_heli,_crewGroup,_spawnPos,heliDir,heliHeight,heliDamage,heliRemoveFuel,_releaseToPlayers,GMS_vehicleDeleteTimer,vehHitCode,vehKilledCode] call GMSCore_fnc_spawnPatrolAircraft;
+	private _aircraft = [_heli,_crewGroup,_spawnPos,_direction,heliHeight,heliDamage,heliRemoveFuel,_releaseToPlayers,GMS_vehicleDeleteTimer,vehHitCode,vehKilledCode] call GMSCore_fnc_spawnPatrolAircraft;
 	_helis pushBack _aircraft;
-};
-
+} forEach _missionHelis;
+diag_log format["_spawnMissionHelis: GMS_spawnHelisPass = %1 | GMS_monitorTriggered = %2",GMS_spawnHelisPass, GMS_monitorTriggered];
+diag_log format["_spawnMissionHelis: GMS_playerIsNear = %1 | GMS_aiKilled = %2", GMS_playerIsNear, GMS_aiKilled];
+GMS_spawnHelisPass = GMS_spawnHelisPass + 1;
 [_helis,_units]
