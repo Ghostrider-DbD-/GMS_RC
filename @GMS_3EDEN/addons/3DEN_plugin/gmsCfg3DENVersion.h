@@ -2,7 +2,7 @@
 
 	class CfgGMS3DENVersion 
 	{
-		version = 1.1;
-		build = 16;
-		date = "09/23/23";
+		version = 1.21;
+		build = 18;
+		date = "09/27/23";
 	};

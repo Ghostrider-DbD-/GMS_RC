@@ -3,13 +3,6 @@ class CfgFunctions
 {
 	class gms3DEN
 	{
-		class Export
-		{
-			file = "3DEN_plugin\Export";
-
-			//class exportStatic {};
-		};
-
 		class Core 
 		{
 			file = "3DEN_plugin\Core";
@@ -52,6 +45,7 @@ class CfgFunctions
 			class setSpawnChance {};
 			class setSpawnLocations {};
 			class spawnCratesTiming {};
+			class toggleStaticSpawns {};
             class versionInfo {};
 		};
 	};

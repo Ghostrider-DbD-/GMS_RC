@@ -16,158 +16,34 @@ class display3DEN
 				// ************************************************************
 				items[] += {"GMS_configure","GMS_export","GMS_support"};
 
-				/*
-					The menu for exporting missions is defined here
-				*/
-                class GMS_export {
-                    items[]= {
-                        "GMS_exportDynamic"
-                    };
-                    text = "Export Mission";
-                    toolTip = "Export GMS Missions";
-                };
-                class GMS_exportDynamic {
-                    text = "Export Mission";
-                    //toolTip = "Export Dynamic Mission";
-					action = "call gms3DEN_fnc_exportDynamic";
-					picture = "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\save_ca.paa";
-                };
-
-				/*
-					menus for those seeking support are here 
-				*/
-                class GMS_support {
-                    items[] = {
-                        "GMS_help",
-                        "GMS_about"
-                    };
-                    text = "Plugin Support";
-                };
-                class GMS_help {
-					text = "Help";
-					action = "call gms3DEN_fnc_Help";
-					//picture = "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\save_ca.paa";
-                };
-                class GMS_about {
-					text = "3EDEN Plugin Version 1.0 for GMS by Ghostrider-GRG-";
-					action = "call blck3EDEN_fnc_about";
-                };
-
-
 				/*  
 					All menus for configuring a GMS mission are defined here 
 				*/             
 
                 class GMS_configure {
+                    text = "GMS Settings";
+                    toolTip = "Adjust Settings";
                     items[] = {
-					  "GMS_difficulty",
-                      "GMS_crateSpawn",
-                      "GMS_lootSpawn",
-                      "GMS_location_Respawns",
-                      "GMS_MissionCompletionMode",
-					  "GMS_missionSpawnChance",
-					  "GMS_minAI",
-					  "GMS_maxAI"
-					  //"GMS_editMissionSettings"
+						"GMS_missions",
+						"GMS_units"
+						//"GMS_plugin"
                     };
-                    text = "Configure Mission";
-                    toolTip = "Adjust Mission Settings";
                 };
-				
-				class GMS_maxAI 
+
+
+				class GMS_missions 
 				{
-					text = "Max AI per Infantry Group";
-					tooltip = "set the maximum AI per Infantry Group";
+					text = "Mission Settings";
+					tooltip = "Adjust Mission Settings";
 					items[] = {
-						"GMS_maxThree",
-						"GMS_maxFour",
-						"GMS_maxFive",
-						"GMS_maxSix",
-						"GMS_maxEight",
-						"GMS_maxNine"
+						"GMS_static",
+						"GMS_missionSpawnChance",
+						"GMS_difficulty",
+						"GMS_MissionCompletionMode",
+						"GMS_crateSpawn",
+						"GMS_lootSpawn"
 					};
 				};
-				class GMS_maxThree 
-				{
-					text = "set max AI = 3";
-					action = "[3] call gms3DEN_fnc_setMaxAI";					
-				};
-				class GMS_maxFour
-				{
-					text = "set max AI = 4";
-					action = "[4] call gms3DEN_fnc_setMaxAI";					
-				};
-				class GMS_maxFive 
-				{
-					text = "set max AI = 5";
-					action = "[5] call gms3DEN_fnc_setMaxAI";					
-				};
-				class GMS_maxSix
-				{
-					text = "set max AI = 6";
-					action = "[6] call gms3DEN_fnc_setMaxAI";					
-				};
-				class GMS_maxSeven 
-				{
-					text = "set max AI = 7";
-					action = "[7] call gms3DEN_fnc_setMaxAI";					
-				};
-				class GMS_maxEight
-				{
-					text = "set max AI = 8";
-					action = "[8] call gms3DEN_fnc_setMaxAI";					
-				};		
-				class GMS_maxNine
-				{
-					text = "set max AI = 9";
-					action = "[9] call gms3DEN_fnc_setMaxAI";					
-				};	
-
-				class GMS_minAI 
-				{
-					text = "Min AI per Infantry Group";
-					tooltip = "Set the minimum AI per infantry group";
-					items[] = {
-						"GMS_minOne",
-						"GMS_minTwo",
-						"GMS_minThree",
-						"GMS_minFour",
-						"GMS_minFive",
-						"GMS_minSix"
-					};
-				};
-				class GMS_minOne 
-				{
-					text = "set min AI = 1";
-					action = "[1] call gms3DEN_fnc_setMinAI";
-				};
-				class GMS_minTwo 
-				{
-					text = "set min AI = 2";
-					action = "[2] call gms3DEN_fnc_setMinAI";
-				};	
-				class GMS_minThree 
-				{
-					text = "set min AI = 3";
-					action = "[3] call gms3DEN_fnc_setMinAI";
-				};								
-				class GMS_minFour 
-				{
-					text = "set min AI = 4";
-					action = "[4] call gms3DEN_fnc_setMinAI";
-				};	
-				class GMS_minFive
-				{
-					text = "set min AI = 5";
-					action = "[5] call gms3DEN_fnc_setMinAI";
-				};	
-				class GMS_minSix
-				{
-					text = "set min AI = 6";
-					action = "[6] call gms3DEN_fnc_setMinAI";
-				};	
-
-
 				class GMS_missionSpawnChance 
 				{
 					text = "Spawn Chance";
@@ -279,25 +155,7 @@ class display3DEN
 					action = "[assetSecured] call gms3DEN_fnc_setCompletionMode;";
 					value = allKilledOrPlayerNear;
 				};				
-				class GMS_location_Respawns
-				{
-					text = "Set Mission Spawns (static vs random)";
-					//action = "edit3DENMissionAttributes 'setAsStaticMission'";
-					items[] = {
-						"GMS_dynamicMission",
-						"GMS_staticMission"
-					};
-				};
-				class GMS_dynamicMission 
-				{
-					text = "Configure as Dynamic Mission";
-					action = "['dynamic'] call gms3DEN_fnc_setSpawnLocations";
-				};
-				class GMS_staticMission 
-				{
-					text = "Configure Static Mission";
-					action = "['static'] call gms3DEN_fnc_setSpawnLocations";
-				};
+
                 class GMS_crateSpawn {
                     text = "Set When Crates Spawn";
                     toolTip = "Set when crates are spawned";
@@ -362,16 +220,191 @@ class display3DEN
                     };
                 };
                 class GMS_setToDynamic {
-                    text = "Dynamic";
+                    text = "Dynamic (Default)";
                     toolType = "Set mission to be spawned at random location";
-                    action = "['dynamic'] call gms3DEN_fnc_toggleStaticSpawns";
+                    action = "['Dynamic'] call gms3DEN_fnc_toggleStaticSpawns";
                 };
                 class GMS_setToStatic {
                     text = "Static";
                     toolTip = "Set mission to respawn at the same location each time";
-                    action = "['static'] call gms3DEN_fnc_toggleStaticSpawns";
-                };			
+                    action = "['Static'] call gms3DEN_fnc_toggleStaticSpawns";
+                };	
+
+				class GMS_plugin 
+				{
+					text = "Pluggin Settings";
+					items[] = {
+						"GMS_garrisonATL"
+					};
+				};
+
+				class GMS_units 
+				{
+					text = "Adjust AI Settings"
+					items[] = {
+						"GMS_maxAI",
+						"GMS_minAI"
+					};
+				};
+
+				class GMS_maxAI 
+				{
+					text = "Max AI per Infantry Group";
+					tooltip = "set the maximum AI per Infantry Group";
+					items[] = {
+						"GMS_maxThree",
+						"GMS_maxFour",
+						"GMS_maxFive",
+						"GMS_maxSix",
+						"GMS_maxEight",
+						"GMS_maxNine"
+					};
+				};
+				class GMS_maxThree 
+				{
+					text = "set max AI = 3";
+					action = "[3] call gms3DEN_fnc_setMaxAI";					
+				};
+				class GMS_maxFour
+				{
+					text = "set max AI = 4";
+					action = "[4] call gms3DEN_fnc_setMaxAI";					
+				};
+				class GMS_maxFive 
+				{
+					text = "set max AI = 5";
+					action = "[5] call gms3DEN_fnc_setMaxAI";					
+				};
+				class GMS_maxSix
+				{
+					text = "set max AI = 6";
+					action = "[6] call gms3DEN_fnc_setMaxAI";					
+				};
+				class GMS_maxSeven 
+				{
+					text = "set max AI = 7";
+					action = "[7] call gms3DEN_fnc_setMaxAI";					
+				};
+				class GMS_maxEight
+				{
+					text = "set max AI = 8";
+					action = "[8] call gms3DEN_fnc_setMaxAI";					
+				};		
+				class GMS_maxNine
+				{
+					text = "set max AI = 9";
+					action = "[9] call gms3DEN_fnc_setMaxAI";					
+				};	
+
+				class GMS_minAI 
+				{
+					text = "Min AI per Infantry Group";
+					tooltip = "Set the minimum AI per infantry group";
+					items[] = {
+						"GMS_minOne",
+						"GMS_minTwo",
+						"GMS_minThree",
+						"GMS_minFour",
+						"GMS_minFive",
+						"GMS_minSix"
+					};
+				};
+				class GMS_minOne 
+				{
+					text = "set min AI = 1";
+					action = "[1] call gms3DEN_fnc_setMinAI";
+				};
+				class GMS_minTwo 
+				{
+					text = "set min AI = 2";
+					action = "[2] call gms3DEN_fnc_setMinAI";
+				};	
+				class GMS_minThree 
+				{
+					text = "set min AI = 3";
+					action = "[3] call gms3DEN_fnc_setMinAI";
+				};								
+				class GMS_minFour 
+				{
+					text = "set min AI = 4";
+					action = "[4] call gms3DEN_fnc_setMinAI";
+				};	
+				class GMS_minFive
+				{
+					text = "set min AI = 5";
+					action = "[5] call gms3DEN_fnc_setMinAI";
+				};	
+				class GMS_minSix
+				{
+					text = "set min AI = 6";
+					action = "[6] call gms3DEN_fnc_setMinAI";
+				};	
+
+				class GMS_garrisonATL 
+				{
+					text = "Garrison-ATL Mode";
+					items[] = {
+						"GMS_garrisonATLoff",
+						"GMS_garrisonATLon",
+						"GMS_aboutGarrisonATL"			
+					};
+				};
+				class GMS_garrisonATLoff 
+				{
+					text = "Off (default)";
+					action = "[false] call gms3DEN_fnc_setGarrisonATL";
+				};
+				class GMS_garrisonATLon 
+				{
+					text = "On";
+					action = "[true] call gms3DEN_fnc_setGarrisonATL";					
+				};
+				class GMS_aboutGarrisonATL
+				{
+					text = "Help";
+					action = "call gms3DEN_fnc_garissonATLhelp";
+				};				
+				/***************************************
+					The menu for exporting missions is defined here
+				***************************************/
+
+                class GMS_export {
+                    items[]= {
+                        "GMS_exportDynamic"
+                    };
+                    text = "Export Mission";
+                    toolTip = "Export GMS Missions";
+                };
+                class GMS_exportDynamic {
+                    text = "Export Mission";
+                    //toolTip = "Export Dynamic Mission";
+					action = "call gms3DEN_fnc_exportDynamic";
+					picture = "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\save_ca.paa";
+                };
+
+				/***************************************
+					menus for those seeking support are here 
+				***************************************/
+
+                class GMS_support {
+                    items[] = {
+                        "GMS_help",
+                        "GMS_about"
+                    };
+                    text = "Plugin Support";
+                };
+                class GMS_help {
+					text = "Help";
+					action = "call gms3DEN_fnc_Help";
+                };
+                class GMS_about {
+					text = "3EDEN Plugin Version 1.0 for GMS by Ghostrider-GRG-";
+					action = "call gms3EDEN_fnc_about";
+                };
+
             };
+
+
 		};
 	};
 };

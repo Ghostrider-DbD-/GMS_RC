@@ -4,7 +4,7 @@
 	Copyright 2020
 	
 */
-
+diag_log format["Initializing GMS_RC 3DEN Plugin %1",call gms3DEN_fnc_versionInfo];
 GMS_difficulty = getText(configFile >> "CfgGMS3DEN"  >> "CfgDefaults" >> "defaultMissionDifficulty");
 diag_log format["configs returned defaultMissionDifficulty = %1",GMS_difficulty];
 GMS_chanceMissionSpawned = 1.0; 
@@ -22,4 +22,7 @@ gms3DENGarrisonTexture =  getText(configFile >> "CfgGMS3DEN" >> "CfgDefaults" >>
 diag_log format["configs returned %1 as the color for garrisoned objects",gms3DENGarrisonTexture];
 gms3DENlootVehicleTexture = getText(configFile >> "CfgGMS3DEN" >> "CfgDefaults" >> "colorLootObject");
 diag_log format["configs returned %1 as the color for loot objects such as vehicles",gms3DENlootVehicleTexture];
+gms3DEN_useGarrisonATL = false;
+diag_log format["gms3DEN_useGarrisonATL set to default value of %1",gms3DEN_useGarrisonATL];
+GMS_missionSpawnMode = "Dynamic";
 diag_log format["Mission Attributes Initialized for GMS at time %1",diag_tickTime];
