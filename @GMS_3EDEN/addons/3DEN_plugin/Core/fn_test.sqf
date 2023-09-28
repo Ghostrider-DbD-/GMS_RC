@@ -1,1 +1,0 @@
-diag_log format["executing test.sqf at %1",diag_tickTime];
