@@ -399,7 +399,7 @@ class display3DEN
                 };
                 class GMS_about {
 					text = "3EDEN Plugin Version 1.0 for GMS by Ghostrider-GRG-";
-					action = "call gms3EDEN_fnc_about";
+					action = "call blck3EDEN_fnc_about";
                 };
 
             };

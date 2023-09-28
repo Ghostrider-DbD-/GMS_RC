@@ -2,7 +2,6 @@
 
 
 Long-term TODO: 
-Allow Users to Define Loot Vehicles
 
 
 
