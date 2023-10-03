@@ -20,6 +20,13 @@ _crate setVariable["chute",_chute];
 _chute setPos [getPos _chute select 0, getPos _chute select 1, _dropHeight];
 _crate setPos (getPos _chute);
 _crate attachTo [_chute, [0,0,0]];	
-if (_crateVisualMarker) then {[_crate,150] spawn GMS_fnc_visibleMarker};
+
+/*
+GMSCore_fnc_visibleMarker 
+private _defaultSmokeShells = selectRandom ["SmokeShellOrange","SmokeShellBlue","SmokeShellPurple","SmokeShellRed","SmokeShellGreen","SmokeShellYellow"];
+private ["_start","_maxHeight","_smokeShell","_light","_lightSource"];
+params[["_crate",objNull],["_time",60],["_smokeShell", selectRandom "_defaultSmokeShells"]]; 
+*/
+if (_crateVisualMarker) then {[_crate,150, GMS_smokeShellAtCrates] call GMSCore_fnc_visibleMarker};
 _chute
 

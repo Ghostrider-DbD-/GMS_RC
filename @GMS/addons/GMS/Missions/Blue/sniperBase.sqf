@@ -80,9 +80,11 @@ _submarinePatrolParameters = [
 ];
 
 _airPatrols = [
+     ["somecrazyname",[40,-40,1],0]
 ];
 
 _missionEmplacedWeapons = [
+     ["somcrazyname",[20,-15,1],0]
 ];
 
 _missionGroups = [

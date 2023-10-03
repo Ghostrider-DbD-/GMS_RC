@@ -17,7 +17,7 @@ if (GMS_debugLevel > 0) then {diag_log "[GMS] loading variables"};
 GMS_minFPS = 12; 
 
 // radius within whih missions are triggered. The trigger causes the crate and AI to spawn.
-GMS_TriggerDistance = 1500;
+//GMS_TriggerDistance = 1500;
 
 ////////////////////////////////////////////////
 //  Do Not Touch Anything Below This Line
@@ -39,8 +39,8 @@ GMS_mainThreadUpdateInterval = 60;
 GMS_monitoring = false;
 GMS_monitoringInitPass = 0;
 GMS_spawnHelisPass = 0;
-GMS_playerIsNear = false;
-GMS_aiKilled = false;
+//GMS_playerIsNear = false;
+//GMS_aiKilled = false;
 GMS_triggered = false;
 GMS_revealMode = "detailed"; //""basic" /*group or vehicle level reveals*/,detailed /*unit by unit reveals*/";
 GMS_dynamicMissionsSpawned = 0;

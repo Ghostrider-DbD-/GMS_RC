@@ -1,0 +1,6 @@
+
+
+FIX and Test:
+Group movement needs a jumpstart when groups are spawned in - need to check how this is done in GMSAI. 
+Warning Message: Script \GMS\Compiles\Missions\GMS_fnc_garrisonBuilding_relPosSystem.sqf not found
+fn_garrisonBuilding_ATLsystem

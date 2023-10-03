@@ -103,12 +103,12 @@ if ((toLowerANSI GMSCore_modtype) isEqualTo "default") then
 //  HINT: Use these for map-specific settings
 #include "\GMS\Configs\GMS_custom_config.sqf";
 
-if (GMS_debugLevel > 0) then {[format["Custom Configurations Loaded at %1",diag_tickTime]] call GMS_fnc_log};
+if (GMS_debugLevel > 0) then {[format["DEBUG ON: Custom Configurations Loaded at %1",diag_tickTime]] call GMS_fnc_log};
 if (GMS_debugLevel > 0) then {[format["GMS_debugLevel = %1",GMS_debugLevel]] call GMS_fnc_log};
 
 // Load vaariables used to store information for the mission system.
 [] call compileFinal preprocessFileLineNumbers "\GMS\Compiles\GMS_variables.sqf";
-if (GMS_debugLevel > 0) then {diag_log format["Variables loaded at %1",diag_tickTime]};
+if (GMS_debugLevel > 0) then {[format["DEBUG ON: Variables loaded at %1",diag_tickTime]] call GMS_fnc_log};
 
 // configure dynamic simulation management is this is being used.
 if (GMS_simulationManager == 2) then 
@@ -119,12 +119,11 @@ if (GMS_simulationManager == 2) then
 
 // find and set Mapcenter and size
 call compileFinal preprocessFileLineNumbers "\GMS\Compiles\init\GMS_fnc_findWorld.sqf";
-if (GMS_debugLevel > 0) then {diag_log "Map-specific information defined"};
-
+if (GMS_debugLevel > 0) then {["DEBUG ON: Map-specific information defined"] call GMS_fnc_log};
 
 // set up the lists of available missions for each mission category
 #include "\GMS\Missions\GMS_missionLists.sqf";
-if (GMS_debugLevel > 0) then {diag_log "Mission Lists Loaded Successfully"};
+if (GMS_debugLevel > 0) then {["DEBUG ON: Mission Lists Loaded Successfully"] call GMS_fnc_log};
 // TODO: merge in underwater / sea missions at some point 
 
 switch (GMS_simulationManager) do
@@ -146,7 +145,7 @@ _fn_setupLocationType = {
 	_locations	
 };
 
-if (isNil "GMS_crateMoveAllowed") then {GMS_crateMoveAllowed = false};
+if (isNil "GMS_crateMoveAllowed") then {GMS_crateMoveAllowed = true};
 
 private _villages = ["NameVillage"] call _fn_setupLocationType;
 private _cites = ["NameCity"] call _fn_setupLocationType;
@@ -197,22 +196,17 @@ if (GMS_maxCrashSites > 0) then
 	[] execVM "\GMS\Missions\HeliCrashs\Crashes2.sqf";
 };
 
-diag_log format ["_init:  Evaluating Static Missions"];
-if (GMS_enableStaticMissions > 0) then // GMS_enableStaticMissions should be an integer between 1 and N
+if (GMS_enableStaticMissions > 0 && !(_missionLIstStatics isEqualTo [])) then // GMS_enableStaticMissions should be an integer between 1 and N
 {
-	//diag_log format["fn_init: _pathStatics = %1",_pathStatics];
-	//diag_log format["fn_init: _missionListStatics = %1",_missionListStatics];
+	diag_log format["fn_init: _pathStatics = %1",_pathStatics];
 	private _staticsToSpawn = [];
 	private _isStatic = true;
-	for "_i" from 1 to GMS_enableStaticMissions do 
+	private _numberStatics = count _missionListStatics;
 	{
-		if (_i > (count _missionListStatics)) exitWith {};
+		if ((count _staticsToSpawn) > (count _missionLIstStatics)) exitWith {};
 		private _mission = selectRandom _missionLIstStatics;
-		//diag_log format["_init: static _mission selected = %1",_mission];
-		_staticsToSpawn pushBack _mission; 
-		_missionLIstStatics deleteAt (_missionLIstStatics find _mission);
-		//diag_log format["_init: _missionListStatics truncated to %1",_missionListStatics];
-	};
+		_staticsToSpawn pushBackUnique _mission; 
+	} forEach _missionLIstStatics;
 	/*
 		params[
 			["_missionList",[]],
@@ -224,9 +218,8 @@ if (GMS_enableStaticMissions > 0) then // GMS_enableStaticMissions should be an 
 			["_noMissions",1],
 			["_isStatic",false]];
 	*/
-	//diag_log format["_init: _staticsToSpawn = %1:", _staticsToSpawn];
+	//diag_log format["_init: count _staticsToSpawn = %1 | GMS_enableStaticMissions = %2:",count _staticsToSpawn,GMS_enableStaticMissions];
 	[_staticsToSpawn,_pathStatics,"StaticsMarker","orange",GMS_TMin_Statics,GMS_TMax_Statics,GMS_enableStaticMissions,_isStatic] call GMS_fnc_addMissionToQue;
-	["_init (229):  Returned from _addMissionToQue"] call GMS_fnc_log;
 };
 
 //  start the main thread for the mission system which monitors missions running and stuff to be cleaned up

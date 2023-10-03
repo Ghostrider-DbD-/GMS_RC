@@ -1,5 +1,5 @@
 /*
-	GMS_fnc_smokeAtCrates 
+	GMS_fnc_spawnSmokingObject
 	
 	Spawns a smoking wreck or object at a specified location and returns the objects spawn (wreck and the particle effects object)
 	for ghostridergaming
@@ -14,9 +14,21 @@
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
 #include "\GMS\Compiles\Init\GMS_defines.hpp"
- private _wreckSelected = selectRandom ["Land_Wreck_Car2_F","Land_Wreck_Car3_F","Land_Wreck_Car_F","Land_Wreck_Offroad2_F","Land_Wreck_Offroad_F","Land_Tyres_F","Land_Pallets_F","Land_MetalBarrel_F"];
-params["_pos","_mode",["_maxDist",12],["_wreckChoices",_wreckSelected],["_addFire",false]];
-private ["_objs","_wreckSelected","_smokeType","_fire","_posFire","_posWreck","_smoke","_dis","_minDis","_maxDis","_closest","_wrecks"];
+ private _wrecksAvailable = ["Land_Wreck_Car2_F","Land_Wreck_Car3_F","Land_Wreck_Car_F","Land_Wreck_Offroad2_F","Land_Wreck_Offroad_F","Land_Tyres_F","Land_Pallets_F","Land_MetalBarrel_F"];
+params[["_pos",[0,0,0]],
+	["_mode","random"],
+	["_maxDist",12],
+	["_wrecks",_wrecksAvailable],
+	["_addFire",false]];
+if (_pos isEqualTo [0,0,0]) exitWith {["No position passed to GMS_fnc_smokeAtCrates","warning"] call GMS_fnc_log};
+private _wreck = selectRandom _wrecks;
+/*
+{
+	diag_log format["_smokeatCrate: _this %1 = %2",_foreachIndex, _x];
+} forEach _this;
+*/
+
+private ["_objs","_smokeType","_fire","_posFire","_posWreck","_smoke","_dis","_minDis","_maxDis","_closest","_wrecks"];
 
 _smokeType = if(_addFire) then {"test_EmptyObjectForFireBig"} else {"test_EmptyObjectForSmoke"};
 
@@ -30,7 +42,7 @@ _posWreck = [_pos, _minDis, 50, _closest, 0, 20, 0] call BIS_fnc_findSafePos;  /
 
 
 // spawn a wreck near the mission center
-_fire = createVehicle [_wreckSelected, [0,0,0], [], 0, "can_collide"];
+_fire = createVehicle [_wreck, [0,0,0], [], 0, "can_collide"];
 _fire setVariable ["LAST_CHECK", (diag_tickTime + 14400)];
 _fire setPos _posWreck;
 _fire setDir random(360);

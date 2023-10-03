@@ -38,7 +38,9 @@ if (_vests isEqualTo [])     then {_vests = [_skillLevel] call GMS_fnc_selectAIV
 if (_backpacks isEqualTo []) then {_backpacks = [_skillLevel] call GMS_fnc_selectAIBackpacks};
 
 private _difficultyIndex = [_skillLevel] call GMS_fnc_getIndexFromDifficulty;
-private _group = [
+
+private "_group";
+_group = [
 	_pos,
 	_numberToSpawn,
 	GMSCore_side,
@@ -57,8 +59,9 @@ private _group = [
 	0.33, // chance garrison 
 	false // isDrone Crew
 ] call GMSCore_fnc_spawnInfantryGroup;
-_group setVariable["GMS_difficulty",_skillLevel];
 //[format["GMS_fnc_spawnGroup: _group = %1",_group]] call GMS_fnc_log;
+_group setVariable["GMS_difficulty",_skillLevel];
+
 [_group] call GMSCore_fnc_setupGroupBehavior;
 private _skills = missionNamespace getVariable[format["GMS_Skills%1",_skillLevel],GMS_SkillsRed];
 [_group,_skills] call GMSCore_fnc_setupGroupSkills;
@@ -93,10 +96,32 @@ private _gear = [
 	[GMS_loot, 1.0]
 ];
 [_group,_gear,GMS_launchersPerGroup,GMS_useNVG] call GMSCore_fnc_setupGroupGear;
-if !(_areaDimensions isEqualTo []) then 
-{
-	[_group,[],[_pos,_areaDimensions],300,0.33] call GMSCore_fnc_initializeWaypointsAreaPatrol;
+
+private _veh = vehicle (leader _group);
+private _type = [_veh] call BIS_fnc_objectType;
+_type params["_typeObj","_subtypeObj"];
+//diag_log format["GMS_fnc_spawnGroup: _veh %3 |  _typeObj %1 | _subTypeObj %2",_typeObj,_subtypeObj,_veh];
+
+private "_waypointClass";
+switch (_typeObj) do {
+	case "Soldier": {_waypointClass =_typeObj};
+	case "Vehicle": {_waypointClass = _subtypeObj};
+	case "VehicleAutonomous": {_waypointClass = _subtypeObj};
+	default {_waypointClass = "Soldier"};
 };
+/*
+params[
+	["_group",grpNull],  // group for which to configure / initialize waypoints
+	["_blackListed",[]],  // areas to avoid within the patrol region
+	["_patrolAreaMarker",""],  // a marker or array defining the patrol area center, size and shape
+	["_timeout",300],
+	["_garrisonChance",0],  // chance that an infantry group will garison an building of type house - ignored for vehicles.
+	["_type",GMS_infrantryPatrol],  // "infantry","vehicle","air","submersible", "staticweapon"
+	["_deletemarker",false]
+];  
+*/
+
+if !(_areaDimensions isEqualTo []) then {[_group,[],[_pos,_areaDimensions],-1,0,_waypointClass,true] call GMSCore_fnc_initializeWaypointsAreaPatrol};
 
 _group selectLeader ((units _group) select 0);
 //[format["GMS_fnc_spawnGroup: _group = %1",_group]] call GMS_fnc_log;

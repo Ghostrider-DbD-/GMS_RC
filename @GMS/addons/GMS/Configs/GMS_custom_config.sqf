@@ -120,7 +120,7 @@ switch (toLower (worldName)) do
 		GMS_enableBlueMissions = 1;
 		GMS_enableHunterMissions = 1;
 		GMS_enableScoutsMissions = 1;
-		GMS_maxCrashSites = 3;	
+		GMS_maxCrashSites = 0;	
 		GMS_numberUnderwaterDynamicMissions = 1;	
 	};
 };
@@ -147,13 +147,14 @@ if (GMS_debugLevel > 0) then {
 	//GMS_mainThreadUpdateInterval = 10;
 	GMS_launchersPerGroup = 1;
 
-	GMS_enableOrangeMissions = 0;  
-	GMS_enableGreenMissions = 0;
-	GMS_enableRedMissions = 0;
-	GMS_enableBlueMissions = 1;
+	GMS_enableOrangeMissions = 1;  
+	GMS_enableGreenMissions = 0; // 10-02-2023 Tested with mission list= "FieldCamp", "FieldHQ", "factory", "fortification", "Camp_Moreell", "lager"
+	GMS_enableRedMissions = 0;   // 10-2-2023 Tested with mission list= "fuelDepot", "junkyardWilly", "TraderBoss", "carThieves", "Ammunition_depot", "IDAP", "Outpost", "Service_Point"
+	GMS_enableBlueMissions = 0;  // 10-2-2023 Tested with mission list= "sniperBase", "survivalSupplies", "Service_point", and "default"
 	GMS_numberUnderwaterDynamicMissions = 0;	
 	GMS_enableHunterMissions = 0;
-	GMS_enableScoutsMissions = 1;
+	GMS_enableScoutsMissions = 0;
+	GMS_enableStaticMissions = 0;
 	GMS_maxCrashSites = 0; 
 
 	GMS_noPatrolHelisBlue = 1;
@@ -171,7 +172,7 @@ if (GMS_debugLevel > 0) then {
 
 	GMS_SpawnEmplaced_Orange = 2; // Number of static weapons at Orange Missions
 	GMS_SpawnEmplaced_Green = 2; // Number of static weapons at Green Missions
-	GMS_SpawnEmplaced_Blue = 2;  // Number of static weapons at Blue Missions
+	GMS_SpawnEmplaced_Blue = 1;  // Number of static weapons at Blue Missions
 	GMS_SpawnEmplaced_Red = 2;  // Number of static weapons at Red Missions	
 
 	GMS_MinAI_Orange = 20;
@@ -198,6 +199,7 @@ if (GMS_debugLevel > 0) then {
 	GMS_TMin_Scouts = 45;
 	GMS_TMin_Crashes = 5;
 	GMS_TMin_UMS = 20;
+	GMS_TMin_Statics = 60;  // minimum time for RESPAWN of static missions
 	//Maximum Spawn time between missions in seconds
 	GMS_TMax_Blue = 12;
 	GMS_TMax_Red = 15;
@@ -207,6 +209,39 @@ if (GMS_debugLevel > 0) then {
 	GMS_TMax_Scouts = 20;
 	GMS_TMax_Crashes = 15;
 	GMS_TMax_UMS = 25;
+	GMS_TMax_Statics = GMS_TMin_Statics + 10; // Maximum time for RESAPWN of static missions
+											  // Be sure the minimum is > than the time at which objects from the previous instance of a static mission are deleted 
+											  // That is set in GMS_cleanupCompositionTimer
+/*
+	// Reduce to 1 sec for immediate spawns, or longer if you wish to space the missions out	
+	GMS_TMin_Orange = 480;
+	GMS_TMin_Green = 420;
+	GMS_TMin_Blue = 300;
+	GMS_TMin_Red = 360;
+	GMS_TMin_UMS = 300;	
+	GMS_TMin_Statics = 60 * 35;  // minimum time for RESPAWN of static missions
 
+	#ifdef GRGserver
+	GMS_TMin_Hunter = 340;
+	GMS_TMin_Scouts = 300;
+	GMS_TMin_Crashes = 300;
+	#endif
+	
+	//Maximum Spawn time between missions in seconds
+	GMS_TMax_Orange = 560;
+	GMS_TMax_Green = 500;
+	GMS_TMax_Blue = 360;
+	GMS_TMax_Red = 420;
+	GMS_TMax_UMS = 400;
+	GMS_TMax_Statics = GMS_TMin_Statics + 60; // Maximum time for RESAPWN of static missions
+											  // Be sure the minimum is > than the time at which objects from the previous instance of a static mission are deleted 
+											  // That is set in GMS_cleanupCompositionTimer
+
+	#ifdef GRGserver
+	GMS_TMax_Hunter = 400;
+	GMS_TMax_Scouts = 360;
+	GMS_TMax_Crashes = 360;
+	#endif
+*/
 	["Custom Configs <DEBUG LEVEL > 0> Custom mission timers loaded"] call GMS_fnc_log;
 };

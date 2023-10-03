@@ -20,7 +20,7 @@ params["_center",
         ["_weaponList",[]],
         ["_sideArms",[]]
 ];
-
+//[format["_garrisonBuilding_ATLsystem: _this = %1",_this]] call GMS_fnc_log;
 private["_group","_buildingsSpawned","_staticsSpawned","_g","_building","_return"];
 _buildingsSpawned = [];
 _staticsSpawned = [];   
@@ -46,6 +46,12 @@ _unitsSpawned = [];
         */
         #define areaDimensions []  // an empty array forces the spawnGroup function to skip setup of any waypoint
         private _group = [[0,0,0],_unitsToSpwan,_aiDifficultyLevel,[],_uniforms,_headgear,_vests,_backpacks,_weaponList,_sidearms,false] call GMS_fnc_spawnGroup;
+        
+        for "_i" from 0 to (count waypoints _group - 1) do
+        {
+            deleteWaypoint [_group, 0];
+        };        
+        
         _unitsSpawned append (units _group);
         private _units = units _group;
         _building = createVehicle[_bldClassName,[0,0,0],[],0,"CAN_COLLIDE"];
@@ -76,6 +82,7 @@ _unitsSpawned = [];
             _unit = _units deleteAt 0;
             _unit setPosATL (_unitRelPos vectorAdd (getPosATL _building));
             _unit setDir _unitDir;
+            //_unit disableAI "PATH";
         }forEach _men;        
 }forEach _garrisonedBuilding_ATLsystem;
 //[format["_garrisonBuilding_ATLSystem: _unitsspawned %1 | _staticsSpawned %2 | BuildingsSpawned %3",_unitsSpawned,_staticsSpawned,_buildingsSpawned]] call GMS_fnc_log;

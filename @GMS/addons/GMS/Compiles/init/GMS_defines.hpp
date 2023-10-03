@@ -50,7 +50,9 @@
 #define atMissionEndAir 3 
 
 // Defines for mission spawning functions 
-#define isSpawned 11 
+// Array structure defined in \Complies\Missions\GMS_missionSpawner.sqf
+#define isSpawned 12
+#define spawnedAt 13
 
 //  defines for static group spawners
 #define staticPatrolTriggerRange 2000

@@ -26,7 +26,7 @@ private _missionListBlue = [
 		"survivalSupplies",  // Spawns OK Debug = 4 Build 246
 		//"derbunker", // OK, an interesting mission, better as a red / green though
 		//"forgotten_HQ",  //  ok BUT TOO TOUGH FOR BLUE OR RED
-		//"garrison",  //  OK but do not use.
+		////"garrison"  //  OK but do not use.
 		//"IDAP",  //  OK but too difficult for a blue mission	
 		"Service_point",  // OK build 224
 		//"Toxin",  //  OK but too difficult for a blue mission

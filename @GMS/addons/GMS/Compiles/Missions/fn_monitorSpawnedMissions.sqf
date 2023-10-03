@@ -50,7 +50,24 @@ for "_i" from 1 to (count _missionsList) do
 			"_lootVehicles",
 			"_markers"
 		];	
-
+		/*
+			private _table = [
+				_aiDifficultyLevel,		// index 0
+				_markerConfigs,			// index 1
+				_endCondition,			// index 2
+				_isscubamission,		// index 3
+				_missionLootConfigs,	// index 4
+				_aiConfigs,				// index 5
+				_missionMessages,		// index 6
+				_paraConfigs,			// index 7
+				_defaultMissionLocations, 
+				_maxMissionRespawns,	// index 9 
+				_timesSpawned,			// index 10 
+				_chanceMissionSpawned,	// index 11
+				_isSpawned,				// index 12
+				_spawnedAt				// index 13
+			];
+		*/
 		_missionConfigs params[
 			"_difficulty",
 			"_markerConfigs",
@@ -63,12 +80,14 @@ for "_i" from 1 to (count _missionsList) do
 			"_defaultMissionLocations",
 			"_maxMissionRespawns",
 			"_timesSpawned",
-			"_isSpawned"
+			"_chanceMissionSpawned",
+			"_isSpawned",
+			"_spawnedAt"
 		];	
 
 		private _missionComplete = -1;
 		private ["_secureAsset","_endIfPlayerNear","_endIfAIKilled"];
-		//[format["_monitorSpawnedMissions: (67): _endCondition = %1 | _missionMarkerName = %2",_endCondition, _markerConfigs select 1]] call GMS_fnc_log;
+		//[format["_monitorSpawnedMissions: (67): _endCondition = %1 | _missionMarkerName = %2 _spawnedAt %3 | _isSpawned %4",_endCondition, _markerConfigs select 1, _spawnedAt, _isSpawned]] call GMS_fnc_log;
 		switch (_endCondition) do
 		{
 			case playerNear: {_secureAsset = false; _endIfPlayerNear = true;_endIfAIKilled = false;};
@@ -79,18 +98,20 @@ for "_i" from 1 to (count _missionsList) do
 		};
 
 		try {
-			//[format["_monitorSpawnedMissions: (88): _spawnPara = %3 | count _missionInfantry = %1 | _crates = %2",count _missionInfantry, _crates,_spawnPara]] call GMS_fnc_log;
 			if (GMS_debugLevel >= 5) throw 1;
 			if (GMS_debugLevel >= 4) throw 4;
-			private _playerIsNearCrates = [_crates,20,true] call GMS_fnc_playerInRangeArray;
-			private _playerIsNearCenter = [_coords,20,true] call GMS_fnc_playerInRange;
-			private _playerIsNear = if (_playerIsNearCrates || {_playerIsNearCenter}) then {true} else {false};
-			GMS_playerIsNear = _playerIsnear;
+			//if !(_isSpawned) throw 6;
+			if (diag_tickTime - _spawnedAt < 30) throw 7;  // We do not want the mission clear immediately after it is spawned. 
+					// _spawnedAt is set only after everything is spawned so just having a small safety factor of 60 seconds should be enough to be sure no one can complete the mission  
+					// until everything is spawned and settled.
+
+			private _playerIsNear = if ({(((_x distance2d _coords) < 10)) && ((vehicle _x == _x))} count allPlayers > 0) then {true} else {false};
+			//GMS_playerIsNear = _playerIsnear;
 
 			private _minNoAliveForCompletion = (count _missionInfantry) - (round(GMS_killPercentage * (count _missionInfantry)));			
 			private _aiKilled = if (({alive _x} count _missionInfantry) <= _minNoAliveForCompletion)  then {true} else {false}; // mission complete
-			GMS_aiKilled = _aiKilled; 
-
+			//GMS_aiKilled = _aiKilled; 
+			if (GMS_debugLevel >= 1) then {[format["_monitorSpawnedMissions(112): _playerIsNear = %1 | _aiKilled = %2",_playerIsNear,_aiKilled]] call GMS_fnc_log};
 			if (_endIfPlayerNear && {_playerIsNear}) then {throw 1}; // mission complete
 			if (_endIfAIKilled && {_aiKilled}) then {throw 1};			
 			if (_spawnPara isEqualType -1) then 
@@ -103,7 +124,7 @@ for "_i" from 1 to (count _missionsList) do
 			if (_spawnPara) then
 			{
 				#define paraTriggerDistance 1
-				if ([_coords,_paraConfigs select paraTriggerDistance,true] call GMS_fnc_playerInRange) then
+				if (({(_x distance _coords) < (_paraConfigs select paraTriggerDistance)} count allPlayers) > 0) then
 				{
 					_spawnPara = false; // The player gets one try to spawn these.
 					_el set[spawnPara,_spawnPara];
@@ -169,12 +190,19 @@ for "_i" from 1 to (count _missionsList) do
 				};
 			};
 
-			private _moved = false;
+			//private _moved = false;
+			if (GMS_debugLevel >= 2) then {[format["_monitorSpawnedMissions: testing for moved crates with GMS_crateMoveAllowed = %1 and _crate = %2",GMS_crateMovedAllowed,_crates]]};
 			if (!(_crates isEqualTo []) && {GMS_crateMoveAllowed}) then 
 			{
-				{
-					if ( _x distance (_x getVariable ["crateSpawnPos", (getPos _x)]) > max_distance_crate_moved_uncompleted_mission) throw 2;
-				} forEach _crates;
+					//if ( _x distance (_x getVariable ["crateSpawnPos", (getPosATL _x)]) > 100) throw 2;
+					private _crateMoved = false; 
+					{
+						if (_x distance (_x getVariable ["crateSpawnPos", (getPosATL _x)]) > 100) then {
+							if (GMS_debugLevel > 0) then {[format["_monitorSpawnedMissions: _crate %1 moved %2 meters",_x, (_x distance _x getVariable ["crateSpawnPos", (getPosATL _x)])]] call GMS_fnc_log};
+							_crateMoved = true;
+						};
+					} forEach _crates;
+					if (_crateMoved) throw 2;
 			};
 
 			// If there were no throws then lets add the mission parameters back to the list of active missions and check on the mission in a bit.
@@ -205,7 +233,7 @@ for "_i" from 1 to (count _missionsList) do
 				"_assetKilledMsg",	
 				"_endMsg"
 			];
-			
+			if (GMS_debugLevel > 0) then {[format["_monitorSpawnedMissions(234): _exception = %1",_exception]] call GMS_fnc_log};
 			switch (_exception) do 
 			{
 				case 1: {  // Normal Mission End
@@ -281,24 +309,47 @@ for "_i" from 1 to (count _missionsList) do
 						["_isScuba",false],
 						["_endCode",-1]
 					*/
-					//[format["_monitorSpawnedMissions (case 1): _markerConfigs %1 | _endMsg %2",_markerConfigs,_endMsg]] call GMS_fnc_log;
+					//[format["_monitorSpawnedMissions: Catch case 1 - normal mission waypointCompletionRadius - at %1",diag_tickTime]] call GMS_fnc_log;
 					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 1] call GMS_fnc_endMission;
-					_missionConfigs set [isSpawned,false];
+
+					// _missionConfigs is configured as:
+					/*
+						private _table = [
+							_aiDifficultyLevel,		// index 0
+							_markerConfigs,			// index 1
+							_endCondition,			// index 2
+							_isscubamission,		// index 3
+							_missionLootConfigs,	// index 4
+							_aiConfigs,				// index 5
+							_missionMessages,		// index 6
+							_paraConfigs,			// index 7
+							_defaultMissionLocations, 
+							_maxMissionRespawns,	// index 9 
+							_timesSpawned,			// index 10 
+							_chanceMissionSpawned,	// index 11
+							_isSpawned,				// index 12
+							_spawnedAt				// index 13
+						];
+					*/					
+					_missionConfigs set[isSpawned,false];
 					//[format["_monitorSpawnedMissions (265): _markerMissionName %1: end of case 1 for mission completion",_markerMissionName]] call GMS_fnc_log;
 				};
 
 				case 2: { // Abort, crate moved.
 					_endMsg = "Crate Removed from Mission Site Before Mission Completion: Mission Aborted";
-					/*
-						["_key",-1],
-						["_missionData",[]],
-						["_endMsg",,""],
-						["_markerData",[]],
-						["_missionLootConfigs",[]],
-						["_isScuba",false],
-						["_endCode",-1]
-					*/			
-					//[format["_monitorSpawnedMissions (case 2): _markerConfigs %1 | _endMsg %2",_markerConfigs,_endMsg]] call GMS_fnc_log;							
+					// _el is structured as: 
+					/* 
+						_el params [
+						"_key",
+						"_missionTimeoutAt",			// 1  // server time at which the mission times out.
+						"_triggered",					// 2  // integer - specifies if mission was triggered by a player or scripting such as debug setting
+						"_missionData",					// 4  //  variable containing information specific to this instance of the mission such as location and objects
+						"_missionConfigs",				// 5  // Variables regarding the configuration of the dynamic mission
+						"_spawnPara",					// 
+						"_isStatic"						// 7 // A flag as to whether the mission is a static or dynamically spawned mission.
+					];
+					*/		
+					[format["_monitorSpawnedMissions: Catch case 2 - crate moved - at %1",diag_tickTime]] call GMS_fnc_log;						
 					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs, _isscubamission, 2] call GMS_fnc_endMission;	
 					_missionConfigs set [isSpawned,false];												
 				};
@@ -313,7 +364,7 @@ for "_i" from 1 to (count _missionsList) do
 						["_isScuba",false],
 						["_endCode",-1]
 					*/		
-					//[format["_monitorSpawnedMissions (case 3): _markerConfigs %1 | _assetKilledMsg %2",_markerConfigs,_assetKilledMsg]] call GMS_fnc_log;						
+					[format["_monitorSpawnedMissions: Catch case 3 - key asset killed - at %1",diag_tickTime]] call GMS_fnc_log;					
 					[_key, _missionData, _assetKilledMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 3] call GMS_fnc_endMission;	
 					_missionConfigs set [isSpawned,false];											
 				};
@@ -336,7 +387,7 @@ for "_i" from 1 to (count _missionsList) do
 				};
 				
 				case 5: {  // SIMULATED Normal Mission End
-					//diag_log format["_monitorSpawnedMissions: (291): _markerMissionName %1: Normal mission end",_markerMissionName];
+					[format["_monitorSpawnedMissions: Catch case 5 - simulated mission end based on debug settiongs - at %1",diag_tickTime]] call GMS_fnc_log;
 	
 					if ((_spawnCratesTiming) in ["atMissionEndGround","atMissionEndAir"]) then
 					{
@@ -403,7 +454,17 @@ for "_i" from 1 to (count _missionsList) do
 					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 5] call GMS_fnc_endMission;
 					_missionConfigs set [isSpawned,false];					
 					//[format["_monitorSpawnedMissions (363): _markerMissionName %1: end of case 1 for mission completion",_markerMissionName]] call GMS_fnc_log;
-				};				
+				};		
+				case 6: {
+					// Mission not fully spawned yet for some reason. This should never happen but this case is included for completeness. 
+					[format["_monitorSpawnedMissions: Catch case 6 - mission not fully spawned - at %1",diag_tickTime]] call GMS_fnc_log;
+					_missionsList pushBack _el;
+				};		
+				case 7: {
+					// The mission only just spawned - lets give it 60 sec to settle.
+					//[format["_monitorSpawnedMissions: Catch case 7 - wating for mission to settle - at %1",diag_tickTime]] call GMS_fnc_log;
+					_missionsList pushBack _el;
+				};
 			};
 		};
 	} else {

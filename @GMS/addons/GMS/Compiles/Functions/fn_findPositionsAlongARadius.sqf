@@ -14,13 +14,12 @@
 */
 #include "\GMS\Compiles\Init\GMS_defines.hpp"
 
-private["_locs","_startDir","_currentDir","_Arc","_dist","_newpos"];
 params["_center","_num","_minDistance","_maxDistance"];
 
-_locs = [];
-_startDir = round(random(360));
-_currentDir = _startDir;
-_Arc = 360/_num;
+private _locs = [];
+private _startDir = round(random(360));
+private _currentDir = _startDir;
+private _Arc = 360/_num;
 
 for "_i" from 1 to _num do
 {

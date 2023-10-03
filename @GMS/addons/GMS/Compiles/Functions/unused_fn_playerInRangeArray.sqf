@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////
 // Test whether one object (e.g., a player) is within a certain range of any of an array of other objects
 /*
-	GMS_fnc_playerInRange
+	GMS_fnc_playerInRangeArray
 
 	By Ghostrider [GRG]
 	Copyright 2016	
@@ -12,20 +12,10 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-
 #include "\GMS\Compiles\Init\GMS_defines.hpp"
-params[["_coords",[0,0,0]],["_range",0],["_onFootOnly",false]];
-private ["_result","_players"];
 
-private "_players";
+params["_locations","_dist",["_onFootOnly",true],["_onGroundOnly",true]];
+private _nearLocations = _locations select {[_x,_dist,_onFootOnly,_onGroundOnly] call GMS_fnc_playerInRange};
+private _return = if (_nearLocations isEqualTo []) then {false} else {true};
+_return
 
-if (_onFootOnly) then 
-{
-	_players = allPlayers select {(vehicle _x) isEqualTo _x && {_x distance _coords < _range}};	
-} else {
-	_players = allPlayers select {(_x distance _coords) < _range};
-};
-
-private _result = if (_players isEqualTo []) then {false} else {true};
-
-_result

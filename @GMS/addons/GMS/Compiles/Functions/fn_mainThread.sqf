@@ -47,13 +47,13 @@ while {true} do
 	if (diag_tickTime > _timer10Sec) then 
 	{
 		_timer10Sec = diag_tickTime + 10;
-		[] call GMS_fnc_spawnNewMissions; 			
-		[] call GMS_fnc_monitorInitializedMissions;
+		[] call GMS_fnc_spawnNewMissions;			
+		[] spawn GMS_fnc_monitorInitializedMissions;
 	};
 	
 	if ((diag_tickTime > _timer1min)) then
 	{
-		_timer1min = diag_tickTime + 60;
+		_timer1min = diag_tickTime + 60;	
 		[] call GMS_fnc_restoreHiddenObjects;
 		[] call GMS_fnc_groupWaypointMonitor;
 		[] call GMS_fnc_cleanupAliveAI;
@@ -61,7 +61,7 @@ while {true} do
 	if (diag_tickTime > _timer5min) then 
 	{
 		private _clientID = if (clientOwner == 2) then {"Dedicated Server"} else {"Headless Client"};
-		[
+		[ 
 			format["Timstamp %1 | Missions Running %2 | Vehicles %3 | Groups %4 | Missions Run %5 | Server FPS %6 | Server Uptime %7 Min | Running on %8",
 				diag_tickTime,
 				GMS_missionsRunning,

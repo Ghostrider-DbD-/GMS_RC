@@ -19,7 +19,10 @@ private ["_abort","_crates","_aiGroup","_objects","_groupPatrolRadius","_mission
 		"_wait","_missionStartTime","_playerInRange","_missionTimedOut","_temp","_patrolVehicles","_vehToSpawn","_noChoppers","_chancePara","_paraSkill","_marker","_vehicleCrewCount",
 		"_defaultMissionLocations","_garrisonedbuildings_buildingposnsystem","_garrisonedBuilding_ATLsystem", "_isScubaMission","_markerlabel","_missionLootBoxes","_airpatrols",
 		"_submarinePatrols","_scubaPatrols","_maxMissionRespawns",
-		// New private variables
+		// New private variables 09-01-23 thruough 09-27-23
+		"_missionUGVs",
+		"_missionUAVs",
+		"_missionGarrisonedGroups",
 		"_chanceMissionSpawned",
 		"_rewardVehicles "];
 		
@@ -34,6 +37,7 @@ if (isNil "_spawnCratesTiming")	 		then {_spawnCratesTiming = GMS_spawnCratesTim
 if (isNil "_loadCratesTiming") 			then {_loadCratesTiming = GMS_loadCratesTiming}; // valid choices are "atMissionCompletion" and "atMissionSpawn"; 
 if (isNil "_missionPatrolVehicles") 	then {_missionPatrolVehicles = []};
 if (isNil "_missionGroups") 			then {_missionGroups = []};
+if (isNil "_missionGarrisonedGroups")   then {_missionGarrisonedGroups = []};
 if (isNil "_hostageConfig") 			then {_hostageConfig = []};
 if (isNil "_enemyLeaderConfig") 		then {_enemyLeaderConfig = []};
 if (isNil "_useMines") 					then {_useMines = GMS_useMines;};
@@ -58,6 +62,8 @@ if (isNil "_garrisonedBuilding_ATLsystem") then {_garrisonedBuilding_ATLsystem =
 if (isNil "_garrisonedBuildings_BuildingPosnSystem") then {_garrisonedBuildings_BuildingPosnSystem = []};
 if (isNil "_vehicleCrewCount") then {_vehicleCrewCount = [_aiDifficultyLevel] call GMS_fnc_selectVehicleCrewCount};
 if (isNil "_airpatrols") then {_airpatrols = []};
+if (isNil "_missionUGVs") then {_missionUGVs = []};
+if (isNil "_missionUAVs") then {_missionUAVs = []};
 if (isNil "_submarinePatrols") then {_submarinePatrols = 0};
 if (isNil "_submarinePatrolParameters") then {_submarinePatrolParameters = []};
 if (isNil "_scubaPatrols") then {_scubaPatrols = 0};
@@ -76,15 +82,10 @@ if (isNil "_missionLootBoxes") then {_missionLootBoxes = []};
 if (isNil "_rewardVehicles") then {_rewardVehicles = []};
 
 if (isNil "_defaultMissionLocations") then {_defaultMissionLocations = []};
-if (isNil "_chanceMissionSpawned") then {_chanceMissionSpawned = 100};
+if (isNil "_chanceMissionSpawned") then {_chanceMissionSpawned = 1.0};
 if (isNil "_maxMissionRespawns") then {_maxMissionRespawns = -1};
 if (isNil "_simpleObjects") then {_simpleObjects = []};
-if (isNil "_missionemplacedweapons") then 
-{
-	_missionemplacedweapons = [];
-	diag_log format["[GMS] _missionSpawner: setting _missionemplacedweapons to its default value of %1",_missionemplacedweapons];
-};
-
+if (isNil "_missionemplacedweapons") then {_missionemplacedweapons = []};
 // Allow for and capture any custom difficult setting in the mission
 if !(isNil "_difficulty") then {_aiDifficultyLevel = _difficulty}; 
 
@@ -161,6 +162,7 @@ private _aiConfigs = [
 	_maxNoAI, 
 	_noAIGroups, 		
 	_missionGroups,
+	_missionGarrisonedGroups,
 	_scubaPatrols,  //  Added Build 227
 	_scubaGroupParameters,		
 	_hostageConfig,
@@ -178,19 +180,24 @@ private _missionMessages = [
 
 private _timesSpawned = 0;
 private _isSpawned = false;
+private _spawnedAt = -1;
+
+// This table structure is directly accessed using indexes defined in Compiles\Init\GMS_defines.hpp
 private _table = [
-	_aiDifficultyLevel,
-	_markerConfigs,
-	_endCondition,	
-	_isscubamission,	
-	_missionLootConfigs,
-	_aiConfigs,
-	_missionMessages,
-	_paraConfigs,	
-	_defaultMissionLocations,
-	_maxMissionRespawns,
-	_timesSpawned,
-	_isSpawned	
+	_aiDifficultyLevel,		// index 0
+	_markerConfigs,			// index 1
+	_endCondition,			// index 2
+	_isscubamission,		// index 3
+	_missionLootConfigs,	// index 4
+	_aiConfigs,				// index 5
+	_missionMessages,		// index 6
+	_paraConfigs,			// index 7
+	_defaultMissionLocations, 
+	_maxMissionRespawns,	// index 9 
+	_timesSpawned,			// index 10 
+	_chanceMissionSpawned,	// index 11
+	_isSpawned,				// index 12
+	_spawnedAt				// index 13
 ];
 //[format["_missionSpawner (182): _defaultMissionLocations %1 | _maxMissionRespawns %2 | _timesSpawned %3",_defaultMissionLocations,_maxMissionRespawns,_timesSpawned]] call GMS_fnc_log;
 _table

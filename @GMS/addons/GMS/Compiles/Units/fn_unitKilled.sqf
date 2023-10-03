@@ -122,9 +122,9 @@ if (_creditKill) then
 {
 	[_instigator,1] call GMSCore_fnc_updatePlayerKills;
 	private _msg = format[
-		"%1 killed %2 with %3 at %4 meters %5X KILLSTREAK",
-		name _instigator, 
+		"%1 killed by %2 with %3 at %4 meters %5X KILLSTREAK",
 		name _unit, 
+		name _instigator, 
 		getText(configFile >> "CfgWeapons" >> currentWeapon _instigator >> "displayName"), 
 		_unit distance _instigator,
 		_killstreak

@@ -81,6 +81,7 @@ _aiConfigs params [
 	"_maxNoAI", 
 	"_noAIGroups", 		
 	"_missionGroups",
+	"_missionGarrisonedGroups",
 	"_scubaPatrols",  //  Added Build 227
 	"_scubaGroupParameters",		
 	"_hostageConfig",
@@ -97,7 +98,14 @@ _markerConfigs params[
 private["_temp"];
 if (GMS_SmokeAtMissions select 0) then  // spawn a fire and smoke near the crate
 {
-	_temp = [_coords,GMS_SmokeAtMissions select 1] call GMS_fnc_smokeAtCrates;
+	/*
+		params[["_pos",[0,0,0]],
+			["_mode","random"],
+			["_maxDist",12],
+			["_wrecks",_wrecksAvailable],
+			["_addFire",false]];
+	*/
+	_temp = [_coords,GMS_SmokeAtMissions select 1, GMS_wrecksAtMissions] call GMS_fnc_spawnSmokingObject;
 	_objects append _temp;
 	uiSleep delayTime;					
 };
@@ -137,6 +145,14 @@ if (!(_scubaGroupParameters isEqualTo []) || {_scubaPatrols > 0}) then
 	uiSleep delayTime;
 };
 
+//diag_log format["_spawnMissionAssests(141): _coords %1 | _missionGarrisonedGroups = %2 ",_coords, _missionGarrisonedGroups];
+
+/*
+	No longer supported  *****************************
+ */
+//if !(_missionGarrisonedGroups isEqualTo []) then {[_coords, _missionGarrisonedGroups,_difficulty,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms] call GMS_fnc_spawnGarrisonedUnits};
+
+
 // TODO: 05/08/22 -> redo code to handle this
 if !(_hostageConfig isEqualTo []) then
 {
@@ -160,6 +176,10 @@ if !(_enemyLeaderConfig isEqualTo []) then
 };
 
 // TODO: 05/08/22 -> redo code to handle this
+/*  
+	No longer needed as of Build 270
+	Kept for backwards compatibility with existing missions. 
+*/
 if !(_garrisonedBuilding_ATLsystem isEqualTo []) then  // Note that there is no error checking here for nulGroups
 {
 	_temp = [_coords, _garrisonedBuilding_ATLsystem, _difficulty,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms] call GMS_fnc_garrisonBuilding_ATLsystem;
@@ -170,16 +190,17 @@ if !(_garrisonedBuilding_ATLsystem isEqualTo []) then  // Note that there is no 
 	uiSleep delayTime;				
 };	
 
-
+/*
 if !(_garrisonedBuildings_BuildingPosnSystem isEqualTo []) then
 {
+	
 	_temp = [_coords, _garrisonedBuildings_BuildingPosnSystem, _difficulty,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms] call GMS_fnc_garrisonBuilding_RelPosSystem;
 	_objects append (_temp select 1);
 	GMS_monitoredVehicles append (_temp select 2);
 	_missionInfantry append (units (_temp select 0));					
 	uiSleep delayTime;
 };
-
+*/
 /*  GMS_fnc_garrisonBuilding_RelPosSystem
 	params["_coords",
 		["_missionEmplacedWeapons",[]],
@@ -261,7 +282,6 @@ if (GMS_useVehiclePatrols && {!(_missionPatrolVehicles isEqualTo [])}) then
 		}forEach _spawnLocations;					
 		_temp = [_coords,_difficulty,_vicsToSpawn,_userelativepos,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms,false,_vehicleCrewCount] call GMS_fnc_spawnMissionVehiclePatrols;
 		_temp params["_vehs","_units"]; 
-
 		_aiVehicles append _vehs;
 		_missionInfantry append _units;
 		uiSleep delayTime;				
@@ -305,14 +325,15 @@ if !(_airPatrols isEqualTo [] && {random(1) < _chanceHeliPatrol}) then // Spawn 
 } else {
 	if ((_noChoppers > 0) && {random(1) < _chanceHeliPatrol}) then
 	{
-		private _spawnLocations = [_coords,_noChoppers,100,120] call GMS_fnc_findPositionsAlongARadius;					
+		//  GMS_fnc_findPositionsAlongARadius:  params["_center","_num","_minDistance","_maxDistance"];
+		private _spawnLocations = [_coords,_noChoppers,100,120] call GMS_fnc_findPositionsAlongARadius;		
+		//[format["_spawnMissionAssets:(339): _spawnLocations = %1",_spawnLocations]]	call GMS_fnc_log;
 		private _helisToSpawn = []; 
 		private _availableHelis = [_difficulty] call GMS_fnc_selectMissionHelis;
-		for "_i" from 1 to _noChoppers do 
 		{
 			private _heli = selectRandom _availableHelis; 
-			_helisToSpawn pushBack[_heli,_x,0];
-		};
+			_helisToSpawn pushBack[_heli,_x,random(359)];
+		} forEach _spawnLocations;
 		_temp = [_coords,_helisToSpawn,_difficulty,_uniforms,_headGear,_vests,_backpacks,_weaponList, _sideArms] call GMS_fnc_spawnMissionHelis;
 		_temp params["_helisSpawned","_unitsSpawned"];
 		GMS_monitoredVehicles append _helisSpawned;

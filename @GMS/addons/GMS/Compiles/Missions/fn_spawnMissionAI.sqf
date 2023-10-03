@@ -15,7 +15,7 @@
 #define configureWaypoints true
 
 params["_coords",["_minNoAI",3],["_maxNoAI",6],["_noAIGroups",0],["_missionGroups",[]],["_aiDifficultyLevel","red"],["_uniforms",[]],["_headGear",GMS_BanditHeadgear],["_vests",[]],["_backpacks",[]],["_weapons",[]],["_sideArms",[]],["_isScubaGroup",false]];
-//[format["GMS_fnc_spawnMissionAI: _this = %1",_this]] call GMS_fnc_log;
+[format["GMS_fnc_spawnMissionAI: _this = %1",_this]] call GMS_fnc_log;
 private _unitsToSpawn = 0;
 private _unitsPerGroup = 0;
 private _ResidualUnits = 0;
@@ -37,6 +37,30 @@ if !(_missionGroups isEqualTo []) then
 		_unitsToSpawn = round(_min + round(random(_max - _min)));
 		private _groupPos = _coords vectorAdd _position;
 		private _newGroup = [_groupPos,_unitsToSpawn,_aiDifficultyLevel,patrolAreadDimensions,_uniforms,_headGear,_vests,_backpacks,_weapons,_sideArms,_isScubaGroup] call GMS_fnc_spawnGroup;
+		/*
+		[
+			_group,
+			GMSAI_BlacklistedLocations,
+			_patrolMarker,
+			waypointTimeoutInfantryPatrols,
+			GMSAI_chanceToGarisonBuilding,
+			"infantry",
+			_deletemarker
+		] call GMSCore_fnc_initializeWaypointsAreaPatrol;
+		*/
+		private _movetoPos = [[[_groupPos, patrolAreadDimensions]],[]/* add condition that the spawn is not near a trader*/] call BIS_fnc_randomPos;
+		(leader _newGroup) moveTo _movetoPos;
+		(leader _newGroup) call GMSCore_fnc_nextWaypointAreaPatrol;		
+		/*
+		[
+			_newGroup, 
+			[_groupPos, [50,50]],
+			300,
+			0.33,
+			"infantry",
+			true
+		] call GMSCore_fnc_initializeWaypointsAreaPatrol;
+		*/
 		_groups pushBack _newGroup;		
 		GMS_monitoredMissionAIGroups pushback _newGroup;
 		_allAI append (units _newGroup);

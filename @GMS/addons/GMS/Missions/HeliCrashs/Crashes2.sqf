@@ -130,6 +130,22 @@ _fn_spawnWreckMission = {
 	#define waypointDimensions [60,60]
 	private _numberAI = [_minAI,_maxAI] call GMSCore_fnc_getIntegerFromRange;
 
+	/*
+		params[
+			["_pos",[-1,-1,1]], 
+			["_numbertospawn",0], 
+			["_skillLevel","red"], 
+			["_areaDimensions",[]], 
+			["_uniforms",[]], 
+			["_headGear",[]],
+			["_vests",[]],
+			["_backpacks",[]],
+			["_weaponList",[]],
+			["_sideArms",[]], 
+			["_scuba",false]
+		];
+	*/
+	// Let the GMS_fnc_spawnGroup scritp assign the defaultsfor everything after headgear.
 	private _group = [_posOfCrash,_numberAI,_difficulty,waypointDimensions,_uniformsHC,_headGearHC] call GMS_fnc_spawnGroup;
 	GMS_monitoredMissionAIGroups pushBack _group;
 	
@@ -140,7 +156,7 @@ _fn_spawnWreckMission = {
 	};		
 	if !(isNull _group) then
 	{
-		waitUntil{uiSleep 3; {(isPlayer _x) && (_x distance2d _posOfCrash) < 25 /*&& (vehicle _x == _x)*/} count allPlayers > 0};	
+		waitUntil{uiSleep 3; {(_x distance2d _posOfCrash) < 10 && (vehicle _x == _x)} count allPlayers > 0};	
 	};
 	[_posOfCrash] spawn GMS_fnc_missionCompleteMarker;
 	diag_log format["crashes2 (145) _crashName = %1",_crashName];

@@ -135,6 +135,9 @@ switch (GMSCore_modType) do
 	GMS_preciseMapMarkers = true;  // Map markers are/are not centered at the loot crate
 	GMS_showCountAliveAI = true;
 
+// radius within whih missions are triggered. The trigger causes the crate and AI to spawn.
+	GMS_TriggerDistance = 1500;
+	
 	//Minimum distance between missions
 	GMS_MinDistanceFromMission = 1200;
 	GMS_minDistanceToBases = 250;
@@ -150,6 +153,12 @@ switch (GMSCore_modType) do
 	// Options to spawn a smoking wreck near the crate.  When the first parameter is true, a wreck or junk pile will be spawned. 
 	// It's position can be either "center" or "random".  smoking wreck will be spawned at a random location between 15 and 50 m from the mission.
 	GMS_SmokeAtMissions = [true,"random"];  // set to [false,"anything here"] to disable this function altogether. 
+
+	// When a column of smoke is used as a visual cue one of the following types of wrecks will be spawned. 
+	 GMS_wrecksAtMissions = ["Land_Wreck_Car2_F","Land_Wreck_Car3_F","Land_Wreck_Car_F","Land_Wreck_Offroad2_F","Land_Wreck_Offroad_F","Land_Tyres_F","Land_Pallets_F","Land_MetalBarrel_F"];
+
+	 // Added 10/01/23 for those who want some control over the color.
+	GMS_smokeShellAtCrates =  ["SmokeShellOrange","SmokeShellBlue","SmokeShellPurple","SmokeShellRed","SmokeShellGreen","SmokeShellYellow"];
 	GMS_useSignalEnd = true; // When true a smoke grenade/chemlight will appear at the loot crate for 2 min after mission completion.
 	GMS_missionEndCondition = allKilledOrPlayerNear; //allKilledOrPlayerNear;  // Options are allUnitsKilled, playerNear, allKilledOrPlayerNear
 
@@ -158,6 +167,8 @@ switch (GMSCore_modType) do
 	///////////////////////////////	
 	GMS_killPercentage = 0.999999;  // The mission will complete if this fraction of the total AI spawned has been killed.
 								// This facilitates mission completion when one or two AI are spawned into objects.	
+	GMS_crateMovedAllowed = false; // when true the mission is aborted if a player moves the crate   			
+							// resulting in loss of loot. 					
 	GMS_spawnCratesTiming = "atMissionSpawnGround"; // Choices: "atMissionSpawnGround","atMissionSpawnAir","atMissionEndGround","atMissionEndAir".
 							 // Crates spawned in the air will be spawned at mission center or the position(s) defined in the mission file and dropped under a parachute.
 							 //  This sets the default value but can be overridden by defining  _spawnCrateTiming in the file defining a particular mission.
@@ -283,6 +294,29 @@ switch (GMSCore_modType) do
 	GMS_patrolHelisOrange = _GMS_armed_heavyAttackHelis + _GMS_armed_attackHelis;  //_GMS_littleBirds;
 	GMS_noPatrolHelisOrange = 1;
 
+	///////////////////////////////
+	//  Mission Drone Settings
+	///////////////////////////////
+	GMS_numberUGVs = 0; 
+	GMS_UGVtypes = [  // 
+		// Stompers
+		"O_UGV_01_rcws_F",5 // east - Use for Exile  
+		//"B_UGV_01_rcws_F",5 // west 
+		//"I_UGV_01_rcws_F",5 // GUER
+	];
+
+	GMS_numberUAVs = 0; 
+	GMSAI_UAVTypes = [  //  note that faction may matter here.
+		// East 
+		"O_UAV_01_F",2,  // Darter equivalent, unarmed
+		//"O_UAV_02_F",2, // Ababil with Scalpel Missels
+		"O_UAV_02_CAS_F",2  // Ababil with Bombx
+		//"O_UAV_01_F",2
+		// West - see CfgVehicles WEST online or in the editor
+		// Independent/GUER
+		//"I_UAV_01_F",1
+	];
+
 	////////////////////
 	// Enable / Disable Missions
 	////////////////////
@@ -291,10 +325,10 @@ switch (GMSCore_modType) do
 	GMS_maxSpawnedMissions = 15;
 		
 	//Set to -1 to disable. Values of 2 or more force the mission spawner to spawn copies of that mission - this feature is not recommended because you may run out of available groups.
-	GMS_enableOrangeMissions = -1;  
-	GMS_enableGreenMissions = -2;
-	GMS_enableRedMissions = -2;
-	GMS_enableBlueMissions = -1;
+	GMS_enableOrangeMissions = 1;  
+	GMS_enableGreenMissions = 2;
+	GMS_enableRedMissions = 2;
+	GMS_enableBlueMissions = 1;
 	GMS_numberUnderwaterDynamicMissions = -1;  // Values from -1 (no UMS) to N (N Underwater missions will be spawned; static UMS units and subs will be spawned.	
 
 	// sets the maximum number of static missions to spawn - set to -1 to disable spawning them. 
@@ -303,7 +337,7 @@ switch (GMSCore_modType) do
 	#ifdef GRGserver
 	GMS_enableHunterMissions = 1;
 	GMS_enableScoutsMissions =2;
-	GMS_maxcrashsites = 2;
+	GMS_maxcrashsites = 3;  //  TODO: Set to 2-3
 	#endif
 
 	////////////////////

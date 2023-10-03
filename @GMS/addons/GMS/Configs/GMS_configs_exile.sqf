@@ -54,7 +54,7 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 		//"nameNoGoodOpen",
 		"Exile_Car_BTR40_MG_Green",
 		"Exile_Car_HMMWV_M134_Green",
-		"Exile_Car_HMMWV_M2_Green",
+		//"Exile_Car_HMMWV_M2_Green",  // Not a valid class
 		"B_LSV_01_armed_F",
 		"Exile_Car_Offroad_Armed_Guerilla01",		
 		"B_G_Offroad_01_armed_F", 

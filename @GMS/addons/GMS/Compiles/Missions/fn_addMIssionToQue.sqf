@@ -9,12 +9,12 @@
 */
 #include "\GMS\Compiles\Init\GMS_defines.hpp"
 params[["_missionList",[]],["_path",""],["_marker",""],["_difficulty","Red"],["_tMin",60],["_tMax",120],["_noMissions",1],["_isStatic",false]];
-//diag_log format["_addMissionToQue: _this = %1",_this];
-/*
-{
-	diag_log format["_addMissionToQue: _this %1 = %2",_forEachIndex, _this select _forEachIndex];
-} forEach _this;
-*/
+//diag_log format["_addMissionToQue: _this = %1",_this];  
+
+//{
+//	diag_log format["_addMissionToQue: _this %1 = %2",_forEachIndex, _this select _forEachIndex];
+//} forEach _this;
+
 private "_waitTime";
 if (_isStatic) then {
 	_waitTime = 60;
