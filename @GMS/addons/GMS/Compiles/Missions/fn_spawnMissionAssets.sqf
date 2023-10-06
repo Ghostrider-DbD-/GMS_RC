@@ -223,7 +223,7 @@ if !(_garrisonedBuildings_BuildingPosnSystem isEqualTo []) then
 		["_sideArms",[]]];
 */			
 private _userelativepos = true;
-private _numberEmplacedWeaponsThisMission = [_noEmplacedWeapons] call GMSCore_fnc_getNumberFromRange;
+//private _numberEmplacedWeaponsThisMission = [_noEmplacedWeapons] call GMSCore_fnc_getNumberFromRange;
 if (GMS_useStatic &&  {!(_missionEmplacedWeapons isEqualTo [])} ) then
 {
 	_temp = [_coords,_missionEmplacedWeapons,_userelativepos,_difficulty,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms] call GMS_fnc_spawnEmplacedWeaponArray;
@@ -234,7 +234,7 @@ if (GMS_useStatic &&  {!(_missionEmplacedWeapons isEqualTo [])} ) then
 	//[format["_monitorInitializedMissions (288): spawned emplaced weapons for _iconMarker %1 at %2 | with count _missionInfantry = %3 | with _statics = %4",_iconMarker,diag_tickTime,count _missionInfantry, _statics]];															
 	uisleep delayTime;				
 } else {
-	if (_noEmplacedWeapons > 0) then {
+	if (([_noEmplacedWeapons] call GMSCore_fnc_getNumberFromRange) > 0) then {
 		private _wepPositions = [_coords,_noEmplacedWeapons,35,50] call GMS_fnc_findPositionsAlongARadius;
 		private _emplacedWeaponsRandom = [];
 		{
