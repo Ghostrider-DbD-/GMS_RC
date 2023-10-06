@@ -122,5 +122,6 @@ private _patrolsThisMission = +_missionPatrolVehicles;
 } forEach _patrolsThisMission;
 GMS_landVehiclePatrols append _vehicles;
 GMS_monitoredVehicles append _vehicles;
+//[format["GMS_fnc_spawnMissionVehiclePatrols:  count _missionAI = %1", count _missionAI]] call GMS_fnc_log;
 [_vehicles, _missionAI];
 

@@ -61,7 +61,7 @@ for "_i" from 1 to (count _missionsList) do
 				if (GMS_debugLevel >= 3) then 
 				{
 					_monitorAction = 0;
-					[format["_monitorInitializedMissions (54): mission triggered for GMS_debugLevel = %1",GMS_debugLevel]] call GMS_fnc_log;
+					//[format["_monitorInitializedMissions (54): mission triggered for GMS_debugLevel = %1",GMS_debugLevel]] call GMS_fnc_log;
 				};  //  simulate the mission being tripped by a player
 			};
 		};
@@ -104,7 +104,7 @@ for "_i" from 1 to (count _missionsList) do
 				"_endMsg"
 			];
 						
-			[format["_fnc_monitorInitializedMissions (71): mission timed out: _endMsg %1 | el %2",_endMsg,_el]] call GMS_fnc_log;
+			//[format["_fnc_monitorInitializedMissions (71): mission timed out: _endMsg %1 | el %2",_endMsg,_el]] call GMS_fnc_log;
 			
 			/*
 				["_key",-1],

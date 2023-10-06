@@ -15,7 +15,7 @@
 #define configureWaypoints true
 
 params["_coords",["_minNoAI",3],["_maxNoAI",6],["_noAIGroups",0],["_missionGroups",[]],["_aiDifficultyLevel","red"],["_uniforms",[]],["_headGear",GMS_BanditHeadgear],["_vests",[]],["_backpacks",[]],["_weapons",[]],["_sideArms",[]],["_isScubaGroup",false]];
-[format["GMS_fnc_spawnMissionAI: _this = %1",_this]] call GMS_fnc_log;
+//[format["GMS_fnc_spawnMissionAI: _this = %1",_this]] call GMS_fnc_log;
 private _unitsToSpawn = 0;
 private _unitsPerGroup = 0;
 private _ResidualUnits = 0;

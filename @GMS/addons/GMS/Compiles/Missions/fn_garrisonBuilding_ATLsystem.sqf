@@ -85,5 +85,5 @@ _unitsSpawned = [];
             //_unit disableAI "PATH";
         }forEach _men;        
 }forEach _garrisonedBuilding_ATLsystem;
-//[format["_garrisonBuilding_ATLSystem: _unitsspawned %1 | _staticsSpawned %2 | BuildingsSpawned %3",_unitsSpawned,_staticsSpawned,_buildingsSpawned]] call GMS_fnc_log;
+[format["_garrisonBuilding_ATLSystem: _unitsspawned %1 | _staticsSpawned %2 | BuildingsSpawned %3",count _unitsSpawned,count _staticsSpawned,count _buildingsSpawned]] call GMS_fnc_log;
 [_unitsSpawned,_staticsSpawned,_buildingsSpawned]

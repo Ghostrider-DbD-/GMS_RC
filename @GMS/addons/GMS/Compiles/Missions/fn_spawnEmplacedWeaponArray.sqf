@@ -22,7 +22,7 @@ private _emplacedWepData = +_missionEmplacedWeapons;  //  So we dont overwrite t
 
 {
 	_x params [["_static",""],["_pos",[0,0,0]],["_dir",0]];
-
+	//diag_log format["_spawnEmplacedWeaponArray: _emplacedWedData %11 = %2",_forEachIndex,_x];
 	if (isClass(configFile >> "CfgVehicles" >> _static)) then {
 		if (_useRelativePos) then 
 		{
@@ -74,8 +74,7 @@ private _emplacedWepData = +_missionEmplacedWeapons;  //  So we dont overwrite t
 		[format["GMS_fnc_spawnEmplacedWeaponArray:   Invalid classname %1 used in _missionEmplacedWeapons", _static],"warning"] call GMS_fnc_log;
 	};
 } forEach _emplacedWepData;
-
 GMS_monitoredVehicles append _emplacedWeps;
-
+//[format["GMS_fnc_spawnEmplacedWeaponArray:  count _emplacedAI = %1", count _emplacedAI]] call GMS_fnc_log;
 [_emplacedWeps,_emplacedAI]
 

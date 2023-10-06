@@ -32,13 +32,13 @@ params[
 				_missionLootConfigs,		// index 4
 				_aiConfigs,					// index 5 
 				_missionMessages,			// index 6
-				_paraConfigs,				// index 8 
-				_defaultMissionLocations,	// index 9 
-				_maxMissionRespawns,		// index 10 
-				_timesSpawned,				// index 11
-				_chanceMissionSpawned,		// index 12
-				_isSpawned,					// index 13
-				_spawnedAt					// index 14
+				_paraConfigs,				// index 7
+				_defaultMissionLocations,	// index 8 
+				_maxMissionRespawns,		// index 9 
+				_timesSpawned,				// index 10
+				_chanceMissionSpawned,		// index 11
+				_isSpawned,					// index 12
+				_spawnedAt					// index 13
 			];
 		*/
 
@@ -56,7 +56,7 @@ params[
 	"_timesSpawned",		// index 10 
 	"_chanceMissionSpawned", // index 11
 	"_isSpawned",			// index 12
-	"_spawnedAt"			
+	"_spawnedAt"			// index 13
  ];
 
 #define timesSpawnedIndex 11
@@ -188,16 +188,16 @@ if (GMS_debugLevel >= 2) then {[format["_initializeMission (130): _marker = %1 |
 #define assetSpawned objNull
 
 private _missionData = [
-	_coords,
-	mines, 
-	objects, 
-	hiddenObjects, 
-	crates, 
-	missionAI, 
+	_coords,		// index 0
+	mines, 			// index 1
+	objects, 		// index 2
+	hiddenObjects, 	// index 3
+	crates, 		// index 4
+	missionAI, 		// index 5
 	assetSpawned,   /// Used for missions for which a hostage or target is spawned.
-	missionVehicles, 
-	lootVehicles,
-	_markers
+	missionVehicles, // index 7
+	lootVehicles,	// index 8
+	_markers		// index 9
 ];
 #define spawnPara -1
 GMS_initializedMissionsList pushBack [_key, missionTimeoutAt, triggered, _missionData, _missionConfigs, spawnPara,_isStatic];

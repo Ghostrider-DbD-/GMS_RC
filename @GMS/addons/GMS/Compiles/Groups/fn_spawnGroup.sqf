@@ -59,7 +59,7 @@ _group = [
 	0.33, // chance garrison 
 	false // isDrone Crew
 ] call GMSCore_fnc_spawnInfantryGroup;
-//[format["GMS_fnc_spawnGroup: _group = %1",_group]] call GMS_fnc_log;
+//[format["GMS_fnc_spawnGroup: _pos = %2 | _group = %1",_group,_pos]] call GMS_fnc_log;
 _group setVariable["GMS_difficulty",_skillLevel];
 
 [_group] call GMSCore_fnc_setupGroupBehavior;

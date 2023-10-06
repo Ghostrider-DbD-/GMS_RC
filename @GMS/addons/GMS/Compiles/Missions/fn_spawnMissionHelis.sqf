@@ -69,10 +69,10 @@ private _units = [];
 		_helis pushBack _aircraft;
 		if (GMS_debugLevel > 0) then {[format["_spawnMissionHelis: _heli %1 spawned with crew _2",typeOf _aircraft,_crewGroup]] call GMS_fnc_log};
 	} else {
-		[format["GMS_fnc_spawnEmplacedWeaponArray:   Invalid classname %1 used in _airPatrols", _heli],"warning"] call GMS_fnc_log;
+		[format["GMS_fnc_spawnMissionHelis:   Invalid classname %1 used in _airPatrols", _heli],"warning"] call GMS_fnc_log;
 	};
 
 } forEach _missionHelis;
-
+//[format["GMS_fnc_spawnMissionHelis:  count _units = %1", count _units]] call GMS_fnc_log;
 GMS_spawnHelisPass = GMS_spawnHelisPass + 1;
 [_helis,_units]

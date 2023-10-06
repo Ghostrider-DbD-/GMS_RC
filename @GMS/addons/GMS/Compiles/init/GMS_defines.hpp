@@ -53,6 +53,7 @@
 // Array structure defined in \Complies\Missions\GMS_missionSpawner.sqf
 #define isSpawned 12
 #define spawnedAt 13
+#define missionCrates 4
 
 //  defines for static group spawners
 #define staticPatrolTriggerRange 2000

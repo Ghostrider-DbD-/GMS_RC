@@ -83,9 +83,10 @@ switch (_endCode) do
 			//[format["_endMission (102): _exception 1 (normal ending) | _mines %1 | _crates %2 | count _objects %3 | count _missionAI %4 ",_mines,_crates,count _objects, count _missionAI]] call GMS_fnc_log;
 			if (GMS_useSignalEnd) then
 			{
-				[_crates select 0,150, GMS_smokeShellAtCrates] call GMSCore_fnc_visibleMarker;
+				//[_crates select 0,150, GMS_smokeShellAtCrates] call GMSCore_fnc_visibleMarker;
 				{
 					_x enableRopeAttach true;
+					[_x, 150, GMS_smokeShellAtCrates] call GMSCore_fnc_visibleMarker;
 				}forEach _crates;
 			};
 			
@@ -138,9 +139,10 @@ switch (_endCode) do
 			GMS_hiddenTerrainObjects pushBack[_hiddenObjects,(diag_tickTime)];
 			if (GMS_useSignalEnd) then
 			{
-				[(_crates select 0),150, GMS_smokeShellAtCrates] call GMSCore_fnc_visibleMarker;
+				//[(_crates select 0),150, GMS_smokeShellAtCrates] call GMSCore_fnc_visibleMarker;
 				{
 					_x enableRopeAttach true;
+					[_x, 150, GMS_smokeShellAtCrates] call GMSCore_fnc_visibleMarker;					
 				}forEach _crates;
 			};
 			
@@ -172,9 +174,10 @@ switch (_endCode) do
 			GMS_hiddenTerrainObjects pushBack[_hiddenObjects,(diag_tickTime)];
 			if (GMS_useSignalEnd) then
 			{
-				[_crates select 0,150, GMS_smokeShellAtCrates] call GMSCore_fnc_visibleMarker;
+				//[_crates select 0,150, GMS_smokeShellAtCrates] call GMSCore_fnc_visibleMarker;
 				{
 					_x enableRopeAttach true;
+					[_x, 150, GMS_smokeShellAtCrates] call GMSCore_fnc_visibleMarker;
 				}forEach _crates;
 			};
 			

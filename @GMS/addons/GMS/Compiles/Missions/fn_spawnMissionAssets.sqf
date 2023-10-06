@@ -96,6 +96,8 @@ _markerConfigs params[
 ];
 
 private["_temp"];
+private _countUnits = 0;
+private _unitsAdded = 0;
 if (GMS_SmokeAtMissions select 0) then  // spawn a fire and smoke near the crate
 {
 	/*
@@ -134,18 +136,22 @@ _objects append _temp;
 if (!(_missionGroups isEqualTo []) || _noAIGroups > 0) then // The idea is that defining groups in _missionGroups overrides the _noAIGroups setting
 {
 	_ai = [_coords, _minNoAI,_maxNoAI,_noAIGroups,_missionGroups,_difficulty,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms,_isScubaMission] call GMS_fnc_spawnMissionAI;
+	//[format["_spawnMissionAssets (_ai): count _ai = %1",count _ai]] call GMS_fnc_log;
 	_missionInfantry append _ai;
+	_unitsAdded = count _ai;
 	uiSleep delayTime;
 };
-
+//[format["_spawnMissionAssets (after spawning _missionGroups): _countUnits = %1 before / _unitsAdded = %2 | count _missionInfantry = %3",_countUnits,_unitsAdded,count _missionInfantry]] call GMS_fnc_log;
+_countUnits = count _missionInfantry;
 if (!(_scubaGroupParameters isEqualTo []) || {_scubaPatrols > 0}) then 
 {
 	_ai = [_coords, _minNoAI,_maxNoAI,_scubaPatrols,_scubaGroupParameters,_difficulty,GMS_UMS_uniforms,GMS_UMS_headgear,GMS_UMS_vests,_backpacks,GMS_UMS_weapons,_sideArms,true] call GMS_fnc_spawnMissionAI;
 	_missionInfantry append _ai;
+	_unitsAdded = count _ai;
 	uiSleep delayTime;
 };
-
-//diag_log format["_spawnMissionAssests(141): _coords %1 | _missionGarrisonedGroups = %2 ",_coords, _missionGarrisonedGroups];
+//[format["_spawnMissionAssets (after spawning _scubaGroupParameters): _countUnits before = %1 | _unitsAdded = %2 | count _missionInfantry = %3",_countUnits,_unitsAdded,count _missionInfantry]] call GMS_fnc_log;
+_countUnits = count _missionInfantry;
 
 /*
 	No longer supported  *****************************
@@ -187,9 +193,12 @@ if !(_garrisonedBuilding_ATLsystem isEqualTo []) then  // Note that there is no 
 	_objects append _buildingsSpawned;
 	GMS_monitoredVehicles append _staticsSpawned;
 	_missionInfantry append _unitsSpawned;
-	uiSleep delayTime;				
+	_unitsAdded = count _unitsSpawned;
+	uiSleep delayTime;	
+	//diag_log format["_fnc_spawnMissionAssets (after GMS_fnc_garrisonBuilding_ATLsystem): _unitsAdded = %1",_unitsAdded];
 };	
-
+//[format["_spawnMissionAssets (after spawning _garrisonedBuilding_ATLsystem): _countUnits before = %1 | _unitsAdded = %2 | count _missionInfantry = %3",_countUnits,count _missionInfantry]] call GMS_fnc_log;
+_countUnits = count _missionInfantry;
 /*
 if !(_garrisonedBuildings_BuildingPosnSystem isEqualTo []) then
 {
@@ -221,24 +230,30 @@ if (GMS_useStatic &&  {!(_missionEmplacedWeapons isEqualTo [])} ) then
 	_temp params["_statics","_units"];
 	_objects append _statics;
 	_missionInfantry append _units;			
-	[format["_monitorInitializedMissions (288): spawned emplaced weapons for _iconMarker %1 at %2 | with count _missionInfantry = %3 | with _statics = %4",_iconMarker,diag_tickTime,count _missionInfantry, _statics]];															
+	_unitsAdded = count _units;
+	//[format["_monitorInitializedMissions (288): spawned emplaced weapons for _iconMarker %1 at %2 | with count _missionInfantry = %3 | with _statics = %4",_iconMarker,diag_tickTime,count _missionInfantry, _statics]];															
 	uisleep delayTime;				
 } else {
-	private _wepPositions = [_coords,_noEmplacedWeapons,35,50] call GMS_fnc_findPositionsAlongARadius;
-	private _emplacedWeaponsRandom = [];
-	{
-		_static = selectRandom GMS_staticWeapons;
-		_emplacedWeaponsRandom pushback [_static,_x];
-	} forEach _wepPositions;
-	_useRelativePos = false;
-	_temp = [_coords,_emplacedWeaponsRandom,_userelativepos,_difficulty,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms] call GMS_fnc_spawnEmplacedWeaponArray;
-	_temp params["_statics","_units"];
-	_objects append _statics;
-	_missionInfantry append _units;			
-	[format["_monitorInitializedMissions (233788): spawned emplaced weapons for _iconMarker %1 at %2 | with count _missionInfantry = %3 | with _statics = %4",_iconMarker,diag_tickTime,count _missionInfantry, _statics]];															
-	uisleep delayTime;										
+	if (_noEmplacedWeapons > 0) then {
+		private _wepPositions = [_coords,_noEmplacedWeapons,35,50] call GMS_fnc_findPositionsAlongARadius;
+		private _emplacedWeaponsRandom = [];
+		{
+			_static = selectRandom GMS_staticWeapons;
+			//diag_log format["_spawnMissionAssets: _wepPositions %1 = %2",_foreachIndex, _x];
+			_emplacedWeaponsRandom pushBack [_static,_x,0];
+		} forEach _wepPositions;
+		_useRelativePos = false;
+		_temp = [_coords,_emplacedWeaponsRandom,_userelativepos,_difficulty,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms] call GMS_fnc_spawnEmplacedWeaponArray;
+		_temp params["_statics","_units"];
+		_objects append _statics;
+		_missionInfantry append _units;		
+		_unitsAdded = count _units;	
+		//[format["_monitorInitializedMissions (233788): spawned emplaced weapons for _iconMarker %1 at %2 | with count _missionInfantry = %3 | with _statics = %4",_iconMarker,diag_tickTime,count _missionInfantry, _statics]];															
+		uisleep delayTime;
+	};						
 };
-
+//[format["_spawnMissionAssets (after spawning _missionEmplacedWeapons): _countUnits before = %1 | _unitsAdded = %2 | count _missionInfantry = %2",_countUnits,_unitsAdded,count _missionInfantry]] call GMS_fnc_log;
+_countUnits = count _missionInfantry;
 if !(_missionLootVehicles isEqualTo []) then 
 {
 	_lootVehicles = [_coords,_missionLootVehicles,_spawnCratesTiming] call GMS_fnc_spawnMissionLootVehicles;				
@@ -268,6 +283,7 @@ if (GMS_useVehiclePatrols && {!(_missionPatrolVehicles isEqualTo [])}) then
 	_temp params["_vehs","_units"]; 
 	_aiVehicles append _vehs;
 	_missionInfantry append _units;
+	_unitsAdded = count _units;
 	uiSleep delayTime;				
 } else {
 	if (GMS_useVehiclePatrols && {(_noPatrols > 0)}) then
@@ -277,17 +293,19 @@ if (GMS_useVehiclePatrols && {!(_missionPatrolVehicles isEqualTo [])}) then
 		private _vicsToSpawn = [];
 		{
 			private _veh = [_difficulty] call GMS_fnc_selectPatrolVehicle;
-			[format["GMS_fnc_spawnMissionVehiclePatrols: _veh %1 = %2",_forEachIndex,_veh]] call GMS_fnc_log;
+			//[format["GMS_fnc_spawnMissionVehiclePatrols: _veh %1 = %2",_forEachIndex,_veh]] call GMS_fnc_log;
 			_vicsToSpawn pushBack [_veh, _x];
 		}forEach _spawnLocations;					
 		_temp = [_coords,_difficulty,_vicsToSpawn,_userelativepos,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms,false,_vehicleCrewCount] call GMS_fnc_spawnMissionVehiclePatrols;
 		_temp params["_vehs","_units"]; 
 		_aiVehicles append _vehs;
 		_missionInfantry append _units;
+		_unitsAdded = count _units;
 		uiSleep delayTime;				
 	};	
 };
-
+//[format["_spawnMissionAssets (after spawning _missionPatrolVehicles): _countUnits before = %1 | _unitsAdded = %2 | count _missionInfantry = %3",_countUnits,_unitsAdded,count _missionInfantry]] call GMS_fnc_log;
+_countUnits = count _missionInfantry;
 if (GMS_useVehiclePatrols && {((_submarinePatrols > 0) || {!(_submarinePatrolParameters isEqualTo [])} )} ) then
 {
 	_temp = [_coords,_noPatrols,_difficulty,_submarinePatrolParameters,_userelativepos,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms,_isScubaMission,_vehicleCrewCount] call GMS_fnc_spawnMissionVehiclePatrols;
@@ -339,11 +357,12 @@ if !(_airPatrols isEqualTo [] && {random(1) < _chanceHeliPatrol}) then // Spawn 
 		GMS_monitoredVehicles append _helisSpawned;
 		GMS_aircraftPatrols append _helisSpawned; // Used to find nearest heli ... 
 		_aiVehicles append _helisSpawned;
-		_missionInfantry append _unitsSpawned;				
+		_missionInfantry append _unitsSpawned;			
+		_unitsAdded = count _unitsSpawned;	
 		uisleep delayTime;				
 	};				
 };
-
+//[format["_spawnMissionAssets (after spawning _airPatrols): _countUnits before = %1 | _unitsAdded,count _missionInfantry = %3",_countUnits,_unitsAdded,count _missionInfantry]] call GMS_fnc_log;
 if (_spawnCratesTiming in ["atMissionSpawnGround","atMissionSpawnAir"]) then
 {
 	if (_missionLootBoxes isEqualTo []) then
