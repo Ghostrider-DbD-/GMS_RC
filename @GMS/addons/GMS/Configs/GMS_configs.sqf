@@ -158,6 +158,9 @@ switch (GMSCore_modType) do
 	GMS_useSignalEnd = true; // When true a smoke grenade/chemlight will appear at the loot crate for 2 min after mission completion.
 	GMS_missionEndCondition = allUnitsKilled; //allKilledOrPlayerNear;  // Options are allUnitsKilled, playerNear, allKilledOrPlayerNear
 
+	 // Added 10/01/23 for those who want some control over the color.
+	GMS_smokeShellAtCrates =  ["SmokeShellOrange","SmokeShellBlue","SmokeShellPurple","SmokeShellRed","SmokeShellGreen","SmokeShellYellow"];
+	
 	///////////////////////////////
 	// General Mission Completion and Loot Settings
 	///////////////////////////////	
