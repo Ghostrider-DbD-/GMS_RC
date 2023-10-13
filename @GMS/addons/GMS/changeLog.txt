@@ -33,6 +33,13 @@ The static loot system and dynamic loot system are gone. THese outlived thier us
 I have kept the change log as a bit of history for those interested in development of this mission system. 
 Significant Changes:
 
+Build 268 Version 7.164
+Fixed issues with adding tabs or crypto to objects including AI. 
+REQUIRES GMSCore 
+	version = 1.057;
+	build = 39;
+	buildDate = "10-12-23";
+
 Build 267 - Version 7.162 
 
 REQUIRES GMSCore 

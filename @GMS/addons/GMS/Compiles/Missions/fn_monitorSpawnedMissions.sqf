@@ -253,28 +253,17 @@ for "_i" from 1 to (count _missionsList) do
 						if (GMS_cleanUpLootChests) then
 						{
 							_objects append _crates;
-						};
-						private _crateMoney = missionNamespace getVariable (format["GMS_crateMoney%1",_difficulty]);	
-						//[format["_monitorSpawnedMissions: (218) _crateMoney = %1",_crateMoney]] call GMS_fnc_log;																		
-						{
-							[_x, _crateMoney] call GMSCore_fnc_setMoney;
-						} forEach _crates;				
+						};			
 					};	
 
 					if (_loadCratesTiming isEqualTo "atMissionCompletion") then
 					{
-						private _crateMoney = missionNamespace getVariable (format["GMS_crateMoney%1",_difficulty]);
-						//[format["_monitorSpawnedMissions: (227) _crateMoney = %1",_crateMoney]] call GMS_fnc_log;									
+						private _money = (missionNamespace getVariable[format["GMS_rewards%1",_skillLevel],GMS_rewardsOrange]) select 0;
+						diag_log format["_monitorSpawnedMissions(262): _money = %1",_money];
 						{
 							[_x] call GMS_fnc_loadMissionCrate;											
-							[_x, _crateMoney] call GMSCore_fnc_setMoney;									
-						} forEach _crates;
-						//diag_log format["_monitorSpawnedMissions: (232): Loot and Money LOADED _loadCrates Timing = %1 | _crates = %2",_loadCratesTiming,_crates];									
-						{
-							[_x] call GMS_fnc_loadMissionCrate;											
-							//[_x, missionNamespace getVariable (format["GMS_crateMoney%1",_difficulty])] call GMS_fnc_setMoney;										
-						} forEach _lootVehicles;		
-						//diag_log format["_monitorSpawnedMissions: (237): Loot LOADED _loadCrates Timing = %1",_loadCratesTiming];	
+							[_x, _difficulty, _money] call GMSCore_fnc_setMoney;									
+						} forEach _crates + _lootVehicles;
 					};
 
 					_aiVehicles append _lootVehicles;  //  So these are deleted if no player enters the driver's seat.

@@ -17,7 +17,7 @@
 params["_group","_pos",["_skillLevel","red"],["_numUnits",6],["_patrolRadius",15]];
 // private _group = [_pos,_numberAI,_difficulty,configureWaypoints,GMS_UMS_uniforms,GMS_UMS_headgear,GMS_UMS_vests,[],GMS_UMS_weapons,_sideArms,true] call GMS_fnc_spawnGroup;
 
-private _group = [_pos,_numUnits,_skillLevel, scubaPatrolAreaDimensions, GMS_UMS_uniforms, GMS_UMS_headgear, GMS_UMS_vests, [], GMS_UMS_weapons, [], isScubaGroup] call GMS_fnc_spawnGroup;
+private _group = [_pos,_numUnits,_skillLevel, scubaPatrolAreaDimensions, GMS_UMS_uniforms, GMS_UMS_headgear, GMS_UMS_vests, [], GMS_UMS_weapons, [], isScubaGroup,GMS_waypointTimeoutInfantry] call GMS_fnc_spawnGroup;
 
 
 

@@ -147,23 +147,23 @@ if (GMS_debugLevel > 0) then {
 	//GMS_mainThreadUpdateInterval = 10;
 	GMS_launchersPerGroup = 1;
 
-	GMS_enableOrangeMissions = 1;  
-	GMS_enableGreenMissions = 1; // 10-02-2023 Tested with mission list= "FieldCamp", "FieldHQ", "factory", "fortification", "Camp_Moreell", "lager"
-	GMS_enableRedMissions = 1;   // 10-2-2023 Tested with mission list= "fuelDepot", "junkyardWilly", "TraderBoss", "carThieves", "Ammunition_depot", "IDAP", "Outpost", "Service_Point"
+	GMS_enableOrangeMissions = 0;  
+	GMS_enableGreenMissions = 0; // 10-02-2023 Tested with mission list= "FieldCamp", "FieldHQ", "factory", "fortification", "Camp_Moreell", "lager"
+	GMS_enableRedMissions = 0;   // 10-2-2023 Tested with mission list= "fuelDepot", "junkyardWilly", "TraderBoss", "carThieves", "Ammunition_depot", "IDAP", "Outpost", "Service_Point"
 	GMS_enableBlueMissions = 1;  // 10-2-2023 Tested with mission list= "sniperBase", "survivalSupplies", "Service_point", and "default"
 	GMS_numberUnderwaterDynamicMissions = 0;	
 	GMS_enableHunterMissions = 0;
-	GMS_enableScoutsMissions = 0;
+	GMS_enableScoutsMissions = 1;
 	GMS_enableStaticMissions = 0;
-	GMS_maxCrashSites = 0; 
+	GMS_maxCrashSites = 1; 
 
 	GMS_noPatrolHelisBlue = 1;
 	GMS_noPatrolHelisRed = 1;
 	GMS_noPatrolHelisGreen = 1;
 	GMS_noPatrolHelisOrange = 1;
 
-	GMS_chanceParaBlue = 1; // [0 - 1] set to 0 to deactivate and 1 to always have paratroops spawn over the center of the mission. This value can be a range as well [0.1,0.3]
-	GMS_noParaBlue = 3; //  [1-N]	
+	GMS_chanceParaBlue = 0; // [0 - 1] set to 0 to deactivate and 1 to always have paratroops spawn over the center of the mission. This value can be a range as well [0.1,0.3]
+	GMS_noParaBlue = 0; //  [1-N]	
 
 	GMS_SpawnVeh_Orange = 2; // Number of static weapons at Orange Missions
 	GMS_SpawnVeh_Green = 2; // Number of static weapons at Green Missions

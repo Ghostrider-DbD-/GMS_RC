@@ -24,7 +24,16 @@ switch (toLower(worldName)) do
 		GMS_locationBlackList append [
 		//Add location as [[xpos,ypos,0],minimumDistance],
 		// Note that there should not be a comma after the last item in this table
-		[[10800,10641,0],1000]  // isthmus - missions that spawn here often are glitched.
+		[[10800,10641,0],1000],  // isthmus - missions that spawn here often are glitched.
+		[[14599.966,16797.193,0],3000], // TERMINAL
+		[[24127.771,16169.194,0],1800], // HOLY DIVER
+		[[12823.13,16681.56],1200],		// MIL HILL
+	    [[8713.47,23018.19],3200],		// NW MILI
+	    [[10969.26,8490.82],2400],		// STRONGHOLD
+		[[20788.121,7233.124],1800],	// WAR ENSEMBLE
+		[[23300,18800,0],950],	    // FLATS SPREAD
+		[[16696.7,13598,0],2000],		    // CHELO	
+		[[20917.549,19239.043,0],1600]		    // CLIT		
 		];
 	};
 	case "tanoa": {
@@ -41,10 +50,10 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 	GMS_blacklistSpawns = true;
 	GMS_listConcreteMixerZones	= true;
 
-	GMS_crateMoneyBlue = [100,250];
-	GMS_crateMoneyRed = [175, 300];
-	GMS_crateMoneyGreen = [300, 500];
-	GMS_crateMoneyOrange = [500, 750];
+	GMS_crateMoneyBlue = [1400,2150];
+	GMS_crateMoneyRed = [3175, 5300];
+	GMS_crateMoneyGreen = [16300, 21500];
+	GMS_crateMoneyOrange = [23500, 24750];
 
 	GMS_crateTypes = ["Box_FIA_Ammo_F","Box_FIA_Support_F","Box_FIA_Wps_F","I_SupplyCrate_F","Box_NATO_AmmoVeh_F","Box_East_AmmoVeh_F","IG_supplyCrate_F","Box_NATO_Wps_F","I_CargoNet_01_ammo_F","O_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F"];  // Default crate type.
 			
@@ -54,7 +63,7 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 		//"nameNoGoodOpen",
 		"Exile_Car_BTR40_MG_Green",
 		"Exile_Car_HMMWV_M134_Green",
-		//"Exile_Car_HMMWV_M2_Green",  // Not a valid class
+		"Exile_Car_HMMWV_M2_Green",
 		"B_LSV_01_armed_F",
 		"Exile_Car_Offroad_Armed_Guerilla01",		
 		"B_G_Offroad_01_armed_F", 
@@ -742,7 +751,7 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 
 	private _foodDrink = GMS_meats + GMS_drink + GMS_food;
 	private _buildingStuff = [
-		["Exile_Item_Matches",1,2],["Exile_Item_CookingPot",1,2],["Exile_Item_Rope",1,2],["Exile_Item_DuctTape",1,8],["Exile_Item_ExtensionCord",1,8],["Exile_Item_FuelCanisterEmpty",1,2],
+		["Exile_Item_Matches",1,2],["Exile_Item_CookingPot",1,2],["Exile_Item_Rope",1,2],["Exile_Item_DuctTape",1,8],["Exile_Item_DuctTape",1,8],["Exile_Item_FuelCanisterEmpty",1,2],
 		["Exile_Item_JunkMetal",4,10],["Exile_Item_LightBulb",1,10],["Exile_Item_MetalBoard",4,10],["Exile_Item_MetalPole",4,10],["Exile_Item_CamoTentKit",1,3],["Exile_Item_MetalScrews",3,10],
 		["Exile_Item_Sand",4,10],["Exile_Item_Cement",4,10],["Exile_Item_WaterCanisterDirtyWater",1,3],["Exile_Item_FuelCanisterFull",1,3]
 	];
@@ -753,8 +762,8 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 	];
 	private _launchers = [];
 
-GMS_buildingMaterials = ["Exile_Item_ExtensionCord","Exile_Item_JunkMetal","Exile_Item_LightBulb","Exile_Item_MetalBoard",
-		"Exile_Item_MetalPole","Exile_Item_MetalScrews","Exile_Item_Cement","Exile_Item_Sand","Exile_Item_MetalWire","Exile_Item_ExtensionCord","Exile_Item_JunkMetal"];	
+GMS_buildingMaterials = ["Exile_Item_DuctTape","Exile_Item_JunkMetal","Exile_Item_LightBulb","Exile_Item_MetalBoard",
+		"Exile_Item_MetalPole","Exile_Item_MetalScrews","Exile_Item_Cement","Exile_Item_Sand","Exile_Item_MetalWire","Exile_Item_DuctTape","Exile_Item_JunkMetal"];	
 GMS_tools = ["Exile_Item_Matches","Exile_Item_CookingPot","Exile_Melee_Axe","Exile_Melee_SledgeHammmer","Exile_Item_Handsaw","Exile_Item_Pliers","Exile_Item_CanOpener","Exile_Item_Shovel"];
 GMS_loot = GMS_buildingMaterials + GMS_tools;
 GMS_medicalItems = ["Exile_Item_InstaDoc","Exile_Item_Bandage","Exile_Item_Vishpirin"];
@@ -841,7 +850,7 @@ GMS_contructionLootExile = [
 		[// Materials and supplies				
 			
 			//
-			["Exile_Item_Matches",1,2],["Exile_Item_CookingPot",1,2],["Exile_Item_Rope",1,2],["Exile_Item_DuctTape",1,8],["Exile_Item_ExtensionCord",1,8],["Exile_Item_FuelCanisterEmpty",1,2],
+			["Exile_Item_Matches",1,2],["Exile_Item_CookingPot",1,2],["Exile_Item_Rope",1,2],["Exile_Item_DuctTape",1,8],["Exile_Item_DuctTape",1,8],["Exile_Item_FuelCanisterEmpty",1,2],
 			["Exile_Item_JunkMetal",4,10],["Exile_Item_LightBulb",1,10],["Exile_Item_MetalBoard",4,10],["Exile_Item_MetalPole",4,10],["Exile_Item_CamoTentKit",1,3],["Exile_Item_MetalScrews",3,10],
 			["Exile_Item_Sand",4,10],["Exile_Item_Cement",4,10],["Exile_Item_WaterCanisterDirtyWater",1,3],["Exile_Item_FuelCanisterFull",1,3]
 		],

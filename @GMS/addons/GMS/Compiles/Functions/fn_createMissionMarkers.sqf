@@ -46,8 +46,8 @@ if (toUpper(_markerType) in ["ELLIPSE","RECTANGLE"]) then // not an Icon ....
 	_m setMarkerBrush _markerBrush;
 	_m setMarkerSize _markerSize;
 	private _m2 = createMarker [GMS_missionMarkerRootName + _markerName + "label", _markerPos];
-	_m2 setMarkerType "mil_dot";
-	_m2 setMarkerColor "ColorBlack";
+	_m2 setMarkerType "loc_destroy";
+	_m2 setMarkerColor "ColorWhite";
 	_m2 setMarkerText _markerLabel;	
 	_markers = [_m,_m2];	
 	//diag_log format["_fnc_createMarkers: case of ELLIPSE/RECTANGLE: _markers = %1",_markers];

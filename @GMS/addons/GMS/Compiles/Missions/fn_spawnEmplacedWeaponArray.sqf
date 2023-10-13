@@ -32,7 +32,24 @@ private _emplacedWepData = +_missionEmplacedWeapons;  //  So we dont overwrite t
 		#define configureWaypoints false
 		#define numberAI 1
 		#define areaDimensions []  // an empty array forces the spawnGroup function to skip setup of any waypoint
-		private _empGroup = [_pos,numberAI,_aiDifficultyLevel,areaDimensions,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms] call GMS_fnc_spawnGroup;
+		/*
+			params[
+				["_pos",[-1,-1,1]], 
+				["_numbertospawn",0], 
+				["_skillLevel","red"], 
+				["_areaDimensions",[]], 
+				["_uniforms",[]], 
+				["_headGear",[]],
+				["_vests",[]],
+				["_backpacks",[]],
+				["_weaponList",[]],
+				["_sideArms",[]], 
+				["_scuba",false],
+				["_timeOut",300],
+				["_waypointclass","Soldier"]
+			];
+		*/
+		private _empGroup = [_pos,numberAI,_aiDifficultyLevel,areaDimensions,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms,-1,"Turret"] call GMS_fnc_spawnGroup;
 		_empGroup setcombatmode "RED";
 		_empGroup setBehaviour "COMBAT";
 		_empGroup setVariable ["soldierType","emplaced"];

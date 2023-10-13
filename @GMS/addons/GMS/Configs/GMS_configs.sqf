@@ -82,8 +82,8 @@ GMS_killMessageTypesKiller = [
 	//"epochMsg", // Epoch only 
 	//"hint",
 	//"cutText",
-	"dynamic",  // A display with information about rewards formated in a list on the left side of the screen
-	"systemChat"
+	"dynamic"  // A display with information about rewards formated in a list on the left side of the screen
+	//"systemChat"
 ];
 	GMS_useIEDMessages = true;  // Displayes a message when a player vehicle detonates and IED (such as would happen if a player killed AI with a forbidden weapon).
 
@@ -95,12 +95,13 @@ switch (GMSCore_modType) do
 		// expressed as crypto min, crypto max
 		GMS_rewardsNotifications = ["dynamicText"];
 		
-		// expressed as [][tabs min, tabs max],[respect min,respect max]]
+		// expressed as [][crypto min, tabs max],[respect min,respect max]]
 		GMS_rewardsBlue = [[5,10],[8,12]];
 		GMS_rewardsRed = [[8,14],12,15];
 		GMS_rewardsGreen = [[10,18],[15,20]];
 		GMS_rewardsOrange = [[12,20],20,25];
 		GMS_rewards = [GMS_rewardsBlue,GMS_rewardsRed,GMS_rewardsGreen,GMS_rewardsOrange];
+
 		GMS_distanceBonus = 3; // per 100 M, max = 5 * this value;
 		GMS_killsBonus = 3; // from 2X up, max 6* this value
 		GMS_killstreakTimeout = 300; // 5 min
@@ -113,6 +114,7 @@ switch (GMSCore_modType) do
 		GMS_rewardsGreen = [[10,18],[15,20]];
 		GMS_rewardsOrange = [[12,20],[20,25]];
 		GMS_rewards = [GMS_rewardsBlue,GMS_rewardsRed,GMS_rewardsGreen,GMS_rewardsOrange];
+
 		GMS_rewardsNotifications = ["dynamicText"];
 
 		GMS_respectBonusForKillstreaks = 3; 
@@ -140,8 +142,8 @@ switch (GMSCore_modType) do
 	
 	//Minimum distance between missions
 	GMS_MinDistanceFromMission = 1200;
-	GMS_minDistanceToBases = 250;
-	GMS_minDistanceToPlayer = 300;
+	GMS_minDistanceToBases = 150;
+	GMS_minDistanceToPlayer = 1800;
 	GMS_minDistanceFromTowns = 200;
 	GMS_minDistanceFromDMS = 800;  // minimum distance for a GMS mission from any nearby DMS missions. set to -1 to disable this check.	
 	
@@ -152,15 +154,9 @@ switch (GMSCore_modType) do
 	// global loot crate options
 	// Options to spawn a smoking wreck near the crate.  When the first parameter is true, a wreck or junk pile will be spawned. 
 	// It's position can be either "center" or "random".  smoking wreck will be spawned at a random location between 15 and 50 m from the mission.
-	GMS_SmokeAtMissions = [true,"random"];  // set to [false,"anything here"] to disable this function altogether. 
-
-	// When a column of smoke is used as a visual cue one of the following types of wrecks will be spawned. 
-	 GMS_wrecksAtMissions = ["Land_Wreck_Car2_F","Land_Wreck_Car3_F","Land_Wreck_Car_F","Land_Wreck_Offroad2_F","Land_Wreck_Offroad_F","Land_Tyres_F","Land_Pallets_F","Land_MetalBarrel_F"];
-
-	 // Added 10/01/23 for those who want some control over the color.
-	GMS_smokeShellAtCrates =  ["SmokeShellOrange","SmokeShellBlue","SmokeShellPurple","SmokeShellRed","SmokeShellGreen","SmokeShellYellow"];
+	GMS_SmokeAtMissions = [false,"random"];  // set to [false,"anything here"] to disable this function altogether. 
 	GMS_useSignalEnd = true; // When true a smoke grenade/chemlight will appear at the loot crate for 2 min after mission completion.
-	GMS_missionEndCondition = playerNear; //allKilledOrPlayerNear;  // Options are allUnitsKilled, playerNear, allKilledOrPlayerNear
+	GMS_missionEndCondition = allUnitsKilled; //allKilledOrPlayerNear;  // Options are allUnitsKilled, playerNear, allKilledOrPlayerNear
 
 	///////////////////////////////
 	// General Mission Completion and Loot Settings
@@ -172,7 +168,7 @@ switch (GMSCore_modType) do
 	GMS_spawnCratesTiming = "atMissionSpawnGround"; // Choices: "atMissionSpawnGround","atMissionSpawnAir","atMissionEndGround","atMissionEndAir".
 							 // Crates spawned in the air will be spawned at mission center or the position(s) defined in the mission file and dropped under a parachute.
 							 //  This sets the default value but can be overridden by defining  _spawnCrateTiming in the file defining a particular mission.
-	GMS_loadCratesTiming = "atMissionCompletion"; //"atMissionSpawn"; // valid choices are "atMissionCompletion" and "atMissionSpawn"; 
+	GMS_loadCratesTiming = "atMissionSpawn"; //""atMissionSpawn"; // valid choices are "atMissionCompletion" and "atMissionSpawn"; 
 							// Pertains only to crates spawned at mission spawn.
 							// This sets the default but can be overridden for specific missions by defining _loadCratesTiming
 							
@@ -187,10 +183,10 @@ switch (GMSCore_modType) do
 	// PLAYER PENALTIES
 	///////////////////////////////	
 
-	GMS_RunGear = true;	// When set to true, AI that have been run over will ve stripped of gear, and the vehicle will be given GMS_RunGearDamage of damage.
+	GMS_RunGear = false;	// When set to true, AI that have been run over will ve stripped of gear, and the vehicle will be given GMS_RunGearDamage of damage.
 	GMS_RunGearDamage = 0.2; // Damage applied to player vehicle for each AI run over
 	GMS_VK_Gear = true; // When set to true, AI that have been killed by a player in a vehicle in the list of forbidden vehicles or using a forbiden gun will be stripped of gear and the vehicle will be given GMS_RunGearDamage of damage
-	GMS_VK_RunoverDamage = true; // when the AI was run over GMS_RunGearDamage of damage will be applied to the killer's vehicle.
+	GMS_VK_RunoverDamage = false; // when the AI was run over GMS_RunGearDamage of damage will be applied to the killer's vehicle.
 	GMS_VK_GunnerDamage = false; // when the AI was killed by a gunner on a vehicle that is is in the list of forbidden vehicles, GMS_RunGearDamage of damage will be applied to the killer's vehicle each time an AI is killed with a vehicle's gun.
 
 	/* these are weapons, magazines, sensors to be disabled when a vehicle is spawned */
@@ -227,7 +223,7 @@ switch (GMSCore_modType) do
 	GMS_useMines = false;   // when true mines are spawned around the mission area. these are cleaned up when a player reaches the crate. Turn this off if you have vehicle patrols.
 	GMS_cleanupCompositionTimer = 60*30;  // Mission objects will be deleted after the mission is completed after a deley set by this timer.
 	GMS_cleanUpLootChests = false; // when true, loot crates will be deleted together with other mission objects.
-	GMS_MissionTimeout = 60*60;  // 60 min - missions will timeout and respawn in another location. This prevents missions in impossible locations from persisting.
+	GMS_MissionTimeout = 90*90;  // 60 min - missions will timeout and respawn in another location. This prevents missions in impossible locations from persisting.
 
 	///////////////////////////////
 	// Paratroop Settings
@@ -241,10 +237,10 @@ switch (GMSCore_modType) do
 	GMS_chanceParaRed = 0;
 	GMS_noParaRed = 3;
 	
-	GMS_chanceParaGreen = 0;
+	GMS_chanceParaGreen = 0.5;
 	GMS_noParaGreen = 4;
 	
-	GMS_chanceParaOrange = 0;
+	GMS_chanceParaOrange = 0.95;
 	GMS_noParaOrange = 4;
 	
 	// Supplemental Loot Parameters.
@@ -259,8 +255,8 @@ switch (GMSCore_modType) do
 	_GMS_armed_orcas = ["O_Heli_Light_02_F","O_Heli_Light_02_v2_F"];
 	_GMS_armed_ghosthawks = ["B_Heli_Transport_01_F","B_Heli_Transport_01_camo_F"];
 	_GMS_armed_hurons = ["B_Heli_Transport_03_F","B_Heli_Transport_03_black_F"];
-	_GMS_armed_attackHelis = ["B_Heli_Attack_01_F"];
-	_GMS_armed_heavyAttackHelis = ["O_Heli_Attack_02_F","O_Heli_Attack_02_black_F"];
+	_GMS_armed_attackHelis = ["CUP_B_UH1Y_GUNSHIP_USMC"];
+	_GMS_armed_heavyAttackHelis = ["O_Heli_Attack_02_F","CUP_B_UH1Y_GUNSHIP_USMC"];
 	_GMS_fighters = [
 		"O_Plane_CAS_02_F",  // /ti-199 Neophron (CAS)
 		"I_Plane_Fighter_03_AA_F",  //  A-143 Buzzard (AA)
@@ -278,19 +274,21 @@ switch (GMSCore_modType) do
 	//  Heli Patrol Settings
 	///////////////////////////////
 
-	GMS_chanceHeliPatrolBlue = 1.0;  //[0 - 1]  The chance a heli will be spawned 
-	GMS_patrolHelisBlue = _GMS_littleBirds; // The default helis 
-	GMS_noPatrolHelisBlue = 1;  // The default number of helis
+	GMS_chanceHeliPatrolBlue = 0.1;  //[0 - 1]  Set to 0 to deactivate and 1 to always have a heli spawn over the mission center and patrol the mission area. 
+									//  The chance of paratroops dropping from the heli is defined by GMS_chancePara(Blue|Red|Green|Orange) above.
+									// Recommend setting the change = 1 if you wish to spawn multiple helis at a mission.
+	GMS_patrolHelisBlue = _GMS_littleBirds;
+	GMS_noPatrolHelisBlue = 1;
 	
-	GMS_chanceHeliPatrolRed = 1.0; // 0.4;
+	GMS_chanceHeliPatrolRed = 0.1; // 0.4;
 	GMS_patrolHelisRed = _GMS_littleBirds;
 	GMS_noPatrolHelisRed = 1;
 	
-	GMS_chanceHeliPatrolGreen = 0.85;
+	GMS_chanceHeliPatrolGreen = 0.55;
 	GMS_patrolHelisGreen = _GMS_armed_hellcats + _cup_Helis_missiles;  // _GMS_armed_orcas + _GMS_armed_ghosthawks;  //_GMS_littleBirds;
 	GMS_noPatrolHelisGreen = 1;
 	
-	GMS_chanceHeliPatrolOrange = 0.95;
+	GMS_chanceHeliPatrolOrange = 0.90;
 	GMS_patrolHelisOrange = _GMS_armed_heavyAttackHelis + _GMS_armed_attackHelis;  //_GMS_littleBirds;
 	GMS_noPatrolHelisOrange = 1;
 
@@ -322,22 +320,19 @@ switch (GMSCore_modType) do
 	////////////////////
 	
 	// Maximum number of missions shown on the map at any one time.
-	GMS_maxSpawnedMissions = 15;
+	GMS_maxSpawnedMissions = 11;
 		
 	//Set to -1 to disable. Values of 2 or more force the mission spawner to spawn copies of that mission - this feature is not recommended because you may run out of available groups.
 	GMS_enableOrangeMissions = 1;  
 	GMS_enableGreenMissions = 2;
 	GMS_enableRedMissions = 2;
 	GMS_enableBlueMissions = 1;
-	GMS_numberUnderwaterDynamicMissions = -1;  // Values from -1 (no UMS) to N (N Underwater missions will be spawned; static UMS units and subs will be spawned.	
-
-	// sets the maximum number of static missions to spawn - set to -1 to disable spawning them. 
-	GMS_enableStaticMissions = 3; 
+	GMS_numberUnderwaterDynamicMissions = 0;  // Values from -1 (no UMS) to N (N Underwater missions will be spawned; static UMS units and subs will be spawned.	
 
 	#ifdef GRGserver
 	GMS_enableHunterMissions = 1;
-	GMS_enableScoutsMissions =2;
-	GMS_maxcrashsites = 3;  //  TODO: Set to 2-3
+	GMS_enableScoutsMissions = 2;
+	GMS_maxcrashsites = 2;
 	#endif
 
 	////////////////////
@@ -345,33 +340,29 @@ switch (GMSCore_modType) do
 	////////////////////
 	
 	// Reduce to 1 sec for immediate spawns, or longer if you wish to space the missions out	
-	GMS_TMin_Orange = 480;
-	GMS_TMin_Green = 420;
-	GMS_TMin_Blue = 300;
-	GMS_TMin_Red = 360;
-	GMS_TMin_UMS = 300;	
-	GMS_TMin_Statics = 60 * 35;  // minimum time for RESPAWN of static missions
-
+	GMS_TMin_Orange = 180; //1;
+	GMS_TMin_Green = 150; //2;
+	GMS_TMin_Blue = 120; //3;
+	GMS_TMin_Red = 110; //4;
+	GMS_TMin_UMS = 105; //5;	
+	
 	#ifdef GRGserver
-	GMS_TMin_Hunter = 340;
-	GMS_TMin_Scouts = 300;
-	GMS_TMin_Crashes = 300;
+	GMS_TMin_Hunter = 100; //6;
+	GMS_TMin_Scouts = 95; //7;
+	GMS_TMin_Crashes = 90; //8;
 	#endif
 	
 	//Maximum Spawn time between missions in seconds
-	GMS_TMax_Orange = 560;
-	GMS_TMax_Green = 500;
-	GMS_TMax_Blue = 360;
-	GMS_TMax_Red = 420;
-	GMS_TMax_UMS = 400;
-	GMS_TMax_Statics = GMS_TMin_Statics + 60; // Maximum time for RESAPWN of static missions
-											  // Be sure the minimum is > than the time at which objects from the previous instance of a static mission are deleted 
-											  // That is set in GMS_cleanupCompositionTimer
+	GMS_TMax_Orange =200; //9;
+	GMS_TMax_Green = 180; //10;
+	GMS_TMax_Blue = 160; //11;
+	GMS_TMax_Red = 150; //12;
+	GMS_TMax_UMS = 13;
 
 	#ifdef GRGserver
-	GMS_TMax_Hunter = 400;
-	GMS_TMax_Scouts = 360;
-	GMS_TMax_Crashes = 360;
+	GMS_TMax_Hunter = 140; //14;
+	GMS_TMax_Scouts = 130; //15;
+	GMS_TMax_Crashes = 100; //16;
 	#endif
 	
 	// 
@@ -543,9 +534,13 @@ switch (GMSCore_modType) do
 	GMS_launcherTypes = ["launch_RPG32_F"];  //["CUP_launch_RPG7V"];  //
 	GMS_launchersPerGroup = 1;  // Defines the number of AI per group spawned with a launcher
 	GMS_launcherCleanup = false;// When true, launchers and launcher ammo are removed from dead AI.
-	GMS_minimumPatrolRadius = 22;  // AI will patrol within a circle with radius of approximately min-max meters. note that because of the way waypoints are completed they may more more or less than this distance.
-	GMS_maximumPatrolRadius = 45;
+	GMS_minimumPatrolRadius = 36;  // AI will patrol within a circle with radius of approximately min-max meters. note that because of the way waypoints are completed they may more more or less than this distance.
+	GMS_maximumPatrolRadius = 66;
 	
+	GMS_waypointTimeoutInfantry = 300; 
+	GMS_waypointTimeoutVehicle = 300;
+	GMS_waypointTimeoutAir = 300;
+
 	//This defines how long after an AI dies that it's body disappears.
 	GMS_bodyCleanUpTimer = 60*45; // time in seconds after which dead AI bodies are deleted
 	// Each time an AI is killed, the location of the killer will be revealed to all AI within this range of the killed AI, set to -1 to disable
@@ -554,10 +549,10 @@ switch (GMSCore_modType) do
 
 	// How precisely player locations will be revealed to AI after an AI kill
 	// values are ordered as follows [blue, red, green, orange];	
-	GMS_AIAlertDistance = [250,450,700,900];  //  Radius within which AI will be notified of enemy activity. Depricated as a group-sed system is used now. The group is informed of the enemy location when a group member is hit or killed.
+	GMS_AIAlertDistance = [250,450,1000,1300];  //  Radius within which AI will be notified of enemy activity. Depricated as a group-sed system is used now. The group is informed of the enemy location when a group member is hit or killed.
 	// How precisely player locations will be revealed to AI after an AI kill
 	// values are ordered as follows [blue, red, green, orange];
-	GMS_AIIntelligence = [0.3, 0.5, 0.7, 0.9];  
+	GMS_AIIntelligence = [0.37, 0.57, 0.77, 0.97];  
 	
 	GMS_baseSkill = 1.0;  // The overal skill of the AI - range 0.1 to 1.0.
 	
@@ -568,15 +563,15 @@ switch (GMSCore_modType) do
 	**************************************************************/
 	//This defines the skill, minimum/Maximum number of AI and how many AI groups are spawned for each mission type
 	// Orange Missions
-	GMS_MinAI_Orange = 20;
-	GMS_MaxAI_Orange = 25;
+	GMS_MinAI_Orange = 18;
+	GMS_MaxAI_Orange = 23;
 	GMS_AIGrps_Orange = 5;
 	GMS_SkillsOrange = [
 		[0.20],  // aiming accuracy
-		[0.65,0.75],  //  aiming speed 
+		[0.75,0.85],  //  aiming speed 
 		[0.25],  //  aiming shake 
 		1.0,  //  spot distance 
-		0.7,  //  spot time 
+		0.89,  //  spot time 
 		1.00,  // courage 
 		1.00,  //  reload speed 
 		1.00,  //  commanding 
@@ -584,24 +579,24 @@ switch (GMSCore_modType) do
 	];
 	
 	// Green Missions
-	GMS_MinAI_Green = 16;
-	GMS_MaxAI_Green = 21;
+	GMS_MinAI_Green = 14;
+	GMS_MaxAI_Green = 19;
 	GMS_AIGrps_Green = 4;
 	GMS_SkillsGreen = [
 		[0.18],  //  aiming accuracy 
-		[0.55,0.7],  //  aiming speed 
+		[0.65,0.75],  //  aiming speed 
 		[0.18], //  aiming shake
-		0.9,  //  spot distance 
-		0.65,  // spot time 
+		0.92,  //  spot distance 
+		0.82,  // spot time 
 		0.9,  //  courage 
 		0.9,  //  reload speed 
 		0.9,  //  comanding 
-		0.75  //  general
+		0.85  //  general
 	];
 	
 	// Red Missions
-	GMS_MinAI_Red = 12;
-	GMS_MaxAI_Red = 15;
+	GMS_MinAI_Red = 10;
+	GMS_MaxAI_Red = 13;
 	GMS_AIGrps_Red = 3;
 	GMS_SkillsRed = [
 		[0.14],  //  aiming accuracy 
@@ -616,8 +611,8 @@ switch (GMSCore_modType) do
 	];
 	
 	// Blue Missions
-	GMS_MinAI_Blue = 8;	
-	GMS_MaxAI_Blue = 12;
+	GMS_MinAI_Blue = 6;	
+	GMS_MaxAI_Blue = 10;
 	GMS_AIGrps_Blue = 2;
 	GMS_SkillsBlue = [
 		[0.08],  // aiming accuracy 
@@ -632,14 +627,14 @@ switch (GMSCore_modType) do
 	];
 		
 	// Add some money to AI; 
-	GMS_maxMoneyOrange = 25;
-	GMS_maxMoneyGreen = 20;
-	GMS_maxMoneyRed = 15;
-	GMS_maxMoneyBlue = 10;	
+	GMS_maxMoneyOrange = 35;
+	GMS_maxMoneyGreen = 30;
+	GMS_maxMoneyRed = 25;
+	GMS_maxMoneyBlue = 20;	
 
 	// Define the chance of attachments and gear
 	GMS_chancePrimary = 1.0;
-	GMS_chanceOpticsPrimary = 0.4;
+	GMS_chanceOpticsPrimary = 0.5;
 	GMS_chanceMuzzlePrimary = 0.3;
 	GMS_chancePointerPrimary = 0.25;
 	GMS_chanceUnderbarrelPrimary = 0.25;
@@ -650,8 +645,8 @@ switch (GMSCore_modType) do
 	GMS_chanceThowable = 0.5;
 	GMS_chanceHeadgear = 0.75;
 	GMS_chanceUniform = 1.0;
-	GMS_chanceBackpack = 0.2;  // Chance AI will be spawned with a backpack
-	GMS_chanceVest = 0.1;
+	GMS_chanceBackpack = 0.6;  // Chance AI will be spawned with a backpack
+	GMS_chanceVest = 0.6;
 	GMS_chanceBinoc = 0.75;
 
 	private _configToLoad = format["\GMS\Configs\GMS_configs_%1.sqf",tolower(GMSCore_modtype)];

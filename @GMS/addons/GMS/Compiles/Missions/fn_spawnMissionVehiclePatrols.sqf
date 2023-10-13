@@ -17,7 +17,6 @@ params[
 	["_coords",[]],
 	["_skillAI","Red"],
 	["_missionPatrolVehicles",[]],
-	["_useRelativePos",true],
 	["_uniforms",[]], 
 	["_headGear",[]],
 	["_vests",[]],
@@ -40,9 +39,9 @@ private _patrolsThisMission = +_missionPatrolVehicles;
 {
 	//diag_log format["_spawnMissionVehiclePatrols(41): _x = %1",_x];
 	_x params[["_vehName",""],["_pos",[]],["_dir",0]];
-	//diag_log format["_spawnMissionVehiclePatrols(43):  _vehName = %1 | _pos = %2 | _dir = %3 | isClass _vehName = %4",_vehName,_pos,_dir, isClass(configFile >> "CfgVehicles" >> _vehName)];
-	if (_useRelativePos) then {_pos = _coords vectorAdd _pos};  // else {_pos = (_coords vectorAdd _pos) findEmptyPosition[0,50,_vehName]};
-	//diag_log format["_spawnMissionVehiclePatrols(45): _pos updated to %1",_pos];
+	diag_log format["_spawnMissionVehiclePatrols(43):  _vehName = %1 | _pos = %2 | _dir = %3 | isClass _vehName = %4",_vehName,_pos,_dir, isClass(configFile >> "CfgVehicles" >> _vehName)];
+	_pos = _coords vectorAdd _pos;  // else {_pos = (_coords vectorAdd _pos) findEmptyPosition[0,50,_vehName]};
+	diag_log format["_spawnMissionVehiclePatrols(45): _pos updated to %1",_pos];
 	if (isClass(configFile >> "CfgVehicles" >> _vehName)) then {
 		if !(_pos isEqualTo []) then {
 				
@@ -50,8 +49,8 @@ private _patrolsThisMission = +_missionPatrolVehicles;
 			private _maxCrewConfigs = [_vehName,true] call BIS_fnc_crewCount;
 			private _maxCrewBlck = missionNamespace getVariable[format["GMS_vehCrew_%1",_skillAI],3];
 			private _crewCount = _maxCrewBlck min _maxCrewConfigs;
-			#define offMap [-1,-1,1]
-			private _vehGroup = [offMap,_crewCount,_skillAI,vehiclePatrolAreaDimensions,_uniforms, _headGear,_vests,_backpacks,_weaponList,_sideArms,_isScubaGroup] call GMS_fnc_spawnGroup;
+			//#define offMap [-1,-1,1]
+			private _vehGroup = [_pos,_crewCount,_skillAI,vehiclePatrolAreaDimensions,_uniforms, _headGear,_vests,_backpacks,_weaponList,_sideArms,_isScubaGroup,GMS_waypointTimeoutVehicle,"Vehicle"] call GMS_fnc_spawnGroup;
 			
 			_missionAI append (units _vehGroup);
 			GMS_monitoredMissionAIGroups pushBack _vehGroup;
@@ -99,6 +98,7 @@ private _patrolsThisMission = +_missionPatrolVehicles;
 						_markerDelete
 					] call GMSCore_fnc_initializeWaypointsAreaPatrol;
 			*/
+			[_vehGroup] call GMSCore_fnc_updateWaypointConfigs; // apply any settings related to hunting or searching based on vehicle type
 			private _movetoPos = [[[_pos, vehiclePatrolAreaDimensions]],[]/* add condition that the spawn is not near a trader*/] call BIS_fnc_randomPos;
 			(driver _vehicle) moveTo _movetoPos;
 			(driver _vehicle) call GMSCore_fnc_nextWaypointAreaPatrol;				
@@ -114,7 +114,7 @@ private _patrolsThisMission = +_missionPatrolVehicles;
 			]  call GMSCore_fnc_initializeWaypointsAreaPatrol;
 			*/
 			GMS_landVehiclePatrols pushBack _vehicle;
-			if (GMS_debugLevel > 0) then {[format["_spawnMissionVehiclePatrols: _vehName %1 spawned with crew %2",_vehName,_vehGroup]] call GMS_fnc_log};
+			if (GMS_debugLevel > 0) then {[format["_spawnMissionVehiclePatrols: _vehName %1 spawned with driver %2 and crew %3",_vehName,driver _vehicle, _vehGroup]] call GMS_fnc_log};
 		};
 	} else {
 		[format["GMS_fnc_spawnMissionVehiclePatrols: Invalid classname %1 used in __missionPatrolVehicles", _vehName],"warning"] call GMS_fnc_log;
@@ -122,6 +122,6 @@ private _patrolsThisMission = +_missionPatrolVehicles;
 } forEach _patrolsThisMission;
 GMS_landVehiclePatrols append _vehicles;
 GMS_monitoredVehicles append _vehicles;
-//[format["GMS_fnc_spawnMissionVehiclePatrols:  count _missionAI = %1", count _missionAI]] call GMS_fnc_log;
+[format["GMS_fnc_spawnMissionVehiclePatrols:  count _missionAI = %1 | count _vehicles = %2", count _missionAI, count _vehicles]] call GMS_fnc_log;
 [_vehicles, _missionAI];
 
