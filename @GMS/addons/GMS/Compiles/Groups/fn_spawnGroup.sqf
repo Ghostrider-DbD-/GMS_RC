@@ -27,11 +27,11 @@ params[
 	["_timeOut",300],
 	["_waypointclass","Soldier"]
 ];
-
+/*
 {
 	diag_log format["_fn_spawnGroup: _this %1 = %2",_forEachIndex, _this select _forEachIndex];
 } forEach _this;
-
+*/
 if (_weaponList isEqualTo []) then {_weaponList = [_skillLevel] call GMS_fnc_selectAILoadout};
 if (_sideArms isEqualTo [])  then {_sideArms = [_skillLevel] call GMS_fnc_selectAISidearms};
 if (_uniforms isEqualTo [])  then {_uniforms = [_skillLevel] call GMS_fnc_selectAIUniforms};
@@ -98,20 +98,9 @@ private _gear = [
 ];
 [_group,_gear,GMS_launchersPerGroup,GMS_useNVG] call GMSCore_fnc_setupGroupGear;
 private _money = (missionNamespace getVariable[format["GMS_rewards%1",_skillLevel],GMS_rewardsOrange]) select 0;
-diag_log format["GMS_fnc_spawnGroup: _money = %1 | _group = %2",_money,_group];
+//diag_log format["GMS_fnc_spawnGroup: _money = %1 | _group = %2",_money,_group];
 [_group,_difficulty,_money] call GMSCore_fnc_setupGroupMoney;
-//private _veh = vehicle (leader _group);
-//private _type = [_veh] call BIS_fnc_objectType;
-//_type params["_typeObj","_subtypeObj"];
-//diag_log format["GMS_fnc_spawnGroup: _veh %3 |  _typeObj %1 | _subTypeObj %2",_typeObj,_subtypeObj,_veh];
 
-//private "_waypointClass";
-//switch (_typeObj) do {
-//	case "Soldier": {_waypointClass =_typeObj};
-	//case "Vehicle": {_waypointClass = _subtypeObj};
-	//case "VehicleAutonomous": {_waypointClass = _subtypeObj};
-	//default {_waypointClass = "Soldier"};
-//};
 /*
 params[
 	["_group",grpNull],  // group for which to configure / initialize waypoints
