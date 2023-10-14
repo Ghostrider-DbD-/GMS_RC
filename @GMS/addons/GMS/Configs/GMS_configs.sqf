@@ -17,7 +17,7 @@
 		changing any of these variables may break the mission system
 	*/
 	GMS_locationBlackList = [];  // Do not touch ...
-	GMS_debugLevel = 1;  //  should be set to 0 ... 
+	GMS_debugLevel = 3;  //  should be set to 0 ... 
 
 	[format["Loading configurations for Non-militarized servers"]] call GMS_fnc_log;
 	/*
@@ -332,6 +332,7 @@ switch (GMSCore_modType) do
 	GMS_enableBlueMissions = 1;
 	GMS_numberUnderwaterDynamicMissions = 0;  // Values from -1 (no UMS) to N (N Underwater missions will be spawned; static UMS units and subs will be spawned.	
 	GMS_enableStaticMissions = 3;
+
 	#ifdef GRGserver
 	GMS_enableHunterMissions = 1;
 	GMS_enableScoutsMissions = 2;
@@ -348,7 +349,8 @@ switch (GMSCore_modType) do
 	GMS_TMin_Blue = 120; //3;
 	GMS_TMin_Red = 110; //4;
 	GMS_TMin_UMS = 105; //5;	
-	
+	GMS_TMin_Statics = 60 * 35;  // minimum time for RESPAWN of static missions
+
 	#ifdef GRGserver
 	GMS_TMin_Hunter = 100; //6;
 	GMS_TMin_Scouts = 95; //7;
@@ -361,7 +363,9 @@ switch (GMSCore_modType) do
 	GMS_TMax_Blue = 160; //11;
 	GMS_TMax_Red = 150; //12;
 	GMS_TMax_UMS = 13;
-
+	GMS_TMax_Statics = GMS_TMin_Statics + 60; // Maximum time for RESAPWN of static missions
+											  // Be sure the minimum is > than the time at which objects from the previous instance of a static mission are deleted 
+											  // That is set in GMS_cleanupCompositionTimer
 	#ifdef GRGserver
 	GMS_TMax_Hunter = 140; //14;
 	GMS_TMax_Scouts = 130; //15;

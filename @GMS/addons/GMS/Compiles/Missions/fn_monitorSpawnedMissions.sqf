@@ -299,7 +299,7 @@ for "_i" from 1 to (count _missionsList) do
 						["_endCode",-1]
 					*/
 					//[format["_monitorSpawnedMissions: Catch case 1 - normal mission waypointCompletionRadius - at %1",diag_tickTime]] call GMS_fnc_log;
-					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 1] call GMS_fnc_endMission;
+					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 1, _isStatic] call GMS_fnc_endMission;
 
 					// _missionConfigs is configured as:
 					/*
@@ -320,8 +320,12 @@ for "_i" from 1 to (count _missionsList) do
 							_spawnedAt				// index 13
 						];
 					*/					
-					//_missionConfigs set[isSpawned,false];
-					//[format["_monitorSpawnedMissions (265): _markerMissionName %1: end of case 1 for mission completion",_markerMissionName]] call GMS_fnc_log;
+					_missionConfigs set[isSpawned,false];
+					_missionConfigs set[spawnedAt,-1];
+					[format["_monitorSpawnedMissions (325): _markerMissionName %1: end of case 1 for mission completion",_markerMissionName]] call GMS_fnc_log;
+					[format["_monitorSpawnedMissions (326): _isSpawned %1 | _spawnedAt %2",_isSpawned,_spawnedAt]] call GMS_fnc_log;
+					[format["_monitorSpawnedMissions (327): #isSpawned %1 | #spawnAt %2",isSpawned,spawnedAt]] call GMS_fnc_log;
+					[format["_monitorSpawneMissions (328): _missionConfigs select %1 = %2 | _missionConfigs select %3 = %4",spawnedAt,_missionConfigs select spawnedAt, isSpawned, _missionConfigs select isSpawned]] call GMS_fnc_log;
 				};
 
 				case 2: { // Abort, crate moved.
@@ -339,8 +343,8 @@ for "_i" from 1 to (count _missionsList) do
 					];
 					*/		
 					[format["_monitorSpawnedMissions: Catch case 2 - crate moved - at %1",diag_tickTime]] call GMS_fnc_log;						
-					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs, _isscubamission, 2] call GMS_fnc_endMission;	
-					//_missionConfigs set [isSpawned,false];												
+					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs, _isscubamission, 2, _isStatic] call GMS_fnc_endMission;	
+					_missionConfigs set [isSpawned,false];												
 				};
 
 				case 3: {  // Abort, key asset killed			
@@ -354,13 +358,13 @@ for "_i" from 1 to (count _missionsList) do
 						["_endCode",-1]
 					*/		
 					[format["_monitorSpawnedMissions: Catch case 3 - key asset killed - at %1",diag_tickTime]] call GMS_fnc_log;					
-					[_key, _missionData, _assetKilledMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 3] call GMS_fnc_endMission;	
-					//_missionConfigs set [isSpawned,false];											
+					[_key, _missionData, _assetKilledMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 3, _isStatic] call GMS_fnc_endMission;	
+					_missionConfigs set [isSpawned,false];											
 				};
 
 				case 4: {
 					// Used for testing purposes only 
-					//[format["Programed mission abort, debug level >= 4"]] call GMS_fnc_log;
+					[format["Programed mission abort, debug level >= 4"]] call GMS_fnc_log;
 					/*
 						["_key",-1],
 						["_missionData",[]],
@@ -371,8 +375,8 @@ for "_i" from 1 to (count _missionsList) do
 						["_endCode",-1]
 					*/
 					//diag_log format["_monitorSpawnedMissions: (286): _crates = %1 | _mines = %2",_crates,_mines];					
-					[_key, _missionData, "DEBUG SETTING >= 4", _markerConfigs, _missionLootConfigs, _isscubamission, 4] call GMS_fnc_endMission;
-					//_missionConfigs set [isSpawned,false];																
+					[_key, _missionData, "DEBUG SETTING >= 4", _markerConfigs, _missionLootConfigs, _isscubamission, 4, _isStatic] call GMS_fnc_endMission;
+					_missionConfigs set [isSpawned,false];																
 				};
 				
 				case 5: {  // SIMULATED Normal Mission End
@@ -440,9 +444,9 @@ for "_i" from 1 to (count _missionsList) do
 					};
 					//diag_log format["_monitorSpawnedMissions: (360):_crates = %1",_crates];
 
-					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 5] call GMS_fnc_endMission;
-					//_missionConfigs set [isSpawned,false];					
-					//[format["_monitorSpawnedMissions (363): _markerMissionName %1: end of case 1 for mission completion",_markerMissionName]] call GMS_fnc_log;
+					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 5, _isStatic] call GMS_fnc_endMission;
+					_missionConfigs set [isSpawned,false];					
+					[format["_monitorSpawnedMissions (363): _markerMissionName %1: end of case 1 for mission completion",_markerMissionName]] call GMS_fnc_log;
 				};		
 				case 6: {
 					// Mission not fully spawned yet for some reason. This should never happen but this case is included for completeness. 
@@ -451,7 +455,7 @@ for "_i" from 1 to (count _missionsList) do
 				};		
 				case 7: {
 					// The mission only just spawned - lets give it 60 sec to settle.
-					//[format["_monitorSpawnedMissions: Catch case 7 - wating for mission to settle - at %1",diag_tickTime]] call GMS_fnc_log;
+					[format["_monitorSpawnedMissions: Catch case 7 - wating for mission to settle - at %1",diag_tickTime]] call GMS_fnc_log;
 					_missionsList pushBack _el;
 				};
 			};

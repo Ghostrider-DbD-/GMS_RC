@@ -86,7 +86,7 @@ private _emplacedWepData = +_missionEmplacedWeapons;  //  So we dont overwrite t
 		[_wep,_empGroup] call GMSCore_fnc_loadVehicleCrew;
 		//diag_log format["_spawnEmplacedWeaponArray(91): _wep = %1 | getPos _wep = %2 | _static = %3",_wep, getPosATL _wep, _static];
 		//_gunner setVariable["GRG_vehType","emplaced"];	
-		_emplacedAI append _units;
+		_emplacedAI append (units _empGroup);
 	} else {
 		[format["GMS_fnc_spawnEmplacedWeaponArray:   Invalid classname %1 used in _missionEmplacedWeapons", _static],"warning"] call GMS_fnc_log;
 	};

@@ -138,11 +138,11 @@ if (GMS_debugLevel > 0) then {
     //GMS_minDistanceToPlayer = 1000;
     //GMS_minDistanceFromTowns = 100;
 	//GMS_preciseMapMarkers = true;
-	//GMS_MissionTimeout = 300;
-	//GMS_cleanupCompositionTimer = 30;
-	//GMS_AliveAICleanUpTimer = 30;
-	//GMS_bodyCleanUpTimer = 30;
-	//GMS_vehicleDeleteTimer = 30;
+	//GMS_MissionTimeout = 60;
+	GMS_cleanupCompositionTimer = 30;
+	GMS_AliveAICleanUpTimer = 30;
+	GMS_bodyCleanUpTimer = 30;
+	GMS_vehicleDeleteTimer = 30;
 	//GMS_maxSpawnedMissions = 15;
 	//GMS_mainThreadUpdateInterval = 10;
 	GMS_launchersPerGroup = 1;
@@ -150,14 +150,14 @@ if (GMS_debugLevel > 0) then {
 	GMS_enableOrangeMissions = 0;  
 	GMS_enableGreenMissions = 0; // 10-02-2023 Tested with mission list= "FieldCamp", "FieldHQ", "factory", "fortification", "Camp_Moreell", "lager"
 	GMS_enableRedMissions = 0;   // 10-2-2023 Tested with mission list= "fuelDepot", "junkyardWilly", "TraderBoss", "carThieves", "Ammunition_depot", "IDAP", "Outpost", "Service_Point"
-	GMS_enableBlueMissions = 1;  // 10-2-2023 Tested with mission list= "sniperBase", "survivalSupplies", "Service_point", and "default"
+	GMS_enableBlueMissions = 0;  // 10-2-2023 Tested with mission list= "sniperBase", "survivalSupplies", "Service_point", and "default"
 	GMS_numberUnderwaterDynamicMissions = 0;	
 	GMS_enableHunterMissions = 0;
 	GMS_enableScoutsMissions = 1;
-	GMS_enableStaticMissions = 0;
+	GMS_enableStaticMissions = 1;
 	GMS_maxCrashSites = 1; 
 
-	GMS_noPatrolHelisBlue = 1;
+	GMS_noPatrolHelisBlue = 0;
 	GMS_noPatrolHelisRed = 1;
 	GMS_noPatrolHelisGreen = 1;
 	GMS_noPatrolHelisOrange = 1;
@@ -168,7 +168,7 @@ if (GMS_debugLevel > 0) then {
 	GMS_SpawnVeh_Orange = 2; // Number of static weapons at Orange Missions
 	GMS_SpawnVeh_Green = 2; // Number of static weapons at Green Missions
 	GMS_SpawnVeh_Blue = 1;  // Number of static weapons at Blue Missions
-	GMS_SpawnVeh_Red = 1;  // Number of static weapons at Red Missions
+	GMS_SpawnVeh_Red = 0;  // Number of static weapons at Red Missions
 
 	GMS_SpawnEmplaced_Orange = 2; // Number of static weapons at Orange Missions
 	GMS_SpawnEmplaced_Green = 2; // Number of static weapons at Green Missions
@@ -199,7 +199,7 @@ if (GMS_debugLevel > 0) then {
 	GMS_TMin_Scouts = 45;
 	GMS_TMin_Crashes = 5;
 	GMS_TMin_UMS = 20;
-	GMS_TMin_Statics = 60;  // minimum time for RESPAWN of static missions
+	GMS_TMin_Statics = 120;  // minimum time for RESPAWN of static missions
 	//Maximum Spawn time between missions in seconds
 	GMS_TMax_Blue = 12;
 	GMS_TMax_Red = 15;
