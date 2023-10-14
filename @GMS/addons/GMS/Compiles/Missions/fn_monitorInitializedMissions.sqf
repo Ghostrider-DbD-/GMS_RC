@@ -50,9 +50,9 @@ for "_i" from 1 to (count _missionsList) do
 		if ((_missionTimeoutAt > 0) && {diag_tickTime > _missionTimeoutAt}) then 
 		{
 			_monitorAction = -1;
-			//diag_log format["_monitorInitializedMissions (37) Mission Timeout Criteria Met at %1",diag_tickTime];
+			diag_log format["_monitorInitializedMissions (37) Mission Timeout Criteria Met at %1",diag_tickTime];
 		} else {
-			_playerInRange = if ({(_x distance2d missionCoords) < GMS_TriggerDistance && ((vehicle _x == _x) || (getPosATL _x) select 2 < 5)} count allPlayers > 0) then {true} else {false};
+			_playerInRange = if ({(_x distance2d missionCoords) < GMS_TriggerDistance /*&& ((vehicle _x == _x) || (getPosATL _x) select 2 < 5)*/} count allPlayers > 0) then {true} else {false};
 			//diag_log format["_monitorInitializedMissions(56): _playerInRange = %1",_playerInRange];
 			if (_playerInRange) then {
 				//diag_log format["_monitorInitializedMissions (52) Player in range criteria met at %1 for _key %2",diag_tickTime,_key];
@@ -67,7 +67,7 @@ for "_i" from 1 to (count _missionsList) do
 		};
 	};
 	
-	if (GMS_debugLevel > 0) then {[format["_monitorInitializedMissions (68): time %1 | _monitorAction %2 | _missionConfigs %3",diag_tickTime,_monitorAction,_missionConfigs]] call GMS_fnc_log};
+	//if (GMS_debugLevel > 0) then {[format["_monitorInitializedMissions (68): time %1 | _monitorAction %2 | _missionConfigs %3",diag_tickTime,_monitorAction,_missionConfigs]] call GMS_fnc_log};
 
 	switch (_monitorAction) do 
 	{
@@ -159,7 +159,7 @@ for "_i" from 1 to (count _missionsList) do
 				];
 			*/	
 
-			_missionConfigs set[isSpawned, true];
+			//_missionConfigs set[isSpawned, true];
 			_missionConfigs set[spawnedAt, diag_tickTime];
 
 			_missionsList pushBack _el;

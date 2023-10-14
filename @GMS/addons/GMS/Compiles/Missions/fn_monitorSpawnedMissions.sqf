@@ -105,7 +105,7 @@ for "_i" from 1 to (count _missionsList) do
 					// _spawnedAt is set only after everything is spawned so just having a small safety factor of 60 seconds should be enough to be sure no one can complete the mission  
 					// until everything is spawned and settled.
 
-			private _playerIsNear = if ({(((_x distance2d _coords) < 10)) && ((vehicle _x == _x))} count allPlayers > 0) then {true} else {false};
+			private _playerIsNear = if ({(((_x distance2d _coords) < 20)) && (((getPosATL _x) select 2) < 5 /*((vehicle _x == _x)*/ )} count allPlayers > 0) then {true} else {false};
 			//GMS_playerIsNear = _playerIsnear;
 
 			private _minNoAliveForCompletion = (count _missionInfantry) - (round(GMS_killPercentage * (count _missionInfantry)));			
@@ -237,7 +237,7 @@ for "_i" from 1 to (count _missionsList) do
 			switch (_exception) do 
 			{
 				case 1: {  // Normal Mission End
-					//diag_log format["_monitorSpawnedMissions: (200): _markerMissionName %1: Normal mission end",_markerMissionName];
+					diag_log format["_monitorSpawnedMissions: (200): _markerMissionName %1: Normal mission end",_markerMissionName];
 	
 					if ((_spawnCratesTiming) in ["atMissionEndGround","atMissionEndAir"]) then
 					{
