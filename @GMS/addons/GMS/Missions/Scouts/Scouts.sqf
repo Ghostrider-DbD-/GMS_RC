@@ -7,9 +7,10 @@
 //diag_log "[GMS] Spawning Scout Mission";
  
 _crateLoot = GMS_BoxLoot_Red;
-_lootCounts = [3,5,2,3,6,1];
+_lootCounts = [4,5,3,3,6,2];
 _startMsg = "A group of Bandit Scouts was sighted in a nearby sector! Check the Red triangular marker on your map for the location!";
 _endMsg = "The Scout Camp is under Survivor Control!";
+_timeoutMsg = "The Scouts Have Moved Out of Their Camp";
 _markerLabel = "Scouts";
 //_markerType = ["mil_triangle",[0,0]];
 _markerType = ["mil_triangle",[0,0]];

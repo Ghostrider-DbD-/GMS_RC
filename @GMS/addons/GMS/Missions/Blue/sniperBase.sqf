@@ -25,7 +25,7 @@ _missionLandscapeMode = "precise"; // acceptable values are "none","random","pre
 
 //////////
 //   Past the output of the script here
-_markerType = ["ELLIPSE",[150,150],"GRID"];
+_markerType = ["ELLIPSE",[200,200],"SOLID"];
 _markerColor = "ColorBlue";
 _markerLabel = "";
 
@@ -80,11 +80,10 @@ _submarinePatrolParameters = [
 ];
 
 _airPatrols = [
-     ["somecrazyname",[40,-40,1],0]
 ];
 
 _missionEmplacedWeapons = [
-     ["somcrazyname",[20,-15,1],0]
+
 ];
 
 _missionGroups = [

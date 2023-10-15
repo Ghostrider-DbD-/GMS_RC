@@ -20,7 +20,7 @@ _lootCounts = [15,50,20,60,44,5];  //  	GMS_lootCountsOrange = [8,32,8,30,16,1];
 _startMsg = "A rogue Colonel is staging for an attack. Players must stop him. !";
 _endMsg = "The rogue Colonel has been defeated!";
 _markerLabel = "";
-_markerType = ["ellipse",[225,225],"GRID"];
+_markerType = ["ellipse",[350,350],"SOLID"];
 _markerColor = "ColorBlack";
 _markerMissionName = " Colonel";
 _missionLandscapeMode = "precise"; // acceptable values are "none","random","precise"

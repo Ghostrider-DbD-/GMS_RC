@@ -22,14 +22,15 @@ private _pathBlue = "Blue";
 private _missionListBlue = [
 		//"hostage1",  // OK
 		//"captive1",  // OK
-		"sniperBase",  // Spawns OK does not clear 249
+		"sniperBase",  // Spawns OK - clears when all AI Dead but not when player is at mission crate.
 		"survivalSupplies",  // Spawns OK Debug = 4 Build 246
 		//"derbunker", // OK, an interesting mission, better as a red / green though
 		//"forgotten_HQ",  //  ok BUT TOO TOUGH FOR BLUE OR RED
-		////"garrison"  //  OK but do not use.
+		//"garrison",  //  OK but do not use.
 		//"IDAP",  //  OK but too difficult for a blue mission	
-		"Service_point",  // OK build 224
+		"Service_point",  // OK build 224  //  clears when all AI Dead but not when player at mission crate
 		//"Toxin",  //  OK but too difficult for a blue mission
+		// "penis",
 		"default"  //  Spawns OK Debug = 4 Build 246
 		//"ForgottenHQ"
 	];
@@ -55,7 +56,7 @@ private _missionListRed = [
 		"IDAP",  // Spawns OK But not sure where the crate spawns. 
 		//"lager",
 		//"Operations_Command",
-		"Outpost",  //  Spawns OK Debug = 4 Build 246
+		//"Outpost",  //  Spawns OK Debug = 4 Build 246
 		"Service_Point" //Spawns OK Debug = 4 Build 246
 		//"tko_camp",  
 		//"Toxin" //  Spawns OK Debug = 4 Build 246
@@ -64,38 +65,42 @@ private _missionListRed = [
 private _pathGreen = "Green";
 private _missionListGreen = [/*"default","default2",/*"medicalCamp","redCamp","resupplyCamp","banditVillage",*/
 		"FieldCamp",  //  Spawns OK Build 246 Debug == 4
-		"FieldHQ",  // Spawns OK Build 246 Debug == 4
+		//"FieldHQ",  // Spawns OK Build 246 Debug == 4
 		//"weaponsResearch",  // OK build 224
-		//"munitionsResearch"  // Spawns OK Build 246 Debug == 4
+		"munitionsResearch",  // Spawns OK Build 246 Debug == 4
 		//"colonelsBase",  //  OK Build 224
-		"factory",  //  Spawns with some walls above ground level for unclear reasons.
+		//"factory",  //  Spawns with some walls above ground level for unclear reasons.
 		"fortification",  //  Spawns OK Debug = 4 Build 246
 		//"banditVillage",  //  OK but do not use.
-		"Camp_Moreell",  // Spawns OK Build 246 Debug == 4
+		//"Camp_Moreell",  // Spawns OK Build 246 Debug == 4
 		//"charlston",  //  Spawns OK but crate glitched under a building
 		//"derbunker",  //  OK
 		//"forgotten_HQ",  // OK, but can't complete
-		"lager"  //  Spawns OK but crate glitched under a building
+		//"lager"  //  Spawns OK but crate glitched under a building
 		//"Operations_Command",  //  OK  bEST SUITED FOR GREEN/ORANGE // Nees R3F or crate spawned by parachute at mission start
-		//"Outpost",  // OK
+		"Outpost"  // OK
 		//"tko_camp"  // OK
 		//"factory"
 	];
 
 private _pathOrange = "Orange";
 private _missionListOrange = [/*"default","default2","medicalCamp","redCamp","resupplyCamp","officeComplex",*/
-		"CommandersComplex",  //   Spawns OK Debug = 4 Build 246
-		"generalsCamp",  // Spawns OK Debug = 4 Build 246
-		//"colonel2",  // Spawns OK Debug = 4 Build 246
+		//"clit",
+		//"kore",
+		"CommandersComplex",  //   Spawns OK Debug = 4 Build 246 ***
+		"generalsCamp",  // Spawns OK Debug = 4 Build 246***
+		//"airfield1" //MILITARY AIRFIELD v1
+		"colonel2",  // Spawns OK Debug = 4 Build 246
 		//"stronghold",  //   Spawns OK Debug = 4 Build 246  but too big for the Exile.Altis server as of Build 253
-		"operationShutdown",  //  Spawns OK Debug = 4 Build 246
-		"operationTakeover",  //  Spawns OK Debug = 4 Build 246
-		"dashq",  // OK Build 252
-		"derbunker", // Spawns OK Build 252
+		"operationShutdown",  //  Spawns OK Debug = 4 Build 246***
+		"operationTakeover",  //  Spawns OK Debug = 4 Build 246***
+		"dashq",  // OK Build 252***
+		"derbunker", // Spawns OK Build 252***
 		//"Ammunition_depot"  // OK Build 252; need to update vics, only  12 AI for some reason
 		//"Camp_Moreell"  // OK Build 252 with crate drop from 50 meters
-		//"Operations_Command"  // OK Build 252
-		"tko_camp"  // // OK Build 252
+		//"Operations_Command",  // OK Build 252
+		//"clit",
+		"tko_camp"  // // OK Build 252***
 		/////  UNUSED FOR ONE REASON OR ANOTHER
 		//"Outpost"  // dOES NOT COMPLETE, ODD LOOT CHEST PLACEMENT	
 		/*,"temple"*/
@@ -106,6 +111,7 @@ private _missionListStatics = [
 	/// The format for these is filename 
 	/// Do NOT include the extension here.
 	/// You will need to add the mission files to the statics folder. 
+	//"spatzle",
 	"saltflatsone"
 
 ];

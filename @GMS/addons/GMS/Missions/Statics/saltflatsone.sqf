@@ -10,66 +10,19 @@
 #include "\GMS\Compiles\Init\GMS_defines.hpp"
 #include "\GMS\Missions\GMS_privateVars.sqf" 
 
-_defaultMissionLocations = [[22815.9,17109.1,-2.7895e-005]];
-_maxMissionRespawns = -1; // Chage this to either zero for no respawns or a positive number if you want to limit the number of times a mission spawns at the same location
-_markerLabel = "";
-_markerType = ["ELLIPSE",[150,150],"GRID"];
-_markerColor = "";
-_markerMissionName = "TODO: Set this to an appropriate name";
-_startMsg = "TODO: Change approiately";
-_endMsg = "TODO: Change Appropriately";
-_markerMissionName = "";
-_crateLoot = GMS_BoxLoot_Blue;
-_lootCounts = GMS_lootCountsBlue;
-
-_garrisonedBuilding_ATLsystem = [
-
-];
-
-/*
-	Dynamic Mission Generated
-	Using 3DEN Plugin for GMS by Ghostrider
-	GMS 3DEN Plugin Version 1.1 : Build 16 : Build Date 09/23/23
-	By Ghostrider-GRG-
-*/
-
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf" 
-
 _difficulty = "Blue";
 _chanceMissionSpawned = 1;
 _defaultMissionLocations = [[22815.9,17109.1,-2.7895e-005]];
-_maxMissionRespawns = -1; // Chage this to either zero for no respawns or a positive number if you want to limit the number of times a mission spawns at the same location
-_markerLabel = "";
-_markerType = ["ELLIPSE",[50,50],"FDiagonal"];
+_maxMissionRespawns = 0; // Chage this to either zero for no respawns or a positive number if you want to limit the number of times a mission spawns at the same location
+
+_markerType = ["ELLIPSE",[150,150],"FDiagonal"];
 _markerColor = "ColorWEST";
-_markerMissionName = "TODO: Set this to an appropriate name";
-_startMsg = "TODO: Change approiately";
-_endMsg = "TODO: Change Appropriately";
-_markerMissionName = "";
-_crateLoot = GMS_BoxLoot_Blue;
-_lootCounts = GMS_lootCountsBlue;
 
-/*
-	Dynamic Mission Generated
-	Using 3DEN Plugin for GMS by Ghostrider
-	GMS 3DEN Plugin Version 1.1 : Build 16 : Build Date 09/23/23
-	By Ghostrider-GRG-
-*/
+_markerLabel = "CaptainRoberts";
+_markerMissionName = "CaptainRoberts";
+_startMsg = "Captain Roberts Spotted near the salt flats";
+_endMsg = "Captain Roberts was sent to Neptun's Locker";
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf" 
-
-_difficulty = "Blue";
-_chanceMissionSpawned = 1;
-_defaultMissionLocations = [[22815.9,17109.1,-2.7895e-005]];
-_maxMissionRespawns = -1; // Chage this to either zero for no respawns or a positive number if you want to limit the number of times a mission spawns at the same location
-_markerLabel = "any";
-_markerType = ["ELLIPSE",[50,50],"FDiagonal"];
-_markerColor = "ColorWEST";
-_markerMissionName = "TODO: Set this to an appropriate name";
-_startMsg = "TODO: Change approiately";
-_endMsg = "TODO: Change Appropriately";
 _crateLoot = GMS_BoxLoot_Blue;
 _lootCounts = GMS_lootCountsBlue;
 
@@ -114,8 +67,8 @@ _missionGroups = [
 ];
 
 _missionGarrisonedGroups = [
-     [[-26.6816,45.0723,1.06332],0,"Blue",""],
-     [[21.418,-13.9297,1.14033],266.755,"Blue",""]
+    // [[-26.6816,45.0723,1.06332],0,"Blue",""],
+	//[[21.418,-13.9297,1.14033],266.755,"Blue",""]
 ];
 
 _scubaGroupParameters = [

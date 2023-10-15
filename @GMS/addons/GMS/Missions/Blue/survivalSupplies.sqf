@@ -25,7 +25,7 @@ _missionLandscapeMode = "precise"; // acceptable values are "none","random","pre
 
 //////////
 //   Past the output of the script here
-_markerType = ["ELLIPSE",[300,300],"GRID"];
+_markerType = ["ELLIPSE",[200,200],"SOLID"];
 _markerColor = "ColorBlue";
 _markerLabel = "";
 

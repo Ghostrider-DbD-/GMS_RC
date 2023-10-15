@@ -39,11 +39,6 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 
 **********************************************************************************/
 
-	GMS_crateMoneyBlue = [100,250];
-	GMS_crateMoneyRed = [175, 300];
-	GMS_crateMoneyGreen = [300, 500];
-	GMS_crateMoneyOrange = [500, 750];
-
 	GMS_crateTypes = ["Box_FIA_Ammo_F","Box_FIA_Support_F","Box_FIA_Wps_F","I_SupplyCrate_F","Box_NATO_AmmoVeh_F","Box_East_AmmoVeh_F","IG_supplyCrate_F","Box_NATO_Wps_F","I_CargoNet_01_ammo_F","O_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F"];  // Default crate type.
 	
 	GMS_allowSalesAtBlackMktTraders = true; // Allow vehicles to be sold at Halvjes black market traders.

@@ -100,20 +100,31 @@ switch (GMSCore_modType) do
 		GMS_rewardsRed = [[8,14],12,15];
 		GMS_rewardsGreen = [[10,18],[15,20]];
 		GMS_rewardsOrange = [[12,20],20,25];
-		GMS_rewards = [GMS_rewardsBlue,GMS_rewardsRed,GMS_rewardsGreen,GMS_rewardsOrange];
+
+		// Amount of tabs added to each mission crate
+		GMS_crateMoneyBlue = [100,250];
+		GMS_crateMoneyRed = [175, 300];
+		GMS_crateMoneyGreen = [300, 500];
+		GMS_crateMoneyOrange = [500, 750];
 
 		GMS_distanceBonus = 3; // per 100 M, max = 5 * this value;
 		GMS_killsBonus = 3; // from 2X up, max 6* this value
-		GMS_killstreakTimeout = 300; // 5 min
+		GMS_killstreakTimeout = 60; // 300; // 5 min
 		GMS_distantIncrementForCalculatingBonus = 100;
 	};
 	case "Exile": {
 		// expressed as [][tabs min, tabs max],[respect min,respect max]]
+		// Tabs will be added to bodies of killed AI. Respect will be awarded to players for each kill.		
 		GMS_rewardsBlue = [[5,10],[8,12]];
 		GMS_rewardsRed = [[8,14],[12,15]];
 		GMS_rewardsGreen = [[10,18],[15,20]];
 		GMS_rewardsOrange = [[12,20],[20,25]];
-		GMS_rewards = [GMS_rewardsBlue,GMS_rewardsRed,GMS_rewardsGreen,GMS_rewardsOrange];
+
+		// Amount of tabs added to each mission crate
+		GMS_crateMoneyBlue = [1400,2150];
+		GMS_crateMoneyRed = [3175, 5300];
+		GMS_crateMoneyGreen = [16300, 21500];
+		GMS_crateMoneyOrange = [23500, 24750];
 
 		GMS_rewardsNotifications = ["dynamicText"];
 

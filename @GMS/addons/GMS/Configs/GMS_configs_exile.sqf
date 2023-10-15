@@ -50,11 +50,6 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 	GMS_blacklistSpawns = true;
 	GMS_listConcreteMixerZones	= true;
 
-	GMS_crateMoneyBlue = [1400,2150];
-	GMS_crateMoneyRed = [3175, 5300];
-	GMS_crateMoneyGreen = [16300, 21500];
-	GMS_crateMoneyOrange = [23500, 24750];
-
 	GMS_crateTypes = ["Box_FIA_Ammo_F","Box_FIA_Support_F","Box_FIA_Wps_F","I_SupplyCrate_F","Box_NATO_AmmoVeh_F","Box_East_AmmoVeh_F","IG_supplyCrate_F","Box_NATO_Wps_F","I_CargoNet_01_ammo_F","O_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F"];  // Default crate type.
 			
 	GMS_maximumItemPriceInAI_Loadouts = 1000;

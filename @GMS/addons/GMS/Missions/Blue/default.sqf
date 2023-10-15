@@ -60,7 +60,7 @@ _lootCounts = GMS_lootCountsBlue;
 _startMsg = "A group of Bandits was sighted in a nearby sector! Check the Blue marker on your map for the location!";
 _endMsg = "The Sector at the Blue Marker is under survivor control!";
 _markerLabel = "";
-_markerType = ["ELLIPSE",[175,175],"GRID"];
+_markerType = ["ELLIPSE",[200,200],"SOLID"];
 //_markerType = ["RECTANGLE", [350,350],"GRID"Full"];
 			// The mission system supports circular or square mission markers as well as typical Arma icon-style (triangle, dot, flag etc) markers.
 			// to have an icon define the map marker as follows:

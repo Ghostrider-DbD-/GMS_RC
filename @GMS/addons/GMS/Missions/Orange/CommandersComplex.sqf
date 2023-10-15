@@ -9,7 +9,7 @@ _lootCounts = [15,50,20,60,44,5];  //  	GMS_lootCountsOrange = [8,32,8,30,16,1];
 _startMsg = "An enemy Commander was sighted in a nearby sector! Check the Orange marker on your map for the location!";
 _endMsg = "The Sector at the Orange Marker is under survivor control!";
 _markerLabel = "";
-_markerType = ["ellipse",[250,250],"GRID"];
+_markerType = ["ellipse",[350,350],"SOLID"];
 _markerColor = "ColorOrange";
 _markerMissionName = "Commander";
 _missionLandscapeMode = "precise"; // acceptable values are "none","random","precise"

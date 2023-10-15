@@ -33,6 +33,20 @@ The static loot system and dynamic loot system are gone. THese outlived thier us
 I have kept the change log as a bit of history for those interested in development of this mission system. 
 Significant Changes:
 
+Version 7.166 Build 271 
+ADDED An optional timeout message (See \Missions\Scouts\scouts.sqf for an example)
+CHANGED how deletion of mission completion markers by moving schedule deletion of these markers to GMSCore 
+	- Each mission completion marker is scheduled for deletion 6 min after mission completion. 
+	- The timing of deletion is approximate as the script handling cleanup only runs every 60 seconds or so. 
+FIXED Some issues with mission timeout logic and code and rewrote code that handles initialized missions using a try/catch structure.
+MOVED settings for amounts of money added to mission crates to GMS_config.sqf 
+
+Version 7.165 Build 270
+ADDED Back mission config variables for static mission spawns to GMS_configs.sqf 
+ADDED Deletion of Mission Crates at statics. This may be controversial. 
+FIXED A bookkeeping issues wherein units that man static weapons were not counted properly in the ALIVE AI display on map markers 
+FIXED An issue that reduced movement of AI Vehicles until a player is spotted. The vehicle will still move to the player and stop once identified as an enemy. 
+
 Build 268 Version 7.164
 Fixed issues with adding tabs or crypto to objects including AI. 
 REQUIRES GMSCore 

@@ -38,11 +38,13 @@ if (GMS_missionsRunning >= GMS_maxSpawnedMissions) exitWith
 		*/	
 	_missionDescriptors params["_key","_difficulty","_maxMissions","_activeMissions","_tMin","_tMax","_waitTime","_missionsData","_isStatic"];
 	
+	/*
 	{
 		diag_log format["_spawnNewMission: _this %1 = %2",_forEachIndex, _x];
 	} forEach _missionDescriptors;
+	*/
 
-	diag_log format["_spawnNewMission: _missionsData = %1",_missionsData];
+	//diag_log format["_spawnNewMission: _missionsData = %1",_missionsData];
 
 	if (_missionsData isEqualTo []) exitWith {-1};
 	if (_activeMissions < _maxMissions && {diag_tickTime > _waitTime && {GMS_missionsRunning < GMS_maxSpawnedMissions}}) then 
@@ -68,10 +70,10 @@ if (GMS_missionsRunning >= GMS_maxSpawnedMissions) exitWith
 				_spawnedAt					// index 14
 			];
 		*/
-		{
+		/*{
 			diag_log format["_spawnNewMission:_missionSelected:  _this %1 = %2",_forEachIndex,_x];
 		} forEach _missionSelected;
-
+		*/
 		/*
 			params[  //  for GMS_fnc_initialiZeMission are
 				"_key",  			// This key can be used to seach the list of available mission types to update that list when a mission is completed or times out
@@ -80,7 +82,7 @@ if (GMS_missionsRunning >= GMS_maxSpawnedMissions) exitWith
 				"_isStatic"
 			];
 		*/
-		diag_log format["_spawnNewMissions: _missionSelected = %1",_missionSelected];
+		//diag_log format["_spawnNewMissions: _missionSelected = %1",_missionSelected];
 		private _missionInitialized = [_key,_missionSelected,GMS_dynamicMissionsSpawned,_isStatic] call GMS_fnc_initializeMission;
 
 		if (_missionInitialized == 1) then {    // This is a dynamic mission s see if we can spawn another instance of this categore (blue, red, green, orange)

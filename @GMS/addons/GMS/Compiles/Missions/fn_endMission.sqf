@@ -56,6 +56,7 @@ _missionLootConfigs params [
 	// Ignore the remaining entries in the configuration
 ];
 */
+
 {[_x] call GMS_fnc_deleteMarker} forEach (_markers);
 
 {
@@ -72,6 +73,9 @@ switch (_endCode) do
 {
 	case -1: {
 			//[format["_endMission (93): _exception -1 | _mines %1 | _crates %2 | count _objects %3 | count _missionAI %4 ",_mines,_crates,count _objects, count _missionAI]] call GMS_fnc_log;
+			if !(_endMsg isEqualTo "") then {
+				[["end",_endMsg,"News Update"]] call GMS_fnc_messageplayers;
+			};
 			GMS_hiddenTerrainObjects pushBack[_hiddenObjects,(diag_tickTime)];			
 			[_mines, 0] call GMSCore_fnc_deleteObjectsMethod;	
 			[_crates, 0] call GMSCore_fnc_deleteObjectsMethod;
@@ -81,7 +85,7 @@ switch (_endCode) do
 			[_lootVehicles, 0] call GMSCore_fnc_deleteObjectsMethod;
 	};
 	case 1: {  // Normal End
-			//[format["_endMission (102): _exception 1 (normal ending) | _mines %1 | _crates %2 | count _objects %3 | count _missionAI %4 ",_mines,_crates,count _objects, count _missionAI]] call GMS_fnc_log;
+			[format["_endMission (102): _exception 1 (normal ending) | _mines %1 | _crates %2 | count _objects %3 | count _missionAI %4 ",_mines,_crates,count _objects, count _missionAI]] call GMS_fnc_log;
 			if (GMS_useSignalEnd) then
 			{
 				//[_crates select 0,150, GMS_smokeShellAtCrates] call GMSCore_fnc_visibleMarker;
@@ -93,7 +97,7 @@ switch (_endCode) do
 			
 			[["end",_endMsg,_markerMissionName]] call GMS_fnc_messageplayers;
 
-			[_coords, _markerName] spawn GMS_fnc_missionCompleteMarker;
+			[_coords, _markerName] call GMS_fnc_missionCompleteMarker;
 
 			{
 				//private ["_v","_posnVeh"];
@@ -110,7 +114,9 @@ switch (_endCode) do
 			[_objects, (diag_tickTime + GMS_cleanupCompositionTimer)] call GMSCore_fnc_addToDeletionCue;	
 			GMS_hiddenTerrainObjects pushBack[_hiddenObjects,(diag_tickTime + GMS_cleanupCompositionTimer)];
 			[_missionAI, (diag_tickTime + GMS_AliveAICleanUpTimer)] call GMSCore_fnc_addToDeletionCue;
-			if (_isStatic) then {[_crates, diag_tickTime + GMS_cleanupCompositionTimer] call GMSCore_fnc_addToDeletionCue};
+			if (_isStatic) then {
+				[_crates, diag_tickTime + GMS_cleanupCompositionTimer] call GMSCore_fnc_addToDeletionCue;
+			};
 			[format["Mission Completed | _coords %1 : _markerClass %2 :  _markerMissionName %3",_coords,_markerName,_markerName]] call GMS_fnc_log;			
 	};
 	case 2: {  // Aborted for moving a crate 

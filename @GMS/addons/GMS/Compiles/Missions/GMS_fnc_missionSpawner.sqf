@@ -24,7 +24,10 @@ private ["_abort","_crates","_aiGroup","_objects","_groupPatrolRadius","_mission
 		"_missionUAVs",
 		"_missionGarrisonedGroups",
 		"_chanceMissionSpawned",
-		"_rewardVehicles "];
+		"_rewardVehicles",
+		// New private Variables from 10-15-23
+		"_timeoutMsg"
+		];
 		
 params["_markerName",["_aiDifficultyLevel","Red"]];
 if (isNil "_markerLabel") then {_markerLabel = _markerMissionName};
@@ -88,6 +91,7 @@ if (isNil "_simpleObjects") then {_simpleObjects = []};
 if (isNil "_missionemplacedweapons") then {_missionemplacedweapons = []};
 // Allow for and capture any custom difficult setting in the mission
 if !(isNil "_difficulty") then {_aiDifficultyLevel = _difficulty}; 
+if (isNil "_timeoutMsg") then {_timeoutMsg = ""};
 
 _markerType params["_markerType",["_markersize",[250,250]],["_markerBrush","GRID"]];
 private _paraSkill = _aiDifficultyLevel;
@@ -175,7 +179,8 @@ private _aiConfigs = [
 private _missionMessages = [
 	_assetKilledMsg,	
 	_endMsg,
-	_startMsg	
+	_timeoutMsg,	
+	_startMsg
 ];
 
 private _timesSpawned = 0;

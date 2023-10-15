@@ -12,9 +12,9 @@
 */
 
  class GMSBuild {
-	 Version = "7.165";
-	 Build = "270"; 
-	 Date = "10-14-2023";
+	 Version = "7.166";
+	 Build = "271"; 
+	 Date = "10-15-2023";
  };
 
 class CfgPatches {
@@ -57,8 +57,7 @@ class CfgFunctions {
 			class missionCompleteMarker {};
 			class msgIED {};
 			class nearestPlayers {};
-			//class playerInRange {};
-			//class playerInRangeArray {};
+
 			class restoreHiddenObjects {};
 			class setDirUp {};
 			class spawnMarker {};

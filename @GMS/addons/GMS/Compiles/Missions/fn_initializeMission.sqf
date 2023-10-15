@@ -168,12 +168,18 @@ private _markers = [
 	_markerSize,
 	_markerBrush] call GMS_fnc_createMissionMarkers;
 
-if (GMS_debugLevel >= 2) then {[format["_initializeMission (130): _marker = %1 | _markerMissionName = %2 | _difficulty = %3",_markers,_markerMissionName,_difficulty]] call GMS_fnc_log};
+if (GMS_debugLevel >= 0) then {[format["_initializeMission (130): _marker = %1 | _markerMissionName = %2 | _difficulty = %3",_markers,_markerMissionName,_difficulty]] call GMS_fnc_log};
 
 /*
 	Send a message to players.
 */
- private _startMsg = _missionMessages select 2;
+_missionMessages params [
+	"_assetKilledMsg",	
+	"_endMsg",
+	"_timeoutMsg",	
+	"_startMsg"
+];
+
 [["start",_startMsg,_markerMissionName]] call GMS_fnc_messageplayers;
 
 #define missionTimeoutAt (diag_tickTime + GMS_MissionTimeout)
@@ -201,6 +207,6 @@ private _missionData = [
 ];
 #define spawnPara -1
 GMS_initializedMissionsList pushBack [_key, missionTimeoutAt, triggered, _missionData, _missionConfigs, spawnPara,_isStatic];
-[format["_initializeMission (163): count GMS_initializedMissionsList = %1",count GMS_initializedMissionsList]] call GMS_fnc_log;
+//[format["_initializeMission (163): count GMS_initializedMissionsList = %1",count GMS_initializedMissionsList]] call GMS_fnc_log;
 _initialized = 1;
 _initialized

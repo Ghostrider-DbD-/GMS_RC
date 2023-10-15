@@ -229,10 +229,6 @@ for "_i" from 1 to (count _missionsList) do
 				"_missionLootVehicles"
 			];
 
-			_missionMessages params [
-				"_assetKilledMsg",	
-				"_endMsg"
-			];
 			if (GMS_debugLevel > 0) then {[format["_monitorSpawnedMissions(234): _exception = %1 | _spawnedAt = %2",_exception,_spawnedAt]] call GMS_fnc_log};
 			switch (_exception) do 
 			{
@@ -299,6 +295,10 @@ for "_i" from 1 to (count _missionsList) do
 						["_endCode",-1]
 					*/
 					//[format["_monitorSpawnedMissions: Catch case 1 - normal mission waypointCompletionRadius - at %1",diag_tickTime]] call GMS_fnc_log;
+					_missionMessages params [
+						"_assetKilledMsg",	
+						"_endMsg"
+					];					
 					[_key, _missionData, _endMsg, _markerConfigs, _missionLootConfigs,_isscubamission, 1, _isStatic] call GMS_fnc_endMission;
 
 					// _missionConfigs is configured as:
@@ -450,12 +450,12 @@ for "_i" from 1 to (count _missionsList) do
 				};		
 				case 6: {
 					// Mission not fully spawned yet for some reason. This should never happen but this case is included for completeness. 
-					[format["_monitorSpawnedMissions: Catch case 6 - mission not fully spawned - at %1",diag_tickTime]] call GMS_fnc_log;
+					//[format["_monitorSpawnedMissions: Catch case 6 - mission not fully spawned - at %1",diag_tickTime]] call GMS_fnc_log;
 					_missionsList pushBack _el;
 				};		
 				case 7: {
 					// The mission only just spawned - lets give it 60 sec to settle.
-					[format["_monitorSpawnedMissions: Catch case 7 - wating for mission to settle - at %1",diag_tickTime]] call GMS_fnc_log;
+					//[format["_monitorSpawnedMissions: Catch case 7 - wating for mission to settle - at %1",diag_tickTime]] call GMS_fnc_log;
 					_missionsList pushBack _el;
 				};
 			};

@@ -138,7 +138,7 @@ if (GMS_debugLevel > 0) then {
     //GMS_minDistanceToPlayer = 1000;
     //GMS_minDistanceFromTowns = 100;
 	//GMS_preciseMapMarkers = true;
-	//GMS_MissionTimeout = 60;
+	//GMS_MissionTimeout = 120;
 	GMS_cleanupCompositionTimer = 30;
 	GMS_AliveAICleanUpTimer = 30;
 	GMS_bodyCleanUpTimer = 30;
@@ -155,7 +155,7 @@ if (GMS_debugLevel > 0) then {
 	GMS_enableHunterMissions = 0;
 	GMS_enableScoutsMissions = 1;
 	GMS_enableStaticMissions = 1;
-	GMS_maxCrashSites = 1; 
+	GMS_maxCrashSites = 0; 
 
 	GMS_noPatrolHelisBlue = 0;
 	GMS_noPatrolHelisRed = 1;
@@ -199,7 +199,7 @@ if (GMS_debugLevel > 0) then {
 	GMS_TMin_Scouts = 45;
 	GMS_TMin_Crashes = 5;
 	GMS_TMin_UMS = 20;
-	GMS_TMin_Statics = 120;  // minimum time for RESPAWN of static missions
+	GMS_TMin_Statics = 400;  // minimum time for RESPAWN of static missions
 	//Maximum Spawn time between missions in seconds
 	GMS_TMax_Blue = 12;
 	GMS_TMax_Red = 15;
