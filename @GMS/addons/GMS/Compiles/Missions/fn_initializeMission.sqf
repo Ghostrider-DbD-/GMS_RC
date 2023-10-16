@@ -22,25 +22,25 @@ params[
 	"_isStatic"
 ];
 
-		// _missionConfigs is configured as:
-		/*
-			params [
-				_aiDifficultyLevel,			// index 0
-				_markerConfigs,				// index 1
-				_endCondition,				// index 2
-				_isscubamission,			// index 3
-				_missionLootConfigs,		// index 4
-				_aiConfigs,					// index 5 
-				_missionMessages,			// index 6
-				_paraConfigs,				// index 7
-				_defaultMissionLocations,	// index 8 
-				_maxMissionRespawns,		// index 9 
-				_timesSpawned,				// index 10
-				_chanceMissionSpawned,		// index 11
-				_isSpawned,					// index 12
-				_spawnedAt					// index 13
-			];
-		*/
+// _missionConfigs is configured as:
+/*
+	params [
+		_aiDifficultyLevel,			// index 0
+		_markerConfigs,				// index 1
+		_endCondition,				// index 2
+		_isscubamission,			// index 3
+		_missionLootConfigs,		// index 4
+		_aiConfigs,					// index 5 
+		_missionMessages,			// index 6
+		_paraConfigs,				// index 7
+		_defaultMissionLocations,	// index 8 
+		_maxMissionRespawns,		// index 9 
+		_timesSpawned,				// index 10
+		_chanceMissionSpawned,		// index 11
+		_isSpawned,					// index 12
+		_spawnedAt					// index 13
+	];
+*/
 
  _missionConfigs params [
 	"_difficulty",			// index 0
@@ -59,11 +59,28 @@ params[
 	"_spawnedAt"			// index 13
  ];
 
-#define timesSpawnedIndex 11
-
-//diag_log format["_fnc_initializeMission _chanceMissionRespawned = %1", _chanceMissionSpawned];
 // do not initialize if the odds of spawning are not favorable.
-if (random(1) > _chanceMissionSpawned) exitWith {-1};
+if (random(1) > _chanceMissionSpawned) exitWith {
+	diag_log format["_initializeMission (27): returning value of -1"];
+	-1
+};
+// If the mission has already been spawned the max number of times, pass back a code indicating that.
+if (!(_maxMissionRespawns == -1) && (_timesSpawned > _maxMissionRespawns)) exitWith {
+	diag_log format["_initializeMission (32): returning value of -2"];
+	-2
+};
+// If the mission has not been spawned, but is a static mission and could be spawned if it met the test for chance of a spawn, pass back a code indicating that.
+if (random(1) > _chanceMissionSpawned && (_isStatic) && (_timesSpawned == 0)) exitWith {
+	diag_log format["_initializeMission (37): returning value of 2"];
+	2
+};
+// If the mission is a static mission and it has been spawned but not cleared then pass back a code indicating that
+if (_isStatic && _isSpawned) exitWith {
+	diag_log format["_initializeMission (42): returning value of 3"];
+	3
+};
+
+#define timesSpawnedIndex 11
 
 _markerConfigs params[
 	"_markerName",  //  The unique text identifier for the marker
@@ -71,13 +88,11 @@ _markerConfigs params[
 	"_markerType", 
 	"_markerColor", 
 	"_markerSize",
-	"_markerBrush"
+	"_markerBrush",
+	"_showMarkers"
 ];
 
 //[format["_initializeMission (39): _markerName %1 | _key %2 | _missionCount %3 | _maxMissionRespawns %4 | _timesSpawned %5",_markerName,_key,_missionCount,_maxMissionRespawns,_timesSpawned]] call GMS_fnc_log;
-
-// If the mission is a static mission and it has been spawned but not cleared then pass back a code indicating that
-if (_isStatic && _isSpawned) exitWith {private _initialized = 3; _initialized};
 
 private _initialized = 0;
 /*
@@ -110,7 +125,7 @@ if (_coords isEqualTo [] || {_coords isEqualTo [0,0,0]}) exitWith
 
 GMS_ActiveMissionCoords pushback _coords; 
 GMS_missionsRunning = GMS_missionsRunning + 1;
-//[format["_initializeMission (70): _coords = %1 | GMS_missionsRunning = %2",_coords,GMS_missionsRunning]] call GMS_fnc_log;
+//[format["_initializeMission (118): _coords = %1 | GMS_missionsRunning = %2",_coords,GMS_missionsRunning]] call GMS_fnc_log;
 
 private _markers = [];
 
@@ -142,7 +157,7 @@ if !(GMS_preciseMapMarkers) then
 private _markerError = false;
 if !(toLowerANSI (_markerType) in ["ellipse","rectangle"] || {isClass(configFile >> "CfgMarkers" >> _markerType)} ) then 
 {
-	//[format["_markerType set to 'ELLIPSE': Illegal marker type %1 used for mission %2 of difficulty %3",_markerType,_markerMissionName,_difficulty],"warning"] call GMS_fnc_log;
+	[format["_markerType set to 'ELLIPSE': Illegal marker type %1 used for mission %2 of difficulty %3",_markerType,_markerMissionName,_difficulty],"warning"] call GMS_fnc_log;
 	_markerType = "ELLIPSE";
 	_markerSize = [200,200];
 	_markerBrush = "GRID";
@@ -151,7 +166,7 @@ if !(toLowerANSI (_markerType) in ["ellipse","rectangle"] || {isClass(configFile
 
 if !(isClass(configFile >> "CfgMarkerColors" >> _markerColor)) then 
 {
-	//[format["_markerColor set to 'default': Illegal color %1 used for mission %2 of difficulty %3",_markerColor,_markerMissionName,_difficulty],"warning"] call GMS_fnc_log;
+	[format["_markerColor set to 'default': Illegal color %1 used for mission %2 of difficulty %3",_markerColor,_markerMissionName,_difficulty],"warning"] call GMS_fnc_log;
 	_markerColor = "DEFAULT";
 	_markerError = true;
 };
@@ -166,9 +181,11 @@ private _markers = [
 	_markerColor,
 	_markerType,
 	_markerSize,
-	_markerBrush] call GMS_fnc_createMissionMarkers;
+	_markerBrush,
+	_showMarkers
+] call GMS_fnc_createMissionMarkers;
 
-if (GMS_debugLevel >= 0) then {[format["_initializeMission (130): _marker = %1 | _markerMissionName = %2 | _difficulty = %3",_markers,_markerMissionName,_difficulty]] call GMS_fnc_log};
+//if (GMS_debugLevel >= 0) then {[format["_initializeMission (130): _marker = %1 | _markerMissionName = %2 | _difficulty = %3",_markers,_markerMissionName,_difficulty]] call GMS_fnc_log};
 
 /*
 	Send a message to players.
@@ -205,6 +222,7 @@ private _missionData = [
 	lootVehicles,	// index 8
 	_markers		// index 9
 ];
+
 #define spawnPara -1
 GMS_initializedMissionsList pushBack [_key, missionTimeoutAt, triggered, _missionData, _missionConfigs, spawnPara,_isStatic];
 //[format["_initializeMission (163): count GMS_initializedMissionsList = %1",count GMS_initializedMissionsList]] call GMS_fnc_log;

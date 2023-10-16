@@ -203,10 +203,14 @@ if (GMS_enableStaticMissions > 0 && !(_missionLIstStatics isEqualTo [])) then //
 	private _isStatic = true;
 	private _numberStatics = count _missionListStatics;
 	{
-		if ((count _staticsToSpawn) > (count _missionLIstStatics)) exitWith {};
-		private _mission = selectRandom _missionLIstStatics;
+		[format["_init (206): _missionListStatics %1 = %2",_forEachIndex, _x]] call GMS_fnc_log;
+	} forEach  _missionListStatics;
+	 while {(count _staticsToSpawn) < (count _missionListStatics) && ((count _staticsToSpawn) < (GMS_enableStaticMissions))} do 
+	 {
+		private _mission = selectRandom _missionListStatics;
 		_staticsToSpawn pushBackUnique _mission; 
-	} forEach _missionLIstStatics;
+		[format["GMS_fnc_init (209): _mission = %1 | count _staticsToSpawn = %2",_mission, count _staticsToSpawn]] call GMS_fnc_log;
+	};
 	/*
 		params[
 			["_missionList",[]],
@@ -218,7 +222,7 @@ if (GMS_enableStaticMissions > 0 && !(_missionLIstStatics isEqualTo [])) then //
 			["_noMissions",1],
 			["_isStatic",false]];
 	*/
-	//diag_log format["_init: count _staticsToSpawn = %1 | GMS_enableStaticMissions = %2:",count _staticsToSpawn,GMS_enableStaticMissions];
+	diag_log format["_init: count _staticsToSpawn = %1 | GMS_enableStaticMissions = %2:",count _staticsToSpawn,GMS_enableStaticMissions];
 	[_staticsToSpawn,_pathStatics,"StaticsMarker","orange",GMS_TMin_Statics,GMS_TMax_Statics,GMS_enableStaticMissions,_isStatic] call GMS_fnc_addMissionToQue;
 };
 

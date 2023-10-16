@@ -43,8 +43,9 @@ GMS_spawnHelisPass = 0;
 //GMS_aiKilled = false;
 GMS_triggered = false;
 GMS_revealMode = "detailed"; //""basic" /*group or vehicle level reveals*/,detailed /*unit by unit reveals*/";
-GMS_dynamicMissionsSpawned = 0;
+GMS_MissionsSpawned = 0;
 GMS_missionData = [];
+
 GMS_initializedMissionsList = [];
 GMS_landVehiclePatrols = [];
 GMS_aircraftPatrols = [];

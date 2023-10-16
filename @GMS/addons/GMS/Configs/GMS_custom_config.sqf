@@ -152,7 +152,7 @@ if (GMS_debugLevel > 0) then {
 	GMS_enableRedMissions = 0;   // 10-2-2023 Tested with mission list= "fuelDepot", "junkyardWilly", "TraderBoss", "carThieves", "Ammunition_depot", "IDAP", "Outpost", "Service_Point"
 	GMS_enableBlueMissions = 0;  // 10-2-2023 Tested with mission list= "sniperBase", "survivalSupplies", "Service_point", and "default"
 	GMS_numberUnderwaterDynamicMissions = 0;	
-	GMS_enableHunterMissions = 0;
+	GMS_enableHunterMissions = 1;
 	GMS_enableScoutsMissions = 1;
 	GMS_enableStaticMissions = 1;
 	GMS_maxCrashSites = 0; 

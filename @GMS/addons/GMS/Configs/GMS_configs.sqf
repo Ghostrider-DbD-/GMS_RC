@@ -17,7 +17,7 @@
 		changing any of these variables may break the mission system
 	*/
 	GMS_locationBlackList = [];  // Do not touch ...
-	GMS_debugLevel = 3;  //  should be set to 0 ... 
+	GMS_debugLevel = 0;  //  should be set to 0 ... 
 
 	[format["Loading configurations for Non-militarized servers"]] call GMS_fnc_log;
 	/*
@@ -342,7 +342,7 @@ switch (GMSCore_modType) do
 	GMS_enableRedMissions = 2;
 	GMS_enableBlueMissions = 1;
 	GMS_numberUnderwaterDynamicMissions = 0;  // Values from -1 (no UMS) to N (N Underwater missions will be spawned; static UMS units and subs will be spawned.	
-	GMS_enableStaticMissions = 3;
+	GMS_enableStaticMissions = 2;
 
 	#ifdef GRGserver
 	GMS_enableHunterMissions = 1;

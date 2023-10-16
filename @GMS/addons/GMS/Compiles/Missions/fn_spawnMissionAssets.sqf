@@ -358,7 +358,7 @@ if (_spawnCratesTiming in ["atMissionSpawnGround","atMissionSpawnAir"]) then
 	if (_loadCratesTiming isEqualTo "atMissionSpawn") then 
 	{
 		private _crateMoney =(missionNamespace getVariable[format["GMS_crateMoney%1",_difficulty],GMS_rewardsOrange]);
-		diag_log format["_spawnMissionAssets(395): _crateMoney = %1",_crateMoney];
+		//diag_log format["_spawnMissionAssets(395): _crateMoney = %1",_crateMoney];
 		{
 			[_x,_difficulty,_crateMoney] call GMSCore_fnc_setMoney;
 		} forEach _crates;

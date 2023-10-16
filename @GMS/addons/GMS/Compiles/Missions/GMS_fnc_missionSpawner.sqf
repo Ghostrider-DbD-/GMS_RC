@@ -26,7 +26,9 @@ private ["_abort","_crates","_aiGroup","_objects","_groupPatrolRadius","_mission
 		"_chanceMissionSpawned",
 		"_rewardVehicles",
 		// New private Variables from 10-15-23
-		"_timeoutMsg"
+		"_timeoutMsg",
+		"_missionLandscapeMode",
+		"_showMarker"
 		];
 		
 params["_markerName",["_aiDifficultyLevel","Red"]];
@@ -92,6 +94,7 @@ if (isNil "_missionemplacedweapons") then {_missionemplacedweapons = []};
 // Allow for and capture any custom difficult setting in the mission
 if !(isNil "_difficulty") then {_aiDifficultyLevel = _difficulty}; 
 if (isNil "_timeoutMsg") then {_timeoutMsg = ""};
+if (isNil "_showMarker") then {_showMarker = true};
 
 _markerType params["_markerType",["_markersize",[250,250]],["_markerBrush","GRID"]];
 private _paraSkill = _aiDifficultyLevel;
@@ -100,12 +103,12 @@ private _paraSkill = _aiDifficultyLevel;
 if !(_spawnCratesTiming in GMS_validLootSpawnTimings) then 
 {
 	[format['Invalid crate spawn timing %1 found in mission %2 :: default value atMissionSpawnGround used',_spawnCratesTiming,_markerMissionName],"<WARNING>"] call GMS_fnc_log;
-	_spawnCratesTiming = atMissionSpawnGround;
+	_spawnCratesTiming = "atMissionSpawnGround";
 };
 if !(_loadCratesTiming in GMS_validLootLoadTimings) then 
 {
 	[format['Invalid crate loading timing %1 found in mission %2 :: default atMissionSpawn value used',_loadCratesTiming,_markerMissionName],"<WARNING>"] call GMS_fnc_log;
-	_loadCratesTiming = atMissionSpawn;
+	_loadCratesTiming = "atMissionSpawn";
 };
 if !(_endCondition in GMS_validEndStates) then 
 {
@@ -119,7 +122,8 @@ private _markerConfigs = [
 	_markerType, 
 	_markerColor, 
 	_markerSize,
-	_markerBrush
+	_markerBrush,
+	_showMarker
 ];
 
 private _paraConfigs = [

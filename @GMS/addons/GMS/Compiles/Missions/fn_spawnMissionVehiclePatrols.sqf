@@ -39,9 +39,9 @@ private _patrolsThisMission = +_missionPatrolVehicles;
 {
 	//diag_log format["_spawnMissionVehiclePatrols(41): _x = %1",_x];
 	_x params[["_vehName",""],["_pos",[]],["_dir",0]];
-	diag_log format["_spawnMissionVehiclePatrols(43):  _vehName = %1 | _pos = %2 | _dir = %3 | isClass _vehName = %4",_vehName,_pos,_dir, isClass(configFile >> "CfgVehicles" >> _vehName)];
+	//diag_log format["_spawnMissionVehiclePatrols(43):  _vehName = %1 | _pos = %2 | _dir = %3 | isClass _vehName = %4",_vehName,_pos,_dir, isClass(configFile >> "CfgVehicles" >> _vehName)];
 	_pos = _coords vectorAdd _pos;  // else {_pos = (_coords vectorAdd _pos) findEmptyPosition[0,50,_vehName]};
-	diag_log format["_spawnMissionVehiclePatrols(45): _pos updated to %1",_pos];
+	//diag_log format["_spawnMissionVehiclePatrols(45): _pos updated to %1",_pos];
 	if (isClass(configFile >> "CfgVehicles" >> _vehName)) then {
 		if !(_pos isEqualTo []) then {
 				
@@ -122,6 +122,6 @@ private _patrolsThisMission = +_missionPatrolVehicles;
 } forEach _patrolsThisMission;
 GMS_landVehiclePatrols append _vehicles;
 GMS_monitoredVehicles append _vehicles;
-[format["GMS_fnc_spawnMissionVehiclePatrols:  count _missionAI = %1 | count _vehicles = %2", count _missionAI, count _vehicles]] call GMS_fnc_log;
+//[format["GMS_fnc_spawnMissionVehiclePatrols:  count _missionAI = %1 | count _vehicles = %2", count _missionAI, count _vehicles]] call GMS_fnc_log;
 [_vehicles, _missionAI];
 

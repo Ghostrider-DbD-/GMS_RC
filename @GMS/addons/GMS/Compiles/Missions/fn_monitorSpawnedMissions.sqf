@@ -229,7 +229,7 @@ for "_i" from 1 to (count _missionsList) do
 				"_missionLootVehicles"
 			];
 
-			if (GMS_debugLevel > 0) then {[format["_monitorSpawnedMissions(234): _exception = %1 | _spawnedAt = %2",_exception,_spawnedAt]] call GMS_fnc_log};
+			//if (GMS_debugLevel > 0) then {[format["_monitorSpawnedMissions(234): _exception = %1 | _spawnedAt = %2",_exception,_spawnedAt]] call GMS_fnc_log};
 			switch (_exception) do 
 			{
 				case 1: {  // Normal Mission End
