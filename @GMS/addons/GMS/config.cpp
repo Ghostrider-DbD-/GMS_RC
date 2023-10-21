@@ -12,9 +12,9 @@
 */
 
  class GMSBuild {
-	 Version = "7.17";
-	 Build = "272"; 
-	 Date = "10-16-2023";
+	 Version = "7.18";
+	 Build = "273"; 
+	 Date = "10-20-2023";
  };
 
 class CfgPatches {
@@ -29,14 +29,14 @@ class CfgPatches {
 class CfgFunctions {
 	class GMS {
 		class startup {
-			file = "\GMS\Compiles\Init";
+			file = "GMS\Compiles\Init";
 			class init {
 				postInit = 1;
 			};
 		};
 		
 		class functions {
-			file = "\GMS\Compiles\Functions";
+			file = "GMS\Compiles\Functions";
 			class broadcastServerFPS {};	
 			class cleanEmptyGroups {};	
 			class countAliveAI {};
@@ -56,15 +56,14 @@ class CfgFunctions {
 			class messagePlayers {};	
 			class missionCompleteMarker {};
 			class msgIED {};
-			class nearestPlayers {};
-
+			//class nearestPlayers {};
 			class restoreHiddenObjects {};
-			class setDirUp {};
+			//class setDirUp {};
 			class spawnMarker {};
 			class updateMarkerAliveCount {};
 		};
 		class groups {
-			file = "\GMS\Compiles\Groups";
+			file = "GMS\Compiles\Groups";
 			class checkGroupWaypointStatus {};
 			class cleanEmptyGroups {};
 			class createGroup {};  // Kept for backwards compatability with static missions if these are kept and not updated.			
@@ -77,7 +76,7 @@ class CfgFunctions {
 			class spawnGroup {};
 		};
 		class missions {
-			file = "\GMS\Compiles\Missions";
+			file = "GMS\Compiles\Missions";
 			class addMIssionToQue {};
 			//class crateMoved {};
 			class endMission {};
@@ -124,7 +123,7 @@ class CfgFunctions {
 			class spawnSurfacePatrol {};
 		};
 		class units {
-			file = "\GMS\Compiles\Units";
+			file = "GMS\Compiles\Units";
 			class cleanupAliveAI {};
 			class deleteAI {};
 			class removeAllAIgear {};
@@ -134,11 +133,11 @@ class CfgFunctions {
 			class unitKilled {};
 		};
 		class Utils {
-			file = "\GMS\Compiles\Utils";
+			file = "GMS\Compiles\Utils";
 			class log {};
 		};
 		class vehicles {
-			file = "\GMS\Compiles\Vehicles";	
+			file = "GMS\Compiles\Vehicles";	
 			class alertVehicles {};
 			class deleteAIVehicle {};
 			class checkForEmptyVehicle {};	

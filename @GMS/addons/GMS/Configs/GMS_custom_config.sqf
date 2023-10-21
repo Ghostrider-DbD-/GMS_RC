@@ -58,12 +58,12 @@ switch (toLower (worldName)) do
 		_nightTime = abs(24 - _daylight);
 		_time = dayTime;
 		_serverUpTime = 8;
-		GMS_enableOrangeMissions = 1;  
+		GMS_enableOrangeMissions = 0;  
 		GMS_enableGreenMissions = 1;
-		GMS_enableRedMissions = 1;
-		GMS_enableBlueMissions = 1;
-		GMS_enableHunterMissions = 1;
-		GMS_enableScoutsMissions = 1;
+		GMS_enableRedMissions = 0;
+		GMS_enableBlueMissions = 0;
+		GMS_enableHunterMissions = 0;
+		GMS_enableScoutsMissions = 0;
 		GMS_maxCrashSites = -1;  // recommended settings: 3 for Altis, 2 for Tanoa, 1 for smaller maps. Set to -1 to disable
 		
 		GMS_timeAcceleration = true; // When true, time acceleration will be periodically updated based on amount of daylight at that time according to the values below.
@@ -147,14 +147,14 @@ if (GMS_debugLevel > 0) then {
 	//GMS_mainThreadUpdateInterval = 10;
 	GMS_launchersPerGroup = 1;
 
-	GMS_enableOrangeMissions = 0;  
-	GMS_enableGreenMissions = 0; // 10-02-2023 Tested with mission list= "FieldCamp", "FieldHQ", "factory", "fortification", "Camp_Moreell", "lager"
-	GMS_enableRedMissions = 0;   // 10-2-2023 Tested with mission list= "fuelDepot", "junkyardWilly", "TraderBoss", "carThieves", "Ammunition_depot", "IDAP", "Outpost", "Service_Point"
-	GMS_enableBlueMissions = 0;  // 10-2-2023 Tested with mission list= "sniperBase", "survivalSupplies", "Service_point", and "default"
+	GMS_enableOrangeMissions = 1;  
+	GMS_enableGreenMissions = 1; // 10-02-2023 Tested with mission list= "FieldCamp", "FieldHQ", "factory", "fortification", "Camp_Moreell", "lager"
+	GMS_enableRedMissions = 1;   // 10-2-2023 Tested with mission list= "fuelDepot", "junkyardWilly", "TraderBoss", "carThieves", "Ammunition_depot", "IDAP", "Outpost", "Service_Point"
+	GMS_enableBlueMissions = 1;  // 10-2-2023 Tested with mission list= "sniperBase", "survivalSupplies", "Service_point", and "default"
 	GMS_numberUnderwaterDynamicMissions = 0;	
 	GMS_enableHunterMissions = 1;
 	GMS_enableScoutsMissions = 1;
-	GMS_enableStaticMissions = 1;
+	GMS_enableStaticMissions = 5;
 	GMS_maxCrashSites = 0; 
 
 	GMS_noPatrolHelisBlue = 0;

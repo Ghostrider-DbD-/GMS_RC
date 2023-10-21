@@ -9,7 +9,7 @@
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
 
-#include "GMS_defines.hpp"
+#include "\GMS\Compiles\Init\GMS_defines.hpp"
 
 ///////////////////////////////////////////////
 //  prevent the system from being started twice

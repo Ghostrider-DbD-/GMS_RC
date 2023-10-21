@@ -12,7 +12,7 @@
 #include "\GMS\Compiles\Init\GMS_defines.hpp"
 params["_vehicle","_searchRadius","_detectionOdds"];
 private["_player","_detectionOdds","_nearbyPlayers","_knowsAbout","_cansee","_knowledgeGained"];
-_nearbyPlayers = [getPosATL _vehicle, _vehicle getVariable["GMS_vehicleSearchRange",500]] call GMS_fnc_nearestPlayers;
+_nearbyPlayers = [getPosATL _vehicle, _vehicle getVariable["GMS_vehicleSearchRange",500]] call GMSCore_fnc_nearestPlayers;
 
 switch GMS_revealMode do {
 	case "detailed": {

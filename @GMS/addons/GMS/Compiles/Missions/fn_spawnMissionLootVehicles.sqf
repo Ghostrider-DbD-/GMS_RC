@@ -19,7 +19,7 @@ private _vehs = [];
 {
 	_x params["_vehType","_vehOffset",["_dir",0],"_lootArray","_lootCounts"];
 	_veh = [_vehType, _coords vectorAdd _vehOffset] call GMS_fnc_spawnVehicle;
-	[_veh, _dir] call GMS_fnc_setDirUp;
+	[_veh, _dir] call GMSCore_fnc_setDirUp;
 	_veh lock _lock;
 	if (_loadCrateTiming isEqualTo "atMissionSpawnGround") then
 	{

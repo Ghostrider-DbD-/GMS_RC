@@ -121,10 +121,10 @@ switch (GMSCore_modType) do
 		GMS_rewardsOrange = [[12,20],[20,25]];
 
 		// Amount of tabs added to each mission crate
-		GMS_crateMoneyBlue = [1400,2150];
+		GMS_crateMoneyBlue = [1800,2150];
 		GMS_crateMoneyRed = [3175, 5300];
 		GMS_crateMoneyGreen = [16300, 21500];
-		GMS_crateMoneyOrange = [23500, 24750];
+		GMS_crateMoneyOrange = [23500, 27750];
 
 		GMS_rewardsNotifications = ["dynamicText"];
 
@@ -149,7 +149,7 @@ switch (GMSCore_modType) do
 	GMS_showCountAliveAI = true;
 
 // radius within whih missions are triggered. The trigger causes the crate and AI to spawn.
-	GMS_TriggerDistance = 1500;
+	GMS_TriggerDistance = 2000;
 	
 	//Minimum distance between missions
 	GMS_MinDistanceFromMission = 1200;
@@ -237,7 +237,7 @@ switch (GMSCore_modType) do
 	GMS_useMines = false;   // when true mines are spawned around the mission area. these are cleaned up when a player reaches the crate. Turn this off if you have vehicle patrols.
 	GMS_cleanupCompositionTimer = 60*30;  // Mission objects will be deleted after the mission is completed after a deley set by this timer.
 	GMS_cleanUpLootChests = false; // when true, loot crates will be deleted together with other mission objects.
-	GMS_MissionTimeout = 90*90;  // 60 min - missions will timeout and respawn in another location. This prevents missions in impossible locations from persisting.
+	GMS_MissionTimeout = 60*60;  // 60 min - missions will timeout and respawn in another location. This prevents missions in impossible locations from persisting.
 
 	///////////////////////////////
 	// Paratroop Settings
@@ -302,7 +302,7 @@ switch (GMSCore_modType) do
 	GMS_patrolHelisGreen = _GMS_armed_hellcats + _cup_Helis_missiles;  // _GMS_armed_orcas + _GMS_armed_ghosthawks;  //_GMS_littleBirds;
 	GMS_noPatrolHelisGreen = 1;
 	
-	GMS_chanceHeliPatrolOrange = 0.90;
+	GMS_chanceHeliPatrolOrange = 0.95;
 	GMS_patrolHelisOrange = _GMS_armed_heavyAttackHelis + _GMS_armed_attackHelis;  //_GMS_littleBirds;
 	GMS_noPatrolHelisOrange = 1;
 
@@ -334,20 +334,20 @@ switch (GMSCore_modType) do
 	////////////////////
 	
 	// Maximum number of missions shown on the map at any one time.
-	GMS_maxSpawnedMissions = 11;
+	GMS_maxSpawnedMissions = 9;
 		
 	//Set to -1 to disable. Values of 2 or more force the mission spawner to spawn copies of that mission - this feature is not recommended because you may run out of available groups.
 	GMS_enableOrangeMissions = 1;  
-	GMS_enableGreenMissions = 2;
+	GMS_enableGreenMissions = 1;
 	GMS_enableRedMissions = 2;
-	GMS_enableBlueMissions = 1;
+	GMS_enableBlueMissions = -1;
 	GMS_numberUnderwaterDynamicMissions = 0;  // Values from -1 (no UMS) to N (N Underwater missions will be spawned; static UMS units and subs will be spawned.	
-	GMS_enableStaticMissions = 2;
+	GMS_enableStaticMissions = 1;
 
 	#ifdef GRGserver
 	GMS_enableHunterMissions = 1;
 	GMS_enableScoutsMissions = 2;
-	GMS_maxcrashsites = 2;
+	GMS_maxcrashsites = 1;
 	#endif
 
 	////////////////////
@@ -581,15 +581,15 @@ switch (GMSCore_modType) do
 	**************************************************************/
 	//This defines the skill, minimum/Maximum number of AI and how many AI groups are spawned for each mission type
 	// Orange Missions
-	GMS_MinAI_Orange = 18;
-	GMS_MaxAI_Orange = 23;
+	GMS_MinAI_Orange = 17;
+	GMS_MaxAI_Orange = 22;
 	GMS_AIGrps_Orange = 5;
 	GMS_SkillsOrange = [
 		[0.20],  // aiming accuracy
 		[0.75,0.85],  //  aiming speed 
 		[0.25],  //  aiming shake 
 		1.0,  //  spot distance 
-		0.89,  //  spot time 
+		0.92,  //  spot time 
 		1.00,  // courage 
 		1.00,  //  reload speed 
 		1.00,  //  commanding 
@@ -597,8 +597,8 @@ switch (GMSCore_modType) do
 	];
 	
 	// Green Missions
-	GMS_MinAI_Green = 14;
-	GMS_MaxAI_Green = 19;
+	GMS_MinAI_Green = 13;
+	GMS_MaxAI_Green = 18;
 	GMS_AIGrps_Green = 4;
 	GMS_SkillsGreen = [
 		[0.18],  //  aiming accuracy 

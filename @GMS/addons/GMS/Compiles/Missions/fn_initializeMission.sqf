@@ -225,6 +225,10 @@ private _missionData = [
 
 #define spawnPara -1
 GMS_initializedMissionsList pushBack [_key, missionTimeoutAt, triggered, _missionData, _missionConfigs, spawnPara,_isStatic];
+
+// Repair any damage done by prior activities.
+{_x setDamage 0} forEach ( nearestObjects [_coords, ["Building"], 500]); 
+
 //[format["_initializeMission (163): count GMS_initializedMissionsList = %1",count GMS_initializedMissionsList]] call GMS_fnc_log;
 _initialized = 1;
 _initialized

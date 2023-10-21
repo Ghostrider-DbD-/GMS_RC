@@ -20,7 +20,7 @@ if (GMS_simulationManager isEqualTo GMS_useDynamicSimulationManagement) exitWith
 	// wake groups up if needed.
 	{
 		private _group = _x;
-		private _nearplayer = [getPosATL (leader _group),GMS_simulationEnabledDistance] call GMS_fnc_nearestPlayers;	
+		private _nearplayer = [getPosATL (leader _group),GMS_simulationEnabledDistance] call GMSCore_fnc_nearestPlayers;	
 		if !(_nearPlayer isEqualTo []) then 
 		{
 			_group reveal [(_nearplayer select 0),(_group knowsAbout (_nearPlayer select 0)) + 0.001];  //  Force simulation on
@@ -33,7 +33,7 @@ if (GMS_simulationManager isEqualTo GMS_useBlckeaglsSimulationManager) then
 
 	{
 		private _group = _x;
-		private _nearplayer = [getPosATL (leader _group),GMS_simulationEnabledDistance] call GMS_fnc_nearestPlayers;	
+		private _nearplayer = [getPosATL (leader _group),GMS_simulationEnabledDistance] call GMSCore_fnc_nearestPlayers;	
 		if !(_nearplayer isEqualTo []) then
 		{
 			if !(simulationEnabled (leader _group)) then

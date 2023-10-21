@@ -44,15 +44,14 @@ private _hiddenObjs = [];
 
 	_obj setPosATL _objPos;
 	[_obj] call GMSCore_fnc_emptyObjectInventory;
-	_newObjs pushback _obj;
-	[_obj, _dir] call GMS_fnc_setDirUp;
-	_obj setVectorUp [0,0,1];	
+	[_obj, _dir] call GMSCore_fnc_setDirUp;
 	_obj enableDynamicSimulation _sim;
 	_obj allowDamage _dam;	
 	if ((typeOf _obj) isKindOf "LandVehicle" || {(typeOf _obj) isKindOf "Air" || {(typeOf _obj) isKindOf "Ship"}}) then
 	{
 		[_obj] call GMS_fnc_configureMissionVehicle;
 	};	
+	_newObjs pushback _obj;	
 } forEach _objects;
 
 [_newObjs,_hiddenObjs];

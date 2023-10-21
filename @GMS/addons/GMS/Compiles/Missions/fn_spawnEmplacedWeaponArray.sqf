@@ -54,8 +54,6 @@ private _emplacedWepData = +_missionEmplacedWeapons;  //  So we dont overwrite t
 		_empGroup setBehaviour "COMBAT";
 		_empGroup setVariable ["soldierType","emplaced"];
 
-		// TODO: recode to use GMS_fnc to create vehicle
-		//private _wep = [_static,_pos] call GMS_fnc_spawnVehicle;
 		/*
 			["_className",""], // Clasname of vehicle to be spawned
 			["_spawnPos",[0,0,0]],  //  selfevident
@@ -68,24 +66,18 @@ private _emplacedWepData = +_missionEmplacedWeapons;  //  So we dont overwrite t
 			["_vehHitCode",[]],
 			["_vehKilledCode",[]]
 		*/
-		//_wep setVariable["GRG_vehType","emplaced"];	
-		//_wep setPosATL _pos;
-		//_wep setdir _dir;
 
-		// TODO: recode to use GMS_fnc to handle this if needed	
-		//[_wep,2] call GMS_fnc_configureMissionVehicle;	
 		#define height 0
 		#define removeFuel 0
 		#define vehHitCode [] 
 		#define vehKilledCode []
 		private _damage = if (GMS_killEmptyStaticWeapons) then {1} else {0};
 		private _releaseToPlayers = if (GMS_killEmptyStaticWeapons) then {false} else {true};
-		private _wep = [_static,_pos,_dir,height,_damage,removeFuel,_releaseToPlayers,GMS_vehicleDeleteTimer,vehHitCode,vehKilledCode] call GMSCore_fnc_spawnPatrolVehicle;
+		private _wep = [_static,_pos,_dir, height, _damage, removeFuel, _releaseToPlayers, GMS_vehicleDeleteTimer, vehHitCode, vehKilledCode] call GMSCore_fnc_spawnPatrolVehicle;
 		_wep setVariable["GMS_vehType","emplaced"];	
 		_emplacedWeps pushback _wep;
 		[_wep,_empGroup] call GMSCore_fnc_loadVehicleCrew;
-		//diag_log format["_spawnEmplacedWeaponArray(91): _wep = %1 | getPos _wep = %2 | _static = %3",_wep, getPosATL _wep, _static];
-		//_gunner setVariable["GRG_vehType","emplaced"];	
+	
 		_emplacedAI append (units _empGroup);
 	} else {
 		[format["GMS_fnc_spawnEmplacedWeaponArray:   Invalid classname %1 used in _missionEmplacedWeapons", _static],"warning"] call GMS_fnc_log;

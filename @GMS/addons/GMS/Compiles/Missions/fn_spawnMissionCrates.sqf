@@ -60,7 +60,7 @@ private _cratesSpawned = [];
 	
 	private _pos = _coords vectorAdd _crateOffset;
 	private _crate = [_pos,_crateType] call GMS_fnc_spawnCrate;
-	[_crate, _crateDir] call GMS_fnc_setDirUp;
+	[_crate, _crateDir] call GMSCore_fnc_setDirUp;
 	_crate setVariable["lootArray",_lootArray];
 	_crate setVariable["lootCounts",_lootCounts];
 	_crate setVariable["difficulty",_difficulty];

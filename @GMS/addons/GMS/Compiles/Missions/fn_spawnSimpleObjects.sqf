@@ -15,11 +15,10 @@
 params["_center","_objects","_relative"];
 private _spawnedObjects = [];
 {
-	_x params["_className","_relPos","_dir","_booleans"];
+	_x params["_className","_relPos","_dir"];
 	private _objPos = _center vectorAdd _relPos;		
 	private _obj = createSimpleObject [_className,ATLToASL _objPos];
-	_obj setDir _dir;
-	_obj setVectorUp  [0,0,1];
+	[_obj, _dir] call GMSCore_fnc_setDirUp;
 	_spawnedObjects pushBack _obj;
 } forEach _objects;
 _spawnedObjects

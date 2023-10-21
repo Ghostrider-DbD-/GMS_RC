@@ -33,6 +33,10 @@ The static loot system and dynamic loot system are gone. THese outlived thier us
 I have kept the change log as a bit of history for those interested in development of this mission system. 
 Significant Changes:
 
+Version = "7.18"  Build = "273" Date = "10-20-2023"
+Added full support for vector-based positioning.
+
+
 Version 7.166 Build 271 
 ADDED An optional timeout message (See \Missions\Scouts\scouts.sqf for an example)
 CHANGED how deletion of mission completion markers by moving schedule deletion of these markers to GMSCore 
