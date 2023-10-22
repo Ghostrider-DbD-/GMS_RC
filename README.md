@@ -2,10 +2,20 @@
 GMS Public Release Candidate
 
 Purpose:
-GMS spawns missions dynamically and is derived from blckeagls mission system that I maintained for many years.
+GMS spawns missions either statically (same place each time) or dynamically.
+GMS is derived from blckeagl's mission system that I maintained for many years.
+GMS now comes with a 3DEN plugin that allows you to quickly and easily export your missions as .sqf files that you can add to GMS. 
 
 Why switch to GMS?
-Over the years I added modules that were useful to me on our servers that made blckeagls complex for others. GMS is a stripped down rebuild of GMS. Every script has been improved for faster execution. Only scripts needed for dynaically spawning missions remain. As far as I know, the many bugs that plagued blckeagls were sorted and GMS is a stable and hardy mission system.
+Over the years I added modules that were useful to me on our servers that made blckeagls complex for others. 
+All of these modules have been moved to other addons that are also available on my github. 
+GMS now uses a library of optimzed function to spawn mission assets and control asset behaviors.
+This is all handled by GMSCore.
+GMS organizes handles spawning of missions, mission completion, and configs for AI gear and behavior such as Skill but uses GMSCore to actually manipulate AI. 
+Somes scripts from blackeagls were retained in some form but every script has been improved for faster execution. 
+All but a few scripts are now compiled in CfgFunctions which should speed execution slightly.
+Only scripts needed for dynaically spawning missions remain.
+
 
 Dependencies:
 GMS requires that you load GMSCore on server startup.
@@ -13,10 +23,13 @@ GMSCore is available here: https://github.com/Ghostrider-DbD-/GMSCore
 GMSCore provides core functions needed for AI spawning, AI waypoint management and other basic functionalities.
 
 How do you add Dynamic Missions?
-This github upload includes the Eden Editor plugin originally written for blckeagls. To use it, simply ensure it is loaded when you start Arma. You can do this by downloading it to your documents\mods folder, adding it in the mods section of Arma3Launcher and starting Arma. Once this is done, lay out your mission in the Eden Editor, export the layed out mission using the commands in the plugin, and past the output into your favorite script editor. Save the mission script as a blue, red, green or orange mission in the appropriate folder and add the name of the file to the list of missions in GMS_MIssionlist.sqf. That's it, you are done!
+This github upload includes an Eden Editor plugin. 
+The plugin includes a help menu with how-go guides for laying out and exporting missions. 
+The plugin is improved over that for blackeagls in that you now specify any vehicles or loot containers as loot objects by setting Attributes in 3DEN. 
+To use it, simply ensure it is loaded when you start Arma. You can do this by downloading it to your documents\mods folder, adding it in the mods section of Arma3Launcher and starting Arma. 
 
 What about Static missions or recurring missions at a location.
-Just specify the coordinate(s) at which the mission should spawn. THe mission spawner will always spawn the mission at that exact location.
+Just select 'Static' in the mission configurations menu for the plugin. 
 
 Are there any other modules in the GMS series?
 Yes- the following modules are available:
