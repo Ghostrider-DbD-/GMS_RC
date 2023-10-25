@@ -211,7 +211,6 @@ if !(_garrisonedBuildings_BuildingPosnSystem isEqualTo []) then
 		["_sideArms",[]]];
 */			
 private _userelativepos = true;
-//private _numberEmplacedWeaponsThisMission = [_noEmplacedWeapons] call GMSCore_fnc_getNumberFromRange;
  
 if (GMS_useStatic && !(_missionEmplacedWeapons isEqualTo [])) then
 {
@@ -221,6 +220,8 @@ if (GMS_useStatic && !(_missionEmplacedWeapons isEqualTo [])) then
 	_missionInfantry append _units;			
 	uisleep delayTime;				
 } else {
+	
+	// GMSCore_fnc_getNumberFromRange returns -1 if there was an issue.
 	if (([_noEmplacedWeapons] call GMSCore_fnc_getNumberFromRange) > 0) then {
 		private _wepPositions = [_coords,_noEmplacedWeapons,35,50] call GMS_fnc_findPositionsAlongARadius;
 		private _emplacedWeaponsRandom = [];
@@ -258,7 +259,6 @@ if !(_missionLootVehicles isEqualTo []) then
 		["_crewCount",4]
 	];
 */
-private _noPatrols = [_noVehiclePatrols] call GMSCore_fnc_getNumberFromRange;
 
 if (GMS_useVehiclePatrols && {!(_missionPatrolVehicles isEqualTo [])}) then
 {
@@ -268,6 +268,8 @@ if (GMS_useVehiclePatrols && {!(_missionPatrolVehicles isEqualTo [])}) then
 	_missionInfantry append _units;
 	uiSleep delayTime;				
 } else {
+	// GMSCore_fnc_getNumberFromRange returns -1 if there was an issue.	
+	private _noPatrols = [_noVehiclePatrols] call GMSCore_fnc_getNumberFromRange;	
 	if (GMS_useVehiclePatrols && {(_noPatrols > 0)}) then
 	{
 		private _spawnLocations = [_coords,_noVehiclePatrols,60,100] call GMS_fnc_findPositionsAlongARadius;	
@@ -309,7 +311,7 @@ if (GMS_useVehiclePatrols && {((_submarinePatrols > 0) || {!(_submarinePatrolPar
 		["_sideArms",[]]
 	];			
 */
-private _noChoppers = [_noChoppers] call GMSCore_fnc_getNumberFromRange;
+
 if !(_airPatrols isEqualTo [] && {random(1) < _chanceHeliPatrol}) then // Spawn any choppers defined in the array  
 {
 	_temp = [_coords, _airPatrols,_difficulty,_uniforms,_headgear,_vests,_backpacks,_weaponList,_sidearms] call GMS_fnc_spawnMissionHelis;
@@ -320,6 +322,8 @@ if !(_airPatrols isEqualTo [] && {random(1) < _chanceHeliPatrol}) then // Spawn 
 	_missionInfantry append _unitsSpawned;				
 	uisleep delayTime;						
 } else {
+	// GMSCore_fnc_getNumberFromRange returns -1 if there was an issue.		
+	private _noPatrols = [_noVehiclePatrols] call GMSCore_fnc_getNumberFromRange;	
 	if ((_noChoppers > 0) && {random(1) < _chanceHeliPatrol}) then
 	{
 		//  GMS_fnc_findPositionsAlongARadius:  params["_center","_num","_minDistance","_maxDistance"];

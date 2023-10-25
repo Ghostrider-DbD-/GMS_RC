@@ -96,7 +96,7 @@ if !(isNil "_difficulty") then {_aiDifficultyLevel = _difficulty};
 if (isNil "_timeoutMsg") then {_timeoutMsg = ""};
 if (isNil "_showMarker") then {_showMarker = true};
 
-_markerType params["_markerType",["_markersize",[250,250]],["_markerBrush","GRID"]];
+_markerType params["_markerShape",["_markersize",[250,250]],["_markerBrush","GRID"]];
 private _paraSkill = _aiDifficultyLevel;
 
 
@@ -119,7 +119,7 @@ if !(_endCondition in GMS_validEndStates) then
 private _markerConfigs = [
 	_markerLabel,
 	_markerMissionName, // Name used for setMarkerText and also for the root name for all markers	
-	_markerType, 
+	_markerShape, 
 	_markerColor, 
 	_markerSize,
 	_markerBrush,

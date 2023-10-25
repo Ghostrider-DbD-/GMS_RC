@@ -24,11 +24,12 @@ if (_isStatic) then {
 
 //diag_log format["_addMissionToQue: _waitTime = %1",_waitTime];
 
+private "_missionFile";
 
 private _missionsData = []; // Parameters definine each of the missions for this difficulty are stored as arrays here.
 {
-	private _missionFile = format["\GMS\Missions\%1\%2.sqf",_path,_x];
-	//diag_log format["_addMissionToQue: _missionFile = %1",_missionFile];
+	_missionFile = format["\GMS\Missions\%1\%2.sqf",_path,_x];
+	if (GMS_debugLevel > 0) then {[format["_addMissionToQue: adding %1 mission with fileName %2",_difficulty,_missionFile]] call GMS_fnc_log};
 	private _missionCode = compileFinal preprocessFileLinenumbers _missionFile;//return all of the values that define how the mission is spawned as an array of values
 	if !(isNil "_missionCode") then 
 	{
@@ -54,7 +55,8 @@ private _missions = [
 	_tMax, // as above
 	_waitTime,  // time at which a mission should be spawned
 	_missionsData,  // Array of data about individual missions that could be spawned. The data table for each mission is defined in _missionSpawner
-	_isStatic
+	_isStatic,
+	_missionFile
 ];
 //diag_log format["_addMissionToQue (55): _missions = %1",_missions];
 GMS_missionData pushBack _missions;

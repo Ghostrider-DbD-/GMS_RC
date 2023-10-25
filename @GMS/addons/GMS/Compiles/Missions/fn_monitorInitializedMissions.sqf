@@ -35,30 +35,33 @@ for "_i" from 1 to (count _missionsList) do
 		"_missionData",					// 4  //  variable containing information specific to this instance of the mission such as location and objects
 		"_missionConfigs",				// 5  // Variables regarding the configuration of the dynamic mission
 		"_spawnPara",					// 
-		"_isStatic"						// 7 // A flag as to whether the mission is a static or dynamically spawned mission.
+		"_isStatic",					// 7 // A flag as to whether the mission is a static or dynamically spawned mission.
+		"_missionFile"
 	];
 
 	#define triggered 2
-	#define missionCoords (_missionData select 0) 
+	private _missionCoords = (_missionData select 0); 
 	#define delayTime 1
 
 	if !(_triggered == 0) then {
 		_missionsList pushBack _el;
 	} else {
-		private _playerInRange = if ({(_x distance2d missionCoords) < GMS_TriggerDistance /*&& ((vehicle _x == _x) || (getPosATL _x) select 2 < 5)*/} count allPlayers > 0) then {true} else {false};
+
 		try {
+			if (!(_missionCoords isEqualTypeArray [0,0,0]) || _missionCoords isEqualTo [0,0,0]) throw -3; 
+			private _playerInRange = if ({(_x distance2d _missionCoords) < GMS_TriggerDistance /*&& ((vehicle _x == _x) || (getPosATL _x) select 2 < 5)*/} count allPlayers > 0) then {true} else {false};			
 			switch (true) do 
 			{
 				case ((_missionTimeoutAt > 0) && {diag_tickTime > _missionTimeoutAt && !(_isStatic)}): {
-					diag_log format["_monitorInitializedMissions (37) Mission Timeout Criteria Met at %1",diag_tickTime];
+					if (GMS_debugLevel > 0) then {diag_log format["_monitorInitializedMissions (37) Mission Timeout Criteria Met at %1 for mission %2",diag_tickTime,_missionFile]};
 					throw -1;
 				};
 				case (_playerInRange): {
-					diag_log format["_monitorInitializedMissions (52) Player in range criteria met at %1 for _key %2",diag_tickTime,_key];
+					if (GMS_debugLevel > 0) then {diag_log format["_monitorInitializedMissions (52) Player in range criteria met at %1 for _missionFile %2",diag_tickTime,_missionFile]};
 					throw 0;
 				};
 				case (GMS_debugLevel >= 3): {
-					[format["_monitorInitializedMissions (54): mission triggered for GMS_debugLevel = %1",GMS_debugLevel]] call GMS_fnc_log;
+					[format["_monitorInitializedMissions (54): mission triggered for GMS_debugLevel = %1 for _missionFile %2",GMS_debugLevel,_missionFile]] call GMS_fnc_log;
 					throw 0;
 				};  //  simulate the mission being tripped by a player
 				default {
@@ -72,6 +75,9 @@ for "_i" from 1 to (count _missionsList) do
 			//[format["_monitorInitializeMissions (69): diag_tickTime %1 | _missionTimeoutAt %2 | _exception %3",diag_tickTime,_missionTimeoutAt,_exception]] call GMS_fnc_log;
 
 			switch (_exception) do {
+				case -3: {
+					[format["Unable to initialize Mission in _monitorInitializedMissions because an illeagal value was passed for _missionCoords of %1 for _missionFile %2",_missionCoords,_missionFile],'warning'] call GMS_fnc_log;
+				};
 				// Nothing needs to be done
 				case -2 : {
 					_missionsList pushBack _el;

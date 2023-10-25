@@ -31,7 +31,8 @@ for "_i" from 1 to (count _missionsList) do
 		"_missionData",					// 4  //  variable containing information specific to this instance of the mission such as location and objects
 		"_missionConfigs",			// 5  // Variables regarding the configuration of the dynamic mission
 		"_spawnPara",
-		"_isStatic"
+		"_isStatic",
+		"_missionFile"
 	];
 	#define triggered 2
 	#define spawnPara 5
