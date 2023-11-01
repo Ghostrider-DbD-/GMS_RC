@@ -10,6 +10,6 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 params["_killer"];
 [["IED","",0,0],[_killer]] call GMS_fnc_MessagePlayers;

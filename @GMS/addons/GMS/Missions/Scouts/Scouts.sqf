@@ -1,13 +1,13 @@
 /*
  
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 
 //diag_log "[GMS] Spawning Scout Mission";
  
-_crateLoot = GMS_BoxLoot_Red;
-_lootCounts = [4,5,3,3,6,2];
+_crateLoot = GMS_BoxLoot_Blue;
+_lootCounts = [5,5,4,4,6,2];
 _startMsg = "A group of Bandit Scouts was sighted in a nearby sector! Check the Red triangular marker on your map for the location!";
 _endMsg = "The Scout Camp is under Survivor Control!";
 _timeoutMsg = "The Scouts Have Moved Out of Their Camp";
@@ -54,4 +54,4 @@ _chanceHeli = 0;
 _noChoppers = 0;
 _endCondition = allKilledOrPlayerNear;  // Options are allUnitsKilled, playerNear, allKilledOrPlayerNear
 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 

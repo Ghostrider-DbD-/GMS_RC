@@ -1,7 +1,7 @@
 /*
 	By Ghostrider [GRG]
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 params["_coords",["_missionEmplacedWeapons",[]],["_useRelativePos",true],["_aiDifficultyLevel","red"],["_uniforms",[]], ["_headGear",[]],["_vests",[]],["_backpacks",[]],["_weaponList",[]],["_sideArms",[]]];
 if (_uniforms isEqualTo []) 		then {_uniforms = [_aiDifficultyLevel] call GMS_fnc_selectAIUniforms};

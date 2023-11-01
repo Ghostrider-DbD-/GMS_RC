@@ -11,8 +11,8 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 _crateLoot = GMS_BoxLoot_Green;
 _lootCounts = GMS_lootCountsGreen;
 _startMsg = "A hotel complex is under attack in a nearby sector! Check the marker on your map for the location!";
@@ -100,4 +100,4 @@ _noVehiclePatrols = GMS_SpawnVeh_Green;
 _noEmplacedWeapons = GMS_SpawnEmplaced_Green;
 _useMines = GMS_useMines;  // Setting this in the mission file overrides the defaults 
 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";

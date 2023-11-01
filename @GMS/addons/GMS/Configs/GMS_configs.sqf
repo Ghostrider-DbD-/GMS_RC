@@ -11,13 +11,13 @@
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 	/*
 		changing any of these variables may break the mission system
 	*/
 	GMS_locationBlackList = [];  // Do not touch ...
-	GMS_debugLevel = 0;  //  should be set to 0 ... 
+	GMS_debugLevel = 3;  //  should be set to 0 ... 
 
 	[format["Loading configurations for Non-militarized servers"]] call GMS_fnc_log;
 	/*
@@ -121,10 +121,10 @@ switch (GMSCore_modType) do
 		GMS_rewardsOrange = [[12,20],[20,25]];
 
 		// Amount of tabs added to each mission crate
-		GMS_crateMoneyBlue = [1800,2150];
-		GMS_crateMoneyRed = [3175, 5300];
-		GMS_crateMoneyGreen = [16300, 21500];
-		GMS_crateMoneyOrange = [23500, 27750];
+		GMS_crateMoneyBlue = [3000,5000];
+		GMS_crateMoneyRed = [5000, 7000];
+		GMS_crateMoneyGreen = [10000, 15000];
+		GMS_crateMoneyOrange = [15000, 20000];
 
 		GMS_rewardsNotifications = ["dynamicText"];
 
@@ -237,7 +237,7 @@ switch (GMSCore_modType) do
 	GMS_useMines = false;   // when true mines are spawned around the mission area. these are cleaned up when a player reaches the crate. Turn this off if you have vehicle patrols.
 	GMS_cleanupCompositionTimer = 60*30;  // Mission objects will be deleted after the mission is completed after a deley set by this timer.
 	GMS_cleanUpLootChests = false; // when true, loot crates will be deleted together with other mission objects.
-	GMS_MissionTimeout = 60*60;  // 60 min - missions will timeout and respawn in another location. This prevents missions in impossible locations from persisting.
+	GMS_MissionTimeout = 75*75;  // 60 min - missions will timeout and respawn in another location. This prevents missions in impossible locations from persisting.
 
 	///////////////////////////////
 	// Paratroop Settings
@@ -294,17 +294,17 @@ switch (GMSCore_modType) do
 	GMS_patrolHelisBlue = _GMS_littleBirds;
 	GMS_noPatrolHelisBlue = 1;
 	
-	GMS_chanceHeliPatrolRed = 0.1; // 0.4;
+	GMS_chanceHeliPatrolRed = 0.30; // 0.4;
 	GMS_patrolHelisRed = _GMS_littleBirds;
 	GMS_noPatrolHelisRed = 1;
 	
-	GMS_chanceHeliPatrolGreen = 0.55;
-	GMS_patrolHelisGreen = _GMS_armed_hellcats + _cup_Helis_missiles;  // _GMS_armed_orcas + _GMS_armed_ghosthawks;  //_GMS_littleBirds;
-	GMS_noPatrolHelisGreen = 1;
+	GMS_chanceHeliPatrolGreen = 0.75;
+	GMS_patrolHelisGreen = _GMS_armed_hellcats + _GMS_armed_ghosthawks;  // _GMS_armed_orcas + _GMS_armed_ghosthawks;  //_GMS_littleBirds;
+	GMS_noPatrolHelisGreen = 2;
 	
-	GMS_chanceHeliPatrolOrange = 0.95;
+	GMS_chanceHeliPatrolOrange = 0.99;
 	GMS_patrolHelisOrange = _GMS_armed_heavyAttackHelis + _GMS_armed_attackHelis;  //_GMS_littleBirds;
-	GMS_noPatrolHelisOrange = 1;
+	GMS_noPatrolHelisOrange = 2;
 
 	///////////////////////////////
 	//  Mission Drone Settings
@@ -334,20 +334,20 @@ switch (GMSCore_modType) do
 	////////////////////
 	
 	// Maximum number of missions shown on the map at any one time.
-	GMS_maxSpawnedMissions = 9;
+	GMS_maxSpawnedMissions = 10;
 		
 	//Set to -1 to disable. Values of 2 or more force the mission spawner to spawn copies of that mission - this feature is not recommended because you may run out of available groups.
 	GMS_enableOrangeMissions = 1;  
-	GMS_enableGreenMissions = 1;
+	GMS_enableGreenMissions = 2;
 	GMS_enableRedMissions = 2;
-	GMS_enableBlueMissions = -1;
+	GMS_enableBlueMissions = 2;
 	GMS_numberUnderwaterDynamicMissions = 0;  // Values from -1 (no UMS) to N (N Underwater missions will be spawned; static UMS units and subs will be spawned.	
-	GMS_enableStaticMissions = 1;
+	GMS_enableStaticMissions = -1;
 
 	#ifdef GRGserver
 	GMS_enableHunterMissions = 1;
 	GMS_enableScoutsMissions = 2;
-	GMS_maxcrashsites = 1;
+	GMS_maxcrashsites = -1;
 	#endif
 
 	////////////////////
@@ -552,9 +552,16 @@ switch (GMSCore_modType) do
 	GMS_launcherTypes = ["launch_RPG32_F"];  //["CUP_launch_RPG7V"];  //
 	GMS_launchersPerGroup = 1;  // Defines the number of AI per group spawned with a launcher
 	GMS_launcherCleanup = false;// When true, launchers and launcher ammo are removed from dead AI.
-	GMS_minimumPatrolRadius = 36;  // AI will patrol within a circle with radius of approximately min-max meters. note that because of the way waypoints are completed they may more more or less than this distance.
-	GMS_maximumPatrolRadius = 66;
-	
+
+	/*
+	// This is now handled by GMSCore
+
+	//  These values are applied to AI groups on foot only.
+	GMS_minimumPatrolRadius = 36;  // AI will patrol within a area of approximately min-max meters. note that because of the way waypoints are completed they may more more or less than this distance.
+	GMS_maximumPatrolRadius = 66;  // These values should be at least 30 to be sure some movement occurs.
+	*/
+
+	// Used by GMSCore to decide when a group is stuck etc.
 	GMS_waypointTimeoutInfantry = 300; 
 	GMS_waypointTimeoutVehicle = 300;
 	GMS_waypointTimeoutAir = 300;
@@ -567,10 +574,10 @@ switch (GMSCore_modType) do
 
 	// How precisely player locations will be revealed to AI after an AI kill
 	// values are ordered as follows [blue, red, green, orange];	
-	GMS_AIAlertDistance = [250,450,1000,1300];  //  Radius within which AI will be notified of enemy activity. Depricated as a group-sed system is used now. The group is informed of the enemy location when a group member is hit or killed.
+	GMS_AIAlertDistance = [350,600,1200,1500];  //  Radius within which AI will be notified of enemy activity. Depricated as a group-sed system is used now. The group is informed of the enemy location when a group member is hit or killed.
 	// How precisely player locations will be revealed to AI after an AI kill
 	// values are ordered as follows [blue, red, green, orange];
-	GMS_AIIntelligence = [0.37, 0.57, 0.77, 0.97];  
+	GMS_AIIntelligence = [0.38, 0.58, 0.78, 0.98];  
 	
 	GMS_baseSkill = 1.0;  // The overal skill of the AI - range 0.1 to 1.0.
 	
@@ -589,7 +596,7 @@ switch (GMSCore_modType) do
 		[0.75,0.85],  //  aiming speed 
 		[0.25],  //  aiming shake 
 		1.0,  //  spot distance 
-		0.92,  //  spot time 
+		0.95,  //  spot time 
 		1.00,  // courage 
 		1.00,  //  reload speed 
 		1.00,  //  commanding 
@@ -605,7 +612,7 @@ switch (GMSCore_modType) do
 		[0.65,0.75],  //  aiming speed 
 		[0.18], //  aiming shake
 		0.92,  //  spot distance 
-		0.82,  // spot time 
+		0.88,  // spot time 
 		0.9,  //  courage 
 		0.9,  //  reload speed 
 		0.9,  //  comanding 
@@ -667,7 +674,7 @@ switch (GMSCore_modType) do
 	GMS_chanceVest = 0.6;
 	GMS_chanceBinoc = 0.75;
 
-	private _configToLoad = format["\GMS\Configs\GMS_configs_%1.sqf",tolower(GMSCore_modtype)];
+	private _configToLoad = format["\x\addons\GMS\Configs\GMS_configs_%1.sqf",tolower(GMSCore_modtype)];
 	//diag_log format["[GMS] _configToLoad = %1",_configToLoad];
 	[] call compileFinal preprocessFileLineNumbers _configToLoad;
 

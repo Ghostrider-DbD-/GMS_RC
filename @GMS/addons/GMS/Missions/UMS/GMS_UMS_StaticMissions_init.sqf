@@ -8,10 +8,10 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 //static mission descriptor for code: [position,level, numAI or [min,maxAI],patrolRadius, respawn, group[groupNull],spawnedAt[0],respawn[0]]
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 #include "\GMS\Missions\UMS\GMS_UMS_StaticMissions_Lists.sqf";
 
 {

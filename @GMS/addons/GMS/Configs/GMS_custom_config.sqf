@@ -162,8 +162,17 @@ if (GMS_debugLevel > 0) then {
 	GMS_noPatrolHelisGreen = 1;
 	GMS_noPatrolHelisOrange = 1;
 
-	GMS_chanceParaBlue = 0; // [0 - 1] set to 0 to deactivate and 1 to always have paratroops spawn over the center of the mission. This value can be a range as well [0.1,0.3]
-	GMS_noParaBlue = 0; //  [1-N]	
+	GMS_chanceParaBlue = 1; // [0 - 1] set to 0 to deactivate and 1 to always have paratroops spawn over the center of the mission. This value can be a range as well [0.1,0.3]
+	GMS_noParaBlue = 3; //  [1-N]	
+	
+	GMS_chanceParaRed = 1;
+	GMS_noParaRed = 3;
+	
+	GMS_chanceParaGreen = 1;
+	GMS_noParaGreen = 4;
+	
+	GMS_chanceParaOrange = 1;
+	GMS_noParaOrange = 4;
 
 	GMS_SpawnVeh_Orange = 2; // Number of static weapons at Orange Missions
 	GMS_SpawnVeh_Green = 2; // Number of static weapons at Green Missions

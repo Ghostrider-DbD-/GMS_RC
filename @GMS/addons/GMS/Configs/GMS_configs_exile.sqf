@@ -12,7 +12,7 @@
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"	
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"	
 
 diag_log format ["Loading Exile-specific configs for Non-militarized servers: GMS_configs_exile.sqf"];
 	
@@ -26,16 +26,17 @@ switch (toLower(worldName)) do
 		// Note that there should not be a comma after the last item in this table
 		[[10800,10641,0],1000],  // isthmus - missions that spawn here often are glitched.
 		[[14599.966,16797.193,0],3000], // TERMINAL
-		[[24127.771,16169.194,0],1800], // HOLY DIVER
-		[[12823.13,16681.56],1200],		// MIL HILL
+		[[24127.771,16169.194,0],1600], // HOLY DIVER
+		[[12823.13,16681.56],1000],		// MIL HILL
 	    [[8713.47,23018.19],3200],		// NW MILI
-	    [[8308.293,7260.224],3600],		// STRONGHOLD
+	    [[8308.293,7260.224],3400],		// STRONGHOLD
 		[[20788.121,7233.124],1500],	// WAR ENSEMBLE
 		[[23300,18800,0],900],	    // FLATS SPREAD
-		[[6094.97,12612.9],2200], // WEST DUMP
-		[[6384.37,16240.63],2200], 		//KORE
+		[[6094.97,12612.9],1800], // WEST DUMP
+		[[6384.37,16240.63],1800], 		//KORE
 		[[16696.7,13598,0],1800],		    // CHELO	
-		[[20917.549,19239.043,0],1800]		    // CLIT		
+		[[20917.549,19239.043,0],1800],	    // CLIT		
+		[[18294.3,15534.6,0],1800]     // STORAGE
 		];
 	};
 	case "tanoa": {
@@ -52,7 +53,7 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 	GMS_blacklistSpawns = true;
 	GMS_listConcreteMixerZones	= true;
 
-	GMS_crateTypes = ["Box_FIA_Ammo_F","Box_FIA_Support_F","Box_FIA_Wps_F","I_SupplyCrate_F","Box_NATO_AmmoVeh_F","Box_East_AmmoVeh_F","IG_supplyCrate_F","Box_NATO_Wps_F","I_CargoNet_01_ammo_F","O_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F"];  // Default crate type.
+	GMS_crateTypes = ["I_CargoNet_01_ammo_F"];  // Default crate type.
 			
 	GMS_maximumItemPriceInAI_Loadouts = 1000;
 	
@@ -761,7 +762,7 @@ AI WEAPONS, UNIFORMS, VESTS AND GEAR
 
 GMS_buildingMaterials = ["Exile_Item_DuctTape","Exile_Item_JunkMetal","Exile_Item_LightBulb","Exile_Item_MetalBoard",
 		"Exile_Item_MetalPole","Exile_Item_MetalScrews","Exile_Item_Cement","Exile_Item_Sand","Exile_Item_MetalWire","Exile_Item_DuctTape","Exile_Item_JunkMetal"];	
-GMS_tools = ["Exile_Item_Matches","Exile_Item_CookingPot","Exile_Melee_Axe","Exile_Melee_SledgeHammmer","Exile_Item_Handsaw","Exile_Item_Pliers","Exile_Item_CanOpener","Exile_Item_Shovel"];
+GMS_tools = ["Exile_Item_Matches","Exile_Item_CookingPot","Exile_Melee_Axe","Exile_Item_Ducttape","Exile_Item_Handsaw","Exile_Item_Pliers","Exile_Item_CanOpener","Exile_Item_Shovel"];
 GMS_loot = GMS_buildingMaterials + GMS_tools;
 GMS_medicalItems = ["Exile_Item_InstaDoc","Exile_Item_Bandage","Exile_Item_Vishpirin"];
 GMS_ConsumableItems = GMS_Meats + GMS_Drink + GMS_Food;
@@ -785,10 +786,10 @@ for examples of how you can do this see \Major\Compositions.sqf
 ***************************************************************************************/			
 
 	// values are: number of things from the weapons, magazines, optics, materials(cinder etc), items (food etc) and backpacks arrays to add, respectively.
-	GMS_lootCountsOrange = [[6,8],[24,32],[5,10],[25,35],16,1];   // Orange
-	GMS_lootCountsGreen = [[4,8],[20,30],[5,9],[15,18],18,1]; // Green
-	GMS_lootCountsRed = [[4,6],[12,18],4,[6,12],6,1];  // Red	
-	GMS_lootCountsBlue = [4,12,3,6,6,1];   // Blue
+	GMS_lootCountsOrange = [[12,18],[24,32],[5,12],[25,35],16,4];   // Orange
+	GMS_lootCountsGreen = [[10,12],[20,30],[5,9],[15,18],18,3]; // Green
+	GMS_lootCountsRed = [[6,8],[12,18],5,[6,12],6,2];  // Red	
+	GMS_lootCountsBlue = [6,12,4,6,6,2];   // Blue
 	
 	GMS_BoxLoot_Orange = 
 		// Loot is grouped as [weapons],[magazines],[items] in order to be able to use the correct function to load the item into the crate later on.

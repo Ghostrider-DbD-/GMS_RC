@@ -11,8 +11,8 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 	
 //diag_log "[GMS] Spawning Green Mission with template = medicalCamp";
 
@@ -21,7 +21,7 @@ _lootCounts = GMS_lootCountsGreen;
 _startMsg = "A Bandit Forward Command Post has been spotted. Check the Green marker on your map for its location";
 _endMsg = "The Bandit Command Post camp at the Green Marker is under survivor control!";
 _markerLabel = "";
-_markerType = ["ellipse",[350,350],"SOLID"];
+_markerType = ["ELLIPSE",[500,500],"SOLID"];
 _markerColor = "ColorGreen";
 _markerMissionName = "Command Post";
 _missionLandscapeMode = "precise"; // acceptable values are "none","random","precise"
@@ -65,5 +65,5 @@ private _paralootCountsChoices = [[0,0,0,8,8,0],[0,0,0,8,8,0],[8,8,0,0,0,0],[0,0
 _paraLoot = _paralootChoices select _lootIndex;
 _paraLootCounts = _paralootCountsChoices select _lootIndex;  // Throw in something more exotic than found at a normal blue mission.
  
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 
 

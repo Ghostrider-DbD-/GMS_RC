@@ -11,15 +11,15 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 //diag_log "[GMS] Spawning Orange Mission with template = default";
 _crateLoot = GMS_BoxLoot_Orange;
 _lootCounts = [15,50,20,60,44,5]; ;
 _startMsg = "An enemy General was sighted in a nearby sector! Check the Orange marker on your map for the location!";
 _endMsg = "The Sector at the Orange Marker is under survivor control!";
 _markerLabel = "";
-_markerType = ["ellipse",[350,350],"SOLID"];
+_markerType = ["ellipse",[750,750],"SOLID"];
 _markerColor = "ColorOrange";
 _markerMissionName = "General";
 _missionLandscapeMode = "precise"; // acceptable values are "none","random","precise"
@@ -30,13 +30,10 @@ _garrisonedBuildings_BuildingPosnSystem = [
 _garrisonedBuilding_ATLsystem = [
      ["Land_Cargo_HQ_V3_F",[-19.5625,12.75,-0.00143886],0,true,true,
 	 	[
-            #ifdef GMS_milServer
 			["B_static_AT_F",[-2.19141,2.61328,3.12619],0],
 			["B_static_AA_F",[18.8105,0.414063,4.76837e-007],0],  
-            #else
 			["B_HMG_01_high_F",[-2.19141,2.61328,3.12619],0],
-			["B_HMG_01_high_F",[18.8105,0.414063,4.76837e-007],0],
-            #endif          
+			["B_HMG_01_high_F",[18.8105,0.414063,4.76837e-007],0],       
 			["B_G_Mortar_01_F",[4.44531,-1.23633,3.12661],0],
 			["B_T_GMG_01_F",[10.5313,8.77148,4.76837e-007],0]
 
@@ -120,4 +117,4 @@ private _paralootCountsChoices = [[0,0,0,25,25,0],[0,0,0,25,25,0],[20,30,0,0,0,0
 _paraLoot = _paralootChoices select _lootIndex;
 _paraLootCounts = _paralootCountsChoices select _lootIndex;  // Throw in something more exotic than found at a normal blue mission.
 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 

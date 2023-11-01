@@ -9,7 +9,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 params["_building","_group","_statics","_men",["_aiDifficultyLevel","Red"],	["_uniforms",[]],["_headGear",[]],["_vests",[]],["_backpacks",[]],["_launcher","none"],["_weaponList",[]],["_sideArms",[]]];
 

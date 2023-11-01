@@ -10,7 +10,7 @@
 	Returns 
 		None
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 params["_unit","_instigator"];
 private _lastAlert = (group _unit) getVariable["GMS_lastAlert",0];
 if (diag_tickTime < (_lastAlert + 5)) exitWith {};  //  so this function is not totally spammed

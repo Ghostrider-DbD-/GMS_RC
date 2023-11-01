@@ -11,7 +11,7 @@
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 #define delayTime 1
 private ["_abort","_crates","_aiGroup","_objects","_groupPatrolRadius","_missionLandscape","_mines","_GMS_AllMissionAI","_assetKilledMsg","_enemyLeaderConfig",
 		"_AI_Vehicles","_timeOut","_aiDifficultyLevel","_missionPatrolVehicles","_missionGroups","_loadCratesTiming","_spawnCratesTiming","_assetSpawned","_hostageConfig",

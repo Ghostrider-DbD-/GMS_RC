@@ -10,7 +10,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 //if (GMS_monitoring) exitWith {diag_log format["_monitorInitializedMissions: execution terminated for GMS_monitoring = true at %1",diag_tickTime]};
 GMS_monitoring = true;
@@ -146,7 +146,7 @@ for "_i" from 1 to (count _missionsList) do
 				//  Handle mission waiting to be triggerd and player is within the range to trigger		
 				case 0: 
 				{
-					[_missionData,_missionConfigs,_spawnPara] call GMS_fnc_spawnMissionAssets;
+					[_missionData,_missionConfigs,_spawnPara,_missionFile] call GMS_fnc_spawnMissionAssets;
 
 					// _el is structured as: 
 					/* 

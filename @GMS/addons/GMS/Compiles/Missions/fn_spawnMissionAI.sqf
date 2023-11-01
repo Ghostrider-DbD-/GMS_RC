@@ -11,7 +11,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 #define configureWaypoints true
 
 params["_coords",["_minNoAI",3],["_maxNoAI",6],["_noAIGroups",0],["_missionGroups",[]],["_aiDifficultyLevel","red"],["_uniforms",[]],["_headGear",GMS_BanditHeadgear],["_vests",[]],["_backpacks",[]],["_weapons",[]],["_sideArms",[]],["_isScubaGroup",false]];

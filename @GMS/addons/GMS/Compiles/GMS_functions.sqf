@@ -10,31 +10,31 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 private _functions = [
 	// General functions
-	["GMS_fnc_FindSafePosn","\GMS\Compiles\Functions\GMS_fnc_findSafePosn_4.sqf"],
+	["GMS_fnc_FindSafePosn","\x\addons\GMS\Compiles\Functions\GMS_fnc_findSafePosn_4.sqf"],
 
 	// Player-related functions
-	["GMS_fnc_handlePlayerUpdates","\GMS\Compiles\Units\GMS_fnc_handlePlayerUpdates.sqf"],
+	//["GMS_fnc_handlePlayerUpdates","\x\addons\GMS\Compiles\Units\GMS_fnc_handlePlayerUpdates.sqf"],
 
 	// Mission-related functions
-	["GMS_fnc_garrisonBuilding_RelPosSystem","\GMS\Compiles\Missions\GMS_fnc_garrisonBuilding_relPosSystem.sqf"],
-	["GMS_fnc_spawnGarrisonInsideBuilding_ATL","\GMS\Compiles\Missions\GMS_fnc_spawnGarrisonInsideBuilding_ATL.sqf"],
-	["GMS_fnc_spawnGarrisonInsideBuilding_relPos","\GMS\Compiles\Missions\GMS_fnc_spawnGarrisonInsideBuilding_relPos.sqf"],
-	["GMS_fnc_addDyanamicUMS_Mission","\GMS\Compiles\Missions\GMS_fnc_addDynamicUMS_Mission.sqf"], 
+	//["GMS_fnc_garrisonBuilding_RelPosSystem","\x\addons\GMS\Compiles\Missions\GMS_fnc_garrisonBuilding_relPosSystem.sqf"],
+	//["GMS_fnc_spawnGarrisonInsideBuilding_ATL","\x\addons\GMS\Compiles\Missions\GMS_fnc_spawnGarrisonInsideBuilding_ATL.sqf"],
+	//["GMS_fnc_spawnGarrisonInsideBuilding_relPos","\x\addons\GMS\Compiles\Missions\GMS_fnc_spawnGarrisonInsideBuilding_relPos.sqf"],
+	["GMS_fnc_addDyanamicUMS_Mission","\x\addons\GMS\Compiles\Missions\GMS_fnc_addDynamicUMS_Mission.sqf"], 
 	
 	// Functions specific to vehicles, whether wheeled, aircraft or static
-	["GMS_fnc_configureMissionVehicle","\GMS\Compiles\Vehicles\GMS_fnc_configureMissionVehicle.sqf"],
-	["GMS_fnc_applyVehicleDamagePenalty","\GMS\Compiles\Vehicles\GMS_fnc_applyVehicleDamagePenalty.sqf"],		
-	["GMS_fnc_handleVehicleGetOut","\GMS\Compiles\Vehicles\GMS_fnc_handleVehicleGetOut.sqf"],	
+	//["GMS_fnc_configureMissionVehicle","\x\addons\GMS\Compiles\Vehicles\GMS_fnc_configureMissionVehicle.sqf"],
+	["GMS_fnc_applyVehicleDamagePenalty","\x\addons\GMS\Compiles\Vehicles\GMS_fnc_applyVehicleDamagePenalty.sqf"],		
+	//["GMS_fnc_handleVehicleGetOut","\x\addons\GMS\Compiles\Vehicles\GMS_fnc_handleVehicleGetOut.sqf"],	
 
 	// functions to support Units
-	["GMS_fnc_spawnHostage","\GMS\Compiles\Units\GMS_fnc_spawnHostage.sqf"],
-	["GMS_fnc_spawnLeader","\GMS\Compiles\Units\GMS_fnc_spawnLeader.sqf"],
-	["GMS_fnc_spawnCharacter","\GMS\Compiles\Units\GMS_fnc_spawnCharacter.sqf"],
-	["GMS_fnc_placeCharacterInBuilding","\GMS\Compiles\Units\GMS_fnc_placeCharacterInBuilding.sqf"]	
+	["GMS_fnc_spawnHostage","\x\addons\GMS\Compiles\Units\GMS_fnc_spawnHostage.sqf"],
+	["GMS_fnc_spawnLeader","\x\addons\GMS\Compiles\Units\GMS_fnc_spawnLeader.sqf"],
+	["GMS_fnc_spawnCharacter","\x\addons\GMS\Compiles\Units\GMS_fnc_spawnCharacter.sqf"],
+	["GMS_fnc_placeCharacterInBuilding","\x\addons\GMS\Compiles\Units\GMS_fnc_placeCharacterInBuilding.sqf"]	
 ];
 
 {

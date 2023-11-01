@@ -170,5 +170,5 @@ _missionHelis = GMS_patrolHelisBlue;
 //_paraLootCounts = GMS_lootCountsRed;  // Throw in something more exotic than found at a normal blue mission.
 
 //#include "\GMS\Missions\UMS\GMS_fnc_spawnDynamicUMSMission.sqf"; 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";  
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";  
 

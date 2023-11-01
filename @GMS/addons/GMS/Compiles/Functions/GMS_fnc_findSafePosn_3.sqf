@@ -16,7 +16,7 @@
 	However, if we use this approach, we risk having some missions spawn outside the map so much check for that.
 	It may be quicker just to pick a random angle and use 1/2 map size to search a position obtained by getPos[(1/2 mapSize),random(359)]; to pick that random seed location for the search.
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 if (isNil "GMS_locationBlackList") then {GMS_locationBlackList = []};
 

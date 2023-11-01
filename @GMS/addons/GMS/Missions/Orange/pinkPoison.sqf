@@ -11,8 +11,8 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 
 //diag_log "[GMS] Spawning Green Mission with template = default";
 _crateLoot = GMS_BoxLoot_Orange;
@@ -140,4 +140,4 @@ _noAIGroups = GMS_AIGrps_Orange;
 _noVehiclePatrols = GMS_SpawnVeh_Orange;
 _noEmplacedWeapons = GMS_SpawnEmplaced_Orange;
 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";

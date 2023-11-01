@@ -11,10 +11,10 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 _fnc_dropMissionCrates = {
-	private ["_crates","_marker","_markers","_GMS_localMissionMarker","_location","_airborneCrates","_curPosCrate"];
+	private ["_crates","_marker","_markers","_location","_airborneCrates","_curPosCrate"];
 	_crates = _this select 0;	
 	_markers = [];
 	
@@ -34,9 +34,34 @@ _fnc_dropMissionCrates = {
 				detach _x;
 				deleteVehicle _chute;
 				_location = getPos _x;
-				_GMS_localMissionMarker = [format["crateMarker%1%2",_location select 0, _location select 1],_location,"","","ColorBlack",["mil_dot",[]]];
-				_marker = [_GMS_localMissionMarker] call GMS_fnc_spawnMarker;
+				
+				/*
+					params[
+						["_markerName","NoNameGiven"],  // the name used when creating the marker. Must be unique.
+						["_markerPos",[0,0]],
+						["_markerLabel","NoLabelGiven"],  //  Text used to label the marker
+						["_markerColor","NoColorGiven"],
+						["_markerType","NoTypeGiven"],	// Use either the name of the icon or "ELLIPSE" or "RECTANGLE" where non-icon markers are used
+						["_markerSize",[0,0]],
+						["_markerBrush","NoBrushGiven"],
+						["_showMarkers",true],
+						["_missionFile","NoFilenameProvided"]
+					];
+				*/
+				_marker = [
+					format["crateMarker%1",random(round(1000000))],
+					_location,
+					"",
+					"ColorBlack",
+					"mil_dot",
+					[0,0],
+					"",
+					true,
+					_missionFile
+				] call GMS_fnc_createMissionMarkers;
+				
 				[_marker,diag_tickTime + 300] call GMSCore_fnc_addToDeletionCue;
+
 				_curPosCrate = getPos _x;
 				_x setPos [_curPosCrate select 0, _curPosCrate select 1, 0.3];
 			};
@@ -44,7 +69,7 @@ _fnc_dropMissionCrates = {
 	};
 };
 
-params[ ["_coords", [0,0,0]], ["_cratesToSpawn",[]], ["_loadCrateTiming","atMissionSpawn"],["_spawnCrateTiming","atMissionSpawn"],["_missionState","start"], ["_difficulty","red"] ];
+params[ ["_coords", [0,0,0]], ["_cratesToSpawn",[]], ["_loadCrateTiming","atMissionSpawn"],["_spawnCrateTiming","atMissionSpawn"],["_missionState","start"], ["_difficulty","red"], ["_missionFile",""] ];
 
 
 private _params = ["_coords","_cratesToSpawn","_loadCrateTiming","_spawnCrateTiming","_missionState","_difficulty"];

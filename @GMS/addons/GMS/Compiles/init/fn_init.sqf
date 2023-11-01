@@ -9,7 +9,7 @@
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 ///////////////////////////////////////////////
 //  prevent the system from being started twice
@@ -43,10 +43,10 @@ if ((toLowerANSI GMSCore_modtype) isEqualTo "exile") then
 private _loadingStartTime = diag_tickTime;
 
 // compile functions
-[] call compileFinal preprocessFileLineNumbers "\GMS\Compiles\GMS_functions.sqf";
+[] call compileFinal preprocessFileLineNumbers "\x\addons\GMS\Compiles\GMS_functions.sqf";
 diag_log format["[GMS] Loaded Functions at %1",diag_tickTime];
 // Load Configs
-[] call compile preprocessfilelinenumbers "\GMS\Configs\GMS_configs.sqf";
+[] call compile preprocessfilelinenumbers "\x\addons\GMS\Configs\GMS_configs.sqf";
 
 diag_log format["[GMS] Loaded Configs at %1",diag_tickTime];
 
@@ -101,13 +101,13 @@ if ((toLowerANSI GMSCore_modtype) isEqualTo "default") then
 
 // Load any user-defined specifications or overrides
 //  HINT: Use these for map-specific settings
-#include "\GMS\Configs\GMS_custom_config.sqf";
+#include "\x\addons\GMS\Configs\GMS_custom_config.sqf";
 
 if (GMS_debugLevel > 0) then {[format["DEBUG ON: Custom Configurations Loaded at %1",diag_tickTime]] call GMS_fnc_log};
 if (GMS_debugLevel > 0) then {[format["GMS_debugLevel = %1",GMS_debugLevel]] call GMS_fnc_log};
 
 // Load vaariables used to store information for the mission system.
-[] call compileFinal preprocessFileLineNumbers "\GMS\Compiles\GMS_variables.sqf";
+[] call compileFinal preprocessFileLineNumbers "\x\addons\GMS\Compiles\GMS_variables.sqf";
 if (GMS_debugLevel > 0) then {[format["DEBUG ON: Variables loaded at %1",diag_tickTime]] call GMS_fnc_log};
 
 // configure dynamic simulation management is this is being used.
@@ -118,11 +118,11 @@ if (GMS_simulationManager == 2) then
 };
 
 // find and set Mapcenter and size
-call compileFinal preprocessFileLineNumbers "\GMS\Compiles\init\GMS_fnc_findWorld.sqf";
+call compileFinal preprocessFileLineNumbers "\x\addons\GMS\Compiles\init\GMS_fnc_findWorld.sqf";
 if (GMS_debugLevel > 0) then {["DEBUG ON: Map-specific information defined"] call GMS_fnc_log};
 
 // set up the lists of available missions for each mission category
-#include "\GMS\Missions\GMS_missionLists.sqf";
+#include "\x\addons\GMS\Missions\GMS_missionLists.sqf";
 if (GMS_debugLevel > 0) then {["DEBUG ON: Mission Lists Loaded Successfully"] call GMS_fnc_log};
 // TODO: merge in underwater / sea missions at some point 
 
@@ -135,7 +135,7 @@ switch (GMS_simulationManager) do
 
 if (GMS_blacklistTraderCities) then
 {
-	[] spawn compile preprocessfilelinenumbers "\GMS\Compiles\Init\GMS_fnc_getTraderCites.sqf";
+	[] spawn compile preprocessfilelinenumbers "\x\addons\GMS\Compiles\Init\GMS_fnc_getTraderCites.sqf";
 };
 
 
@@ -193,7 +193,7 @@ if (GMS_enableHunterMissions > 0) then
 // Running new version of Crash sites.
 if (GMS_maxCrashSites > 0) then
 {
-	[] execVM "\GMS\Missions\HeliCrashs\Crashes2.sqf";
+	[] execVM "\x\addons\GMS\Missions\HeliCrashs\Crashes2.sqf";
 };
 
 if (GMS_enableStaticMissions > 0 && !(_missionLIstStatics isEqualTo [])) then // GMS_enableStaticMissions should be an integer between 1 and N

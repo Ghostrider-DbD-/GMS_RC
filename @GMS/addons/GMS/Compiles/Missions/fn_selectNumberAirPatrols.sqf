@@ -9,7 +9,7 @@
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 params["_aiDifficultyLevel"];
 private _noChoppers = missionNamespace getVariable [format["GMS_noPatrolHelis%1",_aiDifficultyLevel],0];

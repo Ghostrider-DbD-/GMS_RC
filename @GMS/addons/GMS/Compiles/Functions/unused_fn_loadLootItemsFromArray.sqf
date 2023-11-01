@@ -1,8 +1,7 @@
 /*
 	GMS_fnc_loadLootItemsFromArray
 	
-	Depends on GMS_fnc_addItemToCrate
-	
+
 	call as:
 	
 	[_item,_crate] call GMS_fnc_loadLootFromItemsArray;
@@ -28,7 +27,7 @@
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 
 	params["_loadout","_crate",["_addAmmo",0]];

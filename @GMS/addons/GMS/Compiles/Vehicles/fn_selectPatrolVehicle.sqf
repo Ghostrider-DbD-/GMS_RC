@@ -8,7 +8,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 params["_aiDifficulty"];
 private _choices = missionNameSpace getVariable [format["GMS_AIPatrolVehicles%1",_aiDifficulty],GMS_AIPatrolVehicles];

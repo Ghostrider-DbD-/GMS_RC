@@ -13,7 +13,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 // TODO: Need to debug for GMS 
 if (GMS_missionsRunning >= GMS_maxSpawnedMissions) exitWith 
 {

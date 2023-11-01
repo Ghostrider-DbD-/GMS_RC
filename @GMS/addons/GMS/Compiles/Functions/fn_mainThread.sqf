@@ -8,7 +8,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 private["_timer1sec","_timer5sec","_timer10Sec","_timer20sec","_timer5min","_timer5min"];
 _timer2sec = diag_tickTime + 2;
@@ -36,7 +36,7 @@ while {true} do
 	if (diag_tickTime > _timer5sec) then
 	{
 		_timer5sec = diag_tickTime + 5;
-		if (GMS_simulationManager isEqualTo GMS_useBlckeaglsSimulationManagement) then {[] call GMS_fnc_simulationMonitor};
+		[] call GMS_fnc_simulationMonitor;
 		[] spawn GMS_fnc_monitorSpawnedMissions;
 		[] call GMS_fnc_scanForPlayersNearVehicles;		
 		[] call GMS_fnc_vehicleMonitor;		
@@ -55,7 +55,7 @@ while {true} do
 	{
 		_timer1min = diag_tickTime + 60;	
 		[] call GMS_fnc_restoreHiddenObjects;
-		[] call GMS_fnc_groupWaypointMonitor;
+		//[] call GMS_fnc_groupWaypointMonitor;
 		[] call GMS_fnc_cleanupAliveAI;
 	};
 	if (diag_tickTime > _timer5min) then 
@@ -88,7 +88,7 @@ while {true} do
 				[format["file %1 | running %2",(_x select 1),(_x select 2)]] call GMS_fnc_log;
 			} forEach diag_activeSQFScripts;
 		};
-		[] call GMS_fnc_cleanEmptyGroups;
+		//[] call GMS_fnc_cleanEmptyGroups;  //  Moved to GMSCore 10/31/23
 		[GMS_landVehiclePatrols] call GMSCore_fnc_removeNullEntries;
 		[GMS_aircraftPatrols] call GMSCore_fnc_removeNullEntries;
 		_timer5min = diag_tickTime + 300;

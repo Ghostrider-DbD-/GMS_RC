@@ -9,7 +9,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 //diag_log format["GMS_fnc_missionCompleteMarker:: _this = %1",_this];
 private _location = _this select 0;

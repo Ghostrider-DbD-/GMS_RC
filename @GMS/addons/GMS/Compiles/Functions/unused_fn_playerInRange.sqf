@@ -13,7 +13,7 @@
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 params[["_coords",[0,0,0]],["_range",0],["_onFootOnly",true],["_onGroundOnly",true]];
 private "_players";
 if (_onGroundOnly) then {

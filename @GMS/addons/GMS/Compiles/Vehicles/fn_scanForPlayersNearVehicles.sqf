@@ -8,7 +8,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 // GMS_fnc_vehiclePlayerSensingLogic.sqf
 // No params
 private["_searchRadius","_detectionOdds"];

@@ -2,7 +2,7 @@
 	GMS_fnc_spawnMissionHelis
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 params[
 	["_coords",[0,0,0]],
 	["_missionHelis",[]],

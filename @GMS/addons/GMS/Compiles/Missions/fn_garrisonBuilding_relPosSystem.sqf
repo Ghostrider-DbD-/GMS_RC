@@ -9,7 +9,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 if (true) exitwith {["the Garrisoned Building Relative Position System is No Longer Supported in GMS","warning"] call GMS_fnc_core;}
 params["_center",
         "_garrisonedBuilding_relPosSystem",

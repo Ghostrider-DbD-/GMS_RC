@@ -12,8 +12,8 @@
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 	
 //diag_log "[GMS] Spawning Blue Mission with template = redCamp";
 _crateLoot = GMS_BoxLoot_Blue;
@@ -80,6 +80,6 @@ _noAIGroups = GMS_AIGrps_Blue;
 _noVehiclePatrols = GMS_SpawnVeh_Blue;
 _noEmplacedWeapons = GMS_SpawnEmplaced_Blue;
 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 
 
 

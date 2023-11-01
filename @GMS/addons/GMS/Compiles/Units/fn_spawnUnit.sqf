@@ -10,7 +10,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 private ["_i","_weap","_unit","_skillLevel","_aiSkills","_launcherRound","_index","_ammoChoices","_optics","_pointers","_muzzles","_underbarrel","_legalOptics"];
 

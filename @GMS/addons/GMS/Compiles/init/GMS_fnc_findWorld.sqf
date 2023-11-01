@@ -15,7 +15,7 @@
 	Setting GMS_maxSeaSearchDistance = 0; 
 	Prevents these missions from being spawned.
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 diag_log format["[GMS] Loading Map-specific settings with worldName = %1",worldName];
 switch (toLowerANSI worldName) do 

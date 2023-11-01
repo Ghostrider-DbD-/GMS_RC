@@ -13,7 +13,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 private["_dir","_arc","_noWp","_newpos","_wpradius","_wp"];
 params["_pos","_minDis","_maxDis","_group",["_mode","random"],["_wpPatrolMode","SAFE"],["_soldierType","null"],["_patrolRadius",30],["_wpTimeout",[5.0,7.5,10]]];
 _wp = [_group, 0];

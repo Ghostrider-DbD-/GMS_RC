@@ -9,7 +9,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 params["_unit","_killer","_instigator"];
 if (isNull _killer || {isNull _instigator}) exitWith {};

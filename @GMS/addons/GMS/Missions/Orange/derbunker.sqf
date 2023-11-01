@@ -11,8 +11,8 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 
 //diag_log "[GMS] Spawning Orange Mission with template = default";
 _crateLoot = GMS_BoxLoot_Orange;
@@ -20,7 +20,7 @@ _lootCounts = GMS_lootCountsOrange;
 _startMsg = "An enemy Bunker was sighted in a nearby sector! Check the Orange marker on your map for the location!";
 _endMsg = "The Bunker at the Orange Marker is under survivor control!";
 _markerLabel = "";
-_markerType = ["ELLIPSE",[350,350],"SOLID"];
+_markerType = ["ellipse",[750,750],"SOLID"];
 _markerColor = "ColorOrange";
 _markerMissionName = "DerBunker";
 _missionLandscapeMode = "precise"; // acceptable values are "none","random","precise"
@@ -109,4 +109,4 @@ private _paralootCountsChoices = [[0,0,0,10,10,0],[0,0,0,10,10,0],[10,10,0,0,0,0
 _paraLoot = _paralootChoices select _lootIndex;
 _paraLootCounts = _paralootCountsChoices select _lootIndex;  // Throw in something more exotic than found at a normal blue mission.
  
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 

@@ -11,8 +11,8 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 
 //diag_log "[GMS] Spawning Red Mission with template = default";
 _crateLoot = GMS_BoxLoot_Red;
@@ -20,7 +20,7 @@ _lootCounts = GMS_lootCountsRed;
 _startMsg = "A IDAP HQ was sighted in a nearby sector! Check the Red marker on your map for the location!";
 _endMsg = "The IDAP HQ at the Red Marker is under survivor control!";
 _markerLabel = "";
-_markerType = ["ellipse",[250,250],"SOLID"];
+_markerType = ["ELLIPSE",[300,300],"SOLID"];
 _markerColor = "ColorRed";
 _markerMissionName = "IDAP";
 _missionLandscapeMode = "precise"; // acceptable values are "none","random","precise"
@@ -118,4 +118,4 @@ private _paralootCountsChoices = [[0,0,0,10,10,0],[0,0,0,10,10,0],[10,10,0,0,0,0
 _paraLoot = _paralootChoices select _lootIndex;
 _paraLootCounts = _paralootCountsChoices select _lootIndex;  // Throw in something more exotic than found at a normal Red mission.
 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";  
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";  

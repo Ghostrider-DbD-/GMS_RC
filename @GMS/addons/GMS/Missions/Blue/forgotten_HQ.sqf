@@ -11,8 +11,8 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 
 //diag_log "[GMS] Spawning Blue Mission with template = default";
 _crateLoot = GMS_BoxLoot_Blue;
@@ -197,4 +197,4 @@ _loadCratesTiming = GMS_loadCratesTiming; // valid choices are "atMissionComplet
 _endCondition = allKilledOrPlayerNear;  // Options are allUnitsKilled, playerNear, allKilledOrPlayerNear
 									// Setting this in the mission file overrides the defaults 
 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";  
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";  

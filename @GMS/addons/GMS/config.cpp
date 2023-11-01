@@ -29,28 +29,29 @@ class CfgPatches {
 class CfgFunctions {
 	class GMS {
 		class startup {
-			file = "GMS\Compiles\Init";
+			file = "\x\addons\GMS\Compiles\Init";
 			class init {
 				postInit = 1;
 			};
 		};
 		
 		class functions {
-			file = "GMS\Compiles\Functions";
+			file = "\x\addons\GMS\Compiles\Functions";
 			class broadcastServerFPS {};	
-			class cleanEmptyGroups {};	
-			class countAliveAI {};
+			//class cleanEmptyGroups {};	// Moved to GMSCore 10/31/23
+			//class countAliveAI {};
 			class createMissionMarkers {};
 			class deleteMarker {};
 			class findPositionsAlongARadius {};
 			class findRandomLocationWithinCircle {};
+			class findSafePosn {}; // There are a few different versions of this. This one seemed to work the best in my testing. The others were retained for documentation.
 			class findShoreLocation {};
 			class findWaterDepth {};
 			class getAllBlckeaglsMarkers {};
 			class getAllDMSMarkers {};
 			class getAllMarkersOfSubtype {};
 			class getIndexFromDifficulty {};
-			class loadLootItemsFromArray {};
+			//  class loadLootItemsFromArray {};  // Seems to be unused as of 10/31/23
 			class mainThread {};	
 			class markerSetAliveAICount {};	
 			class messagePlayers {};	
@@ -58,25 +59,25 @@ class CfgFunctions {
 			class msgIED {};
 			//class nearestPlayers {};
 			class restoreHiddenObjects {};
-			//class setDirUp {};
-			class spawnMarker {};
+			//class setDirUp {};  // Replaced by a GMSCore function October, 2023
+			//class spawnMarker {};  // No longer needed; revised dependent code to use createMissionMarker 10/31/23
 			class updateMarkerAliveCount {};
 		};
 		class groups {
-			file = "GMS\Compiles\Groups";
-			class checkGroupWaypointStatus {};
-			class cleanEmptyGroups {};
-			class createGroup {};  // Kept for backwards compatability with static missions if these are kept and not updated.			
-			class emplacedWeaponWaypoint {};  // Not sure this is needed - can we do the same thing directly in another script?			
+			file = "\x\addons\GMS\Compiles\Groups";
+			//class checkGroupWaypointStatus {};  //  Unused 10/31/23
+			//class cleanEmptyGroups {};  // Moved to GMSCore 10/31/23
+			//class createGroup {};  // No longer used 10/31/23		
+			//class emplacedWeaponWaypoint {};  // No longer used 10/31/23
 			class findNearestInfantryGroup {};
-			class groupWaypointMonitor {};
-			class setNextWaypoint {};
-			class setupWaypoints {};
+			//class groupWaypointMonitor {};  // No longer needed as GMSCore handles waypoints now.
+			//class setNextWaypoint {};
+			//class setupWaypoints {};
 			class simulationMonitor {};
 			class spawnGroup {};
 		};
 		class missions {
-			file = "GMS\Compiles\Missions";
+			file = "\x\addons\GMS\Compiles\Missions";
 			class addMIssionToQue {};
 			//class crateMoved {};
 			class endMission {};
@@ -123,7 +124,7 @@ class CfgFunctions {
 			class spawnSurfacePatrol {};
 		};
 		class units {
-			file = "GMS\Compiles\Units";
+			file = "\x\addons\GMS\Compiles\Units";
 			class cleanupAliveAI {};
 			class deleteAI {};
 			class removeAllAIgear {};
@@ -133,11 +134,11 @@ class CfgFunctions {
 			class unitKilled {};
 		};
 		class Utils {
-			file = "GMS\Compiles\Utils";
+			file = "\x\addons\GMS\Compiles\Utils";
 			class log {};
 		};
 		class vehicles {
-			file = "GMS\Compiles\Vehicles";	
+			file = "\x\addons\GMS\Compiles\Vehicles";	
 			class alertVehicles {};
 			class deleteAIVehicle {};
 			class checkForEmptyVehicle {};	

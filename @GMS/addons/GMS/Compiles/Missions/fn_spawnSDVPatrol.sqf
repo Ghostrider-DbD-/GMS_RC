@@ -8,7 +8,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 params["_SDV","_pos","_difficulty","_numberAI","_patrolRadius","_respawnTime"];
 #define SDVpatrolAreadDimensions [50,50]

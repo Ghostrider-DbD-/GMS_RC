@@ -8,8 +8,8 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 
 //diag_log "[GMS] Spawning Blue Mission with template = default2";
 
@@ -141,4 +141,4 @@ _chanceHeliPatrol = 0;
 _spawnCratesTiming = "atMissionEndAir";
 _endCondition = assetSecured;  // Options are allUnitsKilled, playerNear, allKilledOrPlayerNear, assetSecured
  
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";

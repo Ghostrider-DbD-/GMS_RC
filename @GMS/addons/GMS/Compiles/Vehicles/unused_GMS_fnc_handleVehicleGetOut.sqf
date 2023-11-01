@@ -15,6 +15,6 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 #define veh _this select 0
 if ((isServer) || {local (veh)}) then {[veh] call GMS_fnc_checkForEmptyVehicle};

@@ -12,7 +12,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 params["_locations","_dist",["_onFootOnly",true],["_onGroundOnly",true]];
 private _nearLocations = _locations select {[_x,_dist,_onFootOnly,_onGroundOnly] call GMS_fnc_playerInRange};

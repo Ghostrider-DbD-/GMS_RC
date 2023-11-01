@@ -13,7 +13,7 @@
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 	--------------------------
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 //  Acomodate case where para are spawned over water.
 params["_pos","_numAI","_skilllevel",["_uniforms",[]],["_headGear",[]],["_vests",[]],["_backpacks",[]],["_weapons",[]],["_sideArms",[]],["_isScuba",false]];
 if (_numAI < 1) exitWith {grpNull};

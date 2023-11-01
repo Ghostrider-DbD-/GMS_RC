@@ -8,7 +8,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 private _crate = _this select 0;
 private _lootCounts = _crate getVariable "lootCounts";
 private _lootarray = _crate getVariable "lootArray";

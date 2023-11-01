@@ -6,8 +6,8 @@
 	By Ghostrider-GRG-
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf" 
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf" 
 
 
 _startMsg = "An abandoned enemy encampment was located";
@@ -187,4 +187,4 @@ _noEmplacedWeapons = GMS_SpawnEmplaced_;
 _submarinePatrols = 0; // Default number of submarine patrols at pirate missions
 _scubaPatrols = 0; // Default number of scuba diver patrols at pirate missions
 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";

@@ -9,7 +9,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 if !(local (_this select 0)) exitWith {};
 params ["_vehicle", "_source", "_damage", "_instigator"];
 //[format["GMS_fnc_vehicletHit: _vehicle = %1 | typeOf _vehicle %2 | _instigator %32",_vehicle,typeOf _vehicle, _instigator]] call GMS_fnc_log;

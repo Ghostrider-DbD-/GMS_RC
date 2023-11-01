@@ -8,7 +8,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 if (isNil "GMS_blacklisted_vehicle_weapons") then {GMS_blacklisted_vehicle_weapons = []};
 params["_veh","_group",["_crewCount",4]];
 private _units = units _group;

@@ -14,7 +14,7 @@
 /*
 	Useful if you know the rootname for markers for a mission system to add these to black lists or other lists
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 private _subtype = _this;
 private _end = (count _subtype) - 1;
 private _m = [];

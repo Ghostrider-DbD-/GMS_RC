@@ -11,8 +11,8 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 
 //diag_log "[GMS] Spawning Green Mission with template = default";
 _crateLoot = GMS_BoxLoot_Green;
@@ -203,4 +203,4 @@ _loadCratesTiming = GMS_loadCratesTiming; // valid choices are "atMissionComplet
 						// To spawn crates on the ground at mission completion set GMS_spawnCratesTiming = "atMissionEndGround" // Note that a loaded crate will be spawned.
 						// To spawn crates in the air and drop them by chutes set GMS_spawnCratesTiming = "atMissionEndAir" // Note that a loaded crate will be spawned.
 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";  
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";  

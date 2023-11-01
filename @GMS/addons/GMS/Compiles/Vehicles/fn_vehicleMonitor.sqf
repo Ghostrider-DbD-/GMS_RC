@@ -9,7 +9,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 // TODO: Test that vehicles that are either scheduled for deletion are for deletion pending change in owner are proparly handled (kept in the list, deleted when the time arrives).
 private _serverIDs =  ([2] + (entities "HeadlessClient_F"));

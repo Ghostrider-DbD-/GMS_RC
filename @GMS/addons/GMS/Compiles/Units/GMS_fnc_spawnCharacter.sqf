@@ -8,7 +8,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 params["_coords","_charConfigs"];
 private["_char","_charGroup"];
 _charConfigs params["_classname","_posn","_dir","_simDamg","_animations","_headgear","_uniforms"];

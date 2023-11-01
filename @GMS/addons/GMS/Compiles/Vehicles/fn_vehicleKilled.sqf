@@ -10,7 +10,7 @@
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 if !(local (_this select 0)) exitWith {};
 params ["_unit", "_killer", "_instigator"];
 if !(isPlayer _instigator) exitWith {};

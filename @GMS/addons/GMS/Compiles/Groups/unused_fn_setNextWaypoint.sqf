@@ -18,7 +18,7 @@
 	Replaces changeToSADWaypoint 
 
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 private["_group","_wp","_index","_pattern","_mode","_arc","_dis","_wpPos"];
 

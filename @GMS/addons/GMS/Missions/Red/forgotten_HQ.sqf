@@ -11,8 +11,8 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 
 //diag_log "[GMS] Spawning Red Mission with template = default";
 _crateLoot = GMS_BoxLoot_Red;
@@ -187,4 +187,4 @@ _spawnCratesTiming = "atMissionSpawnAir"; // Choices: "atMissionSpawnGround","at
 						 // Crates spawned in the air will be spawned at mission center or the position(s) defined in the mission file and dropped under a parachute.
 						 //  This sets the default value but can be overridden by defining  _spawnCrateTiming in the file defining a particular mission.
 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";  
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";  

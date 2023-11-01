@@ -1,13 +1,13 @@
 /*
  
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 
 //diag_log "[GMS] Spawning Hunters Mission";
 
-_crateLoot = GMS_BoxLoot_Green;
-_lootCounts = [4,6,4,4,10,2];
+_crateLoot = GMS_BoxLoot_Blue;
+_lootCounts = [5,6,5,5,10,2];
 _startMsg = "A group of Bandit Hunters was sighted in a nearby sector! Check the Red Triangular marker on your map for the location!";
 _endMsg = "The Hunter Camp is under Survivor Control!";
 _timeoutMsg = "The Hunters Have Moved from Their Camp";
@@ -53,4 +53,4 @@ _noChoppers = 0;
 */
 _endCondition = allKilledOrPlayerNear;  // Options are allUnitsKilled, playerNear, allKilledOrPlayerNear
 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 

@@ -11,8 +11,8 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 
 //diag_log "[GMS] Spawning Blue Mission with template = default";
 _crateLoot = GMS_BoxLoot_Blue;
@@ -20,7 +20,7 @@ _lootCounts = GMS_lootCountsBlue;
 _startMsg = "A Service Point was sighted in a nearby sector! Check the Blue marker on your map for the location!";
 _endMsg = "The Service Point at the Blue Marker is under survivor control!";
 _markerLabel = "";
-_markerType = ["ELLIPSE",[200,200],"SOLID"];
+_markerType = ["ELLIPSE",[300,300],"SOLID"];
 _markerColor = "ColorBlue";
 _markerMissionName = "Service Point";
 _missionLandscapeMode = "precise"; // acceptable values are "none","random","precise"
@@ -159,4 +159,4 @@ _loadCratesTiming = GMS_loadCratesTiming; // valid choices are "atMissionComplet
 //_endCondition = allKilledOrPlayerNear;  // Options are allUnitsKilled, playerNear, allKilledOrPlayerNear
 									// Setting this in the mission file overrides the defaults 
 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";  
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";  

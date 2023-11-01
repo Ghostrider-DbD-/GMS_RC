@@ -10,8 +10,8 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 
 //diag_log "[GMS] Spawning Red Mission with template = default";
 _crateLoot = GMS_BoxLoot_Red;
@@ -100,4 +100,4 @@ _paraLoot = _paralootChoices select _lootIndex;
 _paraLootCounts = _paralootCountsChoices select _lootIndex;  // Throw in something more exotic than found at a normal blue mission.
 //_endCondition = allKilledOrPlayerNear;  // Options are allUnitsKilled, playerNear, allKilledOrPlayerNear
 //_timeOut = -1;
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";

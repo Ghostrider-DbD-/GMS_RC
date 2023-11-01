@@ -33,7 +33,16 @@ The static loot system and dynamic loot system are gone. THese outlived thier us
 I have kept the change log as a bit of history for those interested in development of this mission system. 
 Significant Changes:
 
-Version = "7.18"  Build = "273" Date = "10-20-2023"
+Build 273 MAJOR UPDATE to paths 
+Implemented $PREFIX$ and $PBOPREFIX$ 
+Please use the updated editor plugin to generate missions.
+
+ADDED Logging to help sort out which mission is causing script errors. 
+ADDED More checks for invalid marker setups. 
+ADDED A New Setting: _hideMarker 
+	When true, no marker will be displayed for the mission. 
+	Note: The plugin was updated to add this setting as well.
+
 Added full support for vector-based positioning.
 
 

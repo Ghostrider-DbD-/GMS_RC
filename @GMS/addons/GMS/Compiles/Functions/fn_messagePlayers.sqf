@@ -11,7 +11,7 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 if !(isServer) exitWith {};
 params["_msg",["_players",allplayers]];
 //[format["_messagePlayers - _msg = %1",_msg]] call GMS_fnc_log;

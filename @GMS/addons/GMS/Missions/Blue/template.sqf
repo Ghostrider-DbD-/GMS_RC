@@ -11,8 +11,8 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/
 */
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 
 _crateLoot = GMS_BoxLoot_Green;  // Set to a loot table appropriate to mission difficulty. A custom loot table can also be used.
 _lootCounts = GMS_lootCountsGreen;     // Set to a loot counts list appropriate to mission difficulty or a custom array.
@@ -105,4 +105,4 @@ _noAIGroups = GMS_AIGrps_Red;					// can be any value 0..N (note that 0 here pre
 _noVehiclePatrols = GMS_SpawnVeh_Red;			     // can be any value  0..N
 _noEmplacedWeapons = GMS_SpawnEmplaced_Red;	// can be any value
 
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf";

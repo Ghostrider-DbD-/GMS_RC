@@ -6,7 +6,8 @@
 params[
 	"_missionData",		// Defined below
 	"_missionConfigs",	// Defined below
-	"_spawnPara"
+	"_spawnPara",
+	"_missionFile"
 ];
 
 #define triggered 2
@@ -348,11 +349,11 @@ if (_spawnCratesTiming in ["atMissionSpawnGround","atMissionSpawnAir"]) then
 {
 	if (_missionLootBoxes isEqualTo []) then
 	{
-		_crates = [_coords,[[selectRandom GMS_crateTypes,[1,1,0],_crateLoot,_lootCounts]], _loadCratesTiming, _spawnCratesTiming, "start", _difficulty] call GMS_fnc_spawnMissionCrates;
+		_crates = [_coords,[[selectRandom GMS_crateTypes,[1,1,0],_crateLoot,_lootCounts]], _loadCratesTiming, _spawnCratesTiming, "start", _difficulty, _missionFile] call GMS_fnc_spawnMissionCrates;
 	}
 	else
 	{
-		_crates = [_coords,_missionLootBoxes,_loadCratesTiming, _spawnCratesTiming, "start", _difficulty] call GMS_fnc_spawnMissionCrates;												
+		_crates = [_coords,_missionLootBoxes,_loadCratesTiming, _spawnCratesTiming, "start", _difficulty, _missionFile] call GMS_fnc_spawnMissionCrates;												
 	};
 
 	if (GMS_cleanUpLootChests) then

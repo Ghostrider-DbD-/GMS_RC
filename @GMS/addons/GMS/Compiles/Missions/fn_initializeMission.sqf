@@ -5,7 +5,7 @@
 
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 private ["_coords","_coordArray","_return"];
 params[

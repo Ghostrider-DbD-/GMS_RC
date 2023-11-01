@@ -6,8 +6,8 @@
 	Note that I exported the mission using the exportAll function of M3EDEN editor.
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
-#include "\GMS\Missions\GMS_privateVars.sqf";
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Missions\GMS_privateVars.sqf";
 
 _crateLoot = GMS_BoxLoot_Green;
 _lootCounts = GMS_lootCountsGreen;
@@ -167,6 +167,6 @@ _sideArms  = GMS_pistols;    // You can replace this list with a custom list of 
 //********************************************************
 // Do not modify anything below this line.
 //********************************************************
-#include "\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 
+#include "\x\addons\GMS\Compiles\Missions\GMS_fnc_missionSpawner.sqf"; 
 
 //diag_log format["[blckeagls static missions] COMPLETED initializing mission %1 position at %2 difficulty %3",_mission,_missionCenter,_difficulty];

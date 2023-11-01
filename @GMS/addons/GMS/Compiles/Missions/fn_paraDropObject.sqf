@@ -11,7 +11,7 @@
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
 
-#include "\GMS\Compiles\Init\GMS_defines.hpp"
+#include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
 params["_pos","_crate",["_crateVisualMarker",true],["_dropHeight", 150]];
 private _chute = createVehicle ["I_Parachute_02_F", _pos, [], 0, "FLY"];
