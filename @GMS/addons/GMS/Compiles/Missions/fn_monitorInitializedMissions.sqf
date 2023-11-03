@@ -34,6 +34,7 @@ for "_i" from 1 to (count _missionsList) do
 		"_triggered",					// 2  // integer - specifies if mission was triggered by a player or scripting such as debug setting
 		"_missionData",					// 4  //  variable containing information specific to this instance of the mission such as location and objects
 		"_missionConfigs",				// 5  // Variables regarding the configuration of the  mission
+		"_spawnPara",					// 6  // Needed so you only spawn paratroops once.
 		"_isStatic",					// 7 // A flag as to whether the mission is a static or dynamically spawned mission.
 		"_missionFile"
 	];

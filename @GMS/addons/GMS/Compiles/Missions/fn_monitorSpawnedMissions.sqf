@@ -30,6 +30,7 @@ for "_i" from 1 to (count _missionsList) do
 		"_triggered",					// 2  // integer - specifies if mission was triggered by a player or scripting such as debug setting
 		"_missionData",					// 4  //  variable containing information specific to this instance of the mission such as location and objects
 		"_missionConfigs",			// 5  // Variables regarding the configuration of the dynamic mission
+		"_spawnPara",			
 		"_isStatic",
 		"_missionFile"
 	];
