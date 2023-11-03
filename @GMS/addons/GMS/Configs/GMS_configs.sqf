@@ -17,7 +17,7 @@
 		changing any of these variables may break the mission system
 	*/
 	GMS_locationBlackList = [];  // Do not touch ...
-	GMS_debugLevel = 3;  //  should be set to 0 ... 
+	GMS_debugLevel = 0;  //  should be set to 0 ... 
 
 	[format["Loading configurations for Non-militarized servers"]] call GMS_fnc_log;
 	/*
@@ -236,7 +236,13 @@ switch (GMSCore_modType) do
 	GMS_useKilledAIName = true; // When false, the name of the killer (player), weapon and distance are displayed; otherwise the name of the player, distance and name of AI unit killed are shown.
 	GMS_useMines = false;   // when true mines are spawned around the mission area. these are cleaned up when a player reaches the crate. Turn this off if you have vehicle patrols.
 	GMS_cleanupCompositionTimer = 60*30;  // Mission objects will be deleted after the mission is completed after a deley set by this timer.
-	GMS_cleanUpLootChests = false; // when true, loot crates will be deleted together with other mission objects.
+	
+	// Specify a default value here. 
+	// This value is overridden by _cleanupLootContainers in missions.
+	// Set _cleanupLootContainers = true in static missions that respawn.
+	// when true, loot crates will be deleted together with other mission objects.
+	GMS_cleanUpLootChests = false;
+
 	GMS_MissionTimeout = 75*75;  // 60 min - missions will timeout and respawn in another location. This prevents missions in impossible locations from persisting.
 
 	///////////////////////////////
@@ -681,7 +687,7 @@ switch (GMSCore_modType) do
 	if (GMS_useConfigsGeneratedLoadouts) then 
 	{
 		["Dynamic Configs Enabled"] call GMS_fnc_log;
-		execVM "\GMS\Configs\GMS_dynamicConfigs.sqf";
+		execVM "\x\addons\GMS\Configs\GMS_dynamicConfigs.sqf";
 	};
 	GMS_configsLoaded = true;
 	//diag_log format["<--- GMS_configs loaded at %1 --->",diag_tickTime];

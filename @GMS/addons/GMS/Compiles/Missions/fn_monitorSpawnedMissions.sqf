@@ -30,7 +30,6 @@ for "_i" from 1 to (count _missionsList) do
 		"_triggered",					// 2  // integer - specifies if mission was triggered by a player or scripting such as debug setting
 		"_missionData",					// 4  //  variable containing information specific to this instance of the mission such as location and objects
 		"_missionConfigs",			// 5  // Variables regarding the configuration of the dynamic mission
-		"_spawnPara",
 		"_isStatic",
 		"_missionFile"
 	];
@@ -111,11 +110,10 @@ for "_i" from 1 to (count _missionsList) do
 
 			private _minNoAliveForCompletion = (count _missionInfantry) - (round(GMS_killPercentage * (count _missionInfantry)));			
 			private _aiKilled = if (({alive _x} count _missionInfantry) <= _minNoAliveForCompletion)  then {true} else {false}; // mission complete
-			//GMS_aiKilled = _aiKilled; 
-			//if (GMS_debugLevel > 0) then {[format["_monitorSpawnedMissions(112): _playerIsNear = %1 | _aiKilled = %2",_playerIsNear,_aiKilled]] call GMS_fnc_log};
 			if (_endIfPlayerNear && {_playerIsNear}) then {throw 1}; // mission complete
 			if (_endIfAIKilled && {_aiKilled}) then {throw 1};			
-			if (_spawnPara isEqualType -1) then 
+
+			if (_spawnPara isEqualType 0) then 
 			{
 				#define chancePara 0;
 				private _chancePara = _paraConfigs select chancePara;
@@ -148,11 +146,12 @@ for "_i" from 1 to (count _missionsList) do
 					];	
 					//params["_pos","_numAI","_skilllevel",["_uniforms",[]],["_headGear",[]],["_vests",[]],["_backpacks",[]],["_weapons",[]],["_sideArms",[]],["_isScuba",false]];
 					private _paraGroup = [_coords,_noPara,_difficulty,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms,_isScubaMission] call GMS_fnc_spawnParaUnits;
-					//[format["_monitorSpawneMissions: _noPara = %1 | _chancePara = %2 | _paraGroup = %3",_noPara,_chancePara,_paraGroup]] call GMS_fnc_log;
+
+					[format["_monitorSpawneMissions(151): _noPara = %1 | _chancePara = %2 | _paraGroup = %3",_noPara,_chancePara,_paraGroup]] call GMS_fnc_log;
 					if !(isNull _paraGroup) then 
 					{
 						_missionInfantry append (units _paraGroup);
-						if (random(1) < _chanceLoot) then
+						if (random(1) < _chanceLoot || GMS_debugLevel >=3) then
 						{
 							private _extraCrates = [_coords,[[selectRandom GMS_crateTypes,[0,0,0],_paraLoot,_paraLootCounts]], "atMissionSpawn","atMissionSpawnAir", "start", _difficulty] call GMS_fnc_spawnMissionCrates;
 							if (GMS_debugLevel > 0) then {[format["_monitorSpawnedMissions (158): _extracrates %1 dropped for _missionFile %2",_extraCrates,_missionFile]] call GMS_fnc_log};
@@ -161,8 +160,8 @@ for "_i" from 1 to (count _missionsList) do
 								_objects append _extraCrates;
 							};		
 						};	
-						_missionData = [_coords,_mines,_objects,_hiddenObjects,_crates,_missionInfantry,_assetSpawned,_aiVehicles,_lootVehicles,_markers];
-						_el set[missionData, _missionData];							
+						//_missionData = [_coords,_mines,_objects,_hiddenObjects,_crates,_missionInfantry,_assetSpawned,_aiVehicles,_lootVehicles,_markers];
+						//_el set[missionData, _missionData];							
 						//diag_log format["_monitorSpawnedMissions (134): para spawned at %1",diag_tickTime];
 					};
 				};

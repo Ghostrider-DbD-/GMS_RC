@@ -33,7 +33,16 @@ The static loot system and dynamic loot system are gone. THese outlived thier us
 I have kept the change log as a bit of history for those interested in development of this mission system. 
 Significant Changes:
 
-Build 273 MAJOR UPDATE to paths 
+Build 278 
+	Removed unused files 
+	
+Build 276 
+	Unused code no longer compiled. Some of that code remains for bookkeeping. 
+	Added a new mission configuration _cleanupLootContainers
+	When true, the list of _crates spawned with a mission is added to the list of mission objects and will be deleted when the mission is cleaned up.
+	Mission cleanup happens when the time elapsed since mission completion is > than the cleanup time and when all players have left the area.
+
+Build 275 MAJOR UPDATE to paths 
 Implemented $PREFIX$ and $PBOPREFIX$ 
 Please use the updated editor plugin to generate missions.
 

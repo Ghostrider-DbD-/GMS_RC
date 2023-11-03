@@ -13,7 +13,7 @@
 
 #include "\x\addons\GMS\Compiles\Init\GMS_defines.hpp"
 
-params["_pos","_crate",["_crateVisualMarker",true],["_dropHeight", 150]];
+params["_pos","_crate",["_crateVisualMarker",true],["_dropHeight", 50]];
 private _chute = createVehicle ["I_Parachute_02_F", _pos, [], 0, "FLY"];
 [_chute] call GMS_fnc_protectVehicle;
 _crate setVariable["chute",_chute];

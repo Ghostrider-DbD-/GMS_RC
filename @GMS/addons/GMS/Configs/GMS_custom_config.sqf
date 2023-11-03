@@ -157,7 +157,7 @@ if (GMS_debugLevel > 0) then {
 	GMS_enableStaticMissions = 5;
 	GMS_maxCrashSites = 0; 
 
-	GMS_noPatrolHelisBlue = 0;
+	GMS_noPatrolHelisBlue = 1;
 	GMS_noPatrolHelisRed = 1;
 	GMS_noPatrolHelisGreen = 1;
 	GMS_noPatrolHelisOrange = 1;

@@ -12,9 +12,9 @@
 */
 
  class GMSBuild {
-	 Version = "7.21";
-	 Build = "275"; 
-	 Date = "10-25-2023";
+	 Version = "7.22";
+	 Build = "278"; 
+	 Date = "11-02-2023";
  };
 
 class CfgPatches {
@@ -38,8 +38,6 @@ class CfgFunctions {
 		class functions {
 			file = "\x\addons\GMS\Compiles\Functions";
 			class broadcastServerFPS {};	
-			//class cleanEmptyGroups {};	// Moved to GMSCore 10/31/23
-			//class countAliveAI {};
 			class createMissionMarkers {};
 			class deleteMarker {};
 			class findPositionsAlongARadius {};
@@ -51,39 +49,26 @@ class CfgFunctions {
 			class getAllDMSMarkers {};
 			class getAllMarkersOfSubtype {};
 			class getIndexFromDifficulty {};
-			//  class loadLootItemsFromArray {};  // Seems to be unused as of 10/31/23
 			class mainThread {};	
 			class markerSetAliveAICount {};	
 			class messagePlayers {};	
 			class missionCompleteMarker {};
 			class msgIED {};
-			//class nearestPlayers {};
 			class restoreHiddenObjects {};
-			//class setDirUp {};  // Replaced by a GMSCore function October, 2023
-			//class spawnMarker {};  // No longer needed; revised dependent code to use createMissionMarker 10/31/23
 			class updateMarkerAliveCount {};
 		};
 		class groups {
 			file = "\x\addons\GMS\Compiles\Groups";
-			//class checkGroupWaypointStatus {};  //  Unused 10/31/23
-			//class cleanEmptyGroups {};  // Moved to GMSCore 10/31/23
-			//class createGroup {};  // No longer used 10/31/23		
-			//class emplacedWeaponWaypoint {};  // No longer used 10/31/23
 			class findNearestInfantryGroup {};
-			//class groupWaypointMonitor {};  // No longer needed as GMSCore handles waypoints now.
-			//class setNextWaypoint {};
-			//class setupWaypoints {};
 			class simulationMonitor {};
 			class spawnGroup {};
 		};
 		class missions {
 			file = "\x\addons\GMS\Compiles\Missions";
 			class addMIssionToQue {};
-			//class crateMoved {};
-			class endMission {};
+				class endMission {};
 			class fillBoxes {};
 			class garrisonBuilding_ATLsystem {};
-			//class garrisonBuilding_relPosSystem {};
 			class loadLootItemsFromArray {};
 			class initializeMission {};
 			class loadMissionCrate {};
@@ -103,7 +88,6 @@ class CfgFunctions {
 			class selectNumberAirPatrols {};
 			class selectNumberParatroops {};
 			class selectVehicleCrewCount {};
-			//class signalEnd {};
 			class spawnSmokingObject {};			
 			class spawnCrate {};
 			class spawnCompositionObjects {};			

@@ -14,7 +14,7 @@
 
 private _functions = [
 	// General functions
-	["GMS_fnc_FindSafePosn","\x\addons\GMS\Compiles\Functions\GMS_fnc_findSafePosn_4.sqf"],
+	//["GMS_fnc_FindSafePosn","\x\addons\GMS\Compiles\Functions\GMS_fnc_findSafePosn_4.sqf"],
 
 	// Player-related functions
 	//["GMS_fnc_handlePlayerUpdates","\x\addons\GMS\Compiles\Units\GMS_fnc_handlePlayerUpdates.sqf"],

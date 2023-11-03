@@ -23,23 +23,6 @@ private "_markers";
 	["_missionFile","NoFilenameProvided"]
  ];
 
-if (GMS_debugLevel > 3) then 
-{
-	private _pList =[
-		"_markerName",  // the name used when creating the marker. Must be unique.
-		"_markerPos",
-		"_markerLabel",
-		"_markerColor",
-		"_markerType",	// Use either the name of the icon or "ELLIPSE" or "RECTANGLE" where non-icon markers are used
-		"_markerSize",
-		"_markerBrush"
-	];
-	for "_i" from 0 to ((count _this) - 1) do
-	{
-		diag_log format["_fnc_createMarker: _missionFile %1 | parameter %2 = %3",_missionFile,_pList select _i,_this select _i];
-	}; 
-};
-
 private _markerError = false;
 if !(toLowerANSI (_markerType) in ["ellipse","rectangle"] || {isClass(configFile >> "CfgMarkers" >> _markerType)} ) then 
 {

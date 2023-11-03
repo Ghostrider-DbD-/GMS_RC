@@ -15,11 +15,12 @@
 
 _fnc_dropMissionCrates = {
 	private ["_crates","_marker","_markers","_location","_airborneCrates","_curPosCrate"];
-	_crates = _this select 0;	
+	params["_crates","_missionFile"];
+ 
 	_markers = [];
 	
 	{
-		[(getPos _x), _x, true, 50] call GMS_fnc_paraDropObject;
+		[(getPos _x), _x, true, 20] call GMS_fnc_paraDropObject;
 	} forEach _crates;
 	
 	_airborneCrates = _crates;
@@ -98,7 +99,11 @@ private _cratesSpawned = [];
 
 if (_spawnCrateTiming in ["atMissionEndAir","atMissionSpawnAir"]) then 
 {
-	[_cratesSpawned] spawn _fnc_dropMissionCrates;
+	[_cratesSpawned,_missionFile] spawn _fnc_dropMissionCrates;
+} else {
+	{
+		_x setVariable["crateSpawnPos", (getPos _x)];
+	} forEach _crates;	
 };
 
 _cratesSpawned

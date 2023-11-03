@@ -28,7 +28,8 @@ private ["_abort","_crates","_aiGroup","_objects","_groupPatrolRadius","_mission
 		// New private Variables from 10-15-23
 		"_timeoutMsg",
 		"_missionLandscapeMode",
-		"_showMarker"
+		"_showMarker",
+		"_cleanuplootcontainers"
 		];
 		
 params["_markerName",["_aiDifficultyLevel","Red"]];
@@ -95,6 +96,7 @@ if (isNil "_missionemplacedweapons") then {_missionemplacedweapons = []};
 if !(isNil "_difficulty") then {_aiDifficultyLevel = _difficulty}; 
 if (isNil "_timeoutMsg") then {_timeoutMsg = ""};
 if (isNil "_showMarker") then {_showMarker = true};
+if (isNil "_cleanupLootContainers") then {_cleanupLootContainers = GMS_cleanUpLootChests};
 
 _markerType params["_markerShape",["_markersize",[250,250]],["_markerBrush","GRID"]];
 private _paraSkill = _aiDifficultyLevel;
@@ -142,7 +144,8 @@ private _missionLootConfigs = [
 	_crateLoot, 
 	_lootCounts,
 	_missionLootBoxes,
-	_missionLootVehicles	
+	_missionLootVehicles,
+	_cleanupLootContainers
 ];
 
 private _aiConfigs = [

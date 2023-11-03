@@ -6,7 +6,6 @@
 params[
 	"_missionData",		// Defined below
 	"_missionConfigs",	// Defined below
-	"_spawnPara",
 	"_missionFile"
 ];
 
@@ -55,7 +54,8 @@ _missionLootConfigs params [
 	"_crateLoot", 
 	"_lootCounts",
 	"_missionLootBoxes",
-	"_missionLootVehicles"
+	"_missionLootVehicles",
+	"_cleanupLootContainers"
 ];		
 _aiConfigs params [
 	"_uniforms", 
@@ -237,10 +237,10 @@ if (GMS_useStatic && !(_missionEmplacedWeapons isEqualTo [])) then
 		uisleep delayTime;
 	};						
 };
-
+diag_log format["_spawnMissionAssets(241): _missionLootVehicles = %1",_missionLootVehicles];
 if !(_missionLootVehicles isEqualTo []) then 
 {
-	_lootVehicles = [_coords,_missionLootVehicles,_spawnCratesTiming] call GMS_fnc_spawnMissionLootVehicles;				
+	_lootVehicles = [_coords,_missionLootVehicles,_spawnCratesTiming,_missionFile] call GMS_fnc_spawnMissionLootVehicles;				
 	uiSleep delayTime;
 };
 
@@ -260,7 +260,7 @@ if !(_missionLootVehicles isEqualTo []) then
 		["_crewCount",4]
 	];
 */
-
+diag_log format["_spawnMissionAssets (264): __missionPatrolVehicles = %1",_missionPatrolVehicles];
 if (GMS_useVehiclePatrols && {!(_missionPatrolVehicles isEqualTo [])}) then
 {
 	_temp = [_coords,_difficulty,_missionPatrolVehicles,_uniforms,_headGear,_vests,_backpacks,_weaponList,_sideArms,false,_vehicleCrewCount] call GMS_fnc_spawnMissionVehiclePatrols;
@@ -356,14 +356,13 @@ if (_spawnCratesTiming in ["atMissionSpawnGround","atMissionSpawnAir"]) then
 		_crates = [_coords,_missionLootBoxes,_loadCratesTiming, _spawnCratesTiming, "start", _difficulty, _missionFile] call GMS_fnc_spawnMissionCrates;												
 	};
 
-	if (GMS_cleanUpLootChests) then
+	if (_cleanupLootContainers) then
 	{
 		_objects append _crates;
 	};
 	if (_loadCratesTiming isEqualTo "atMissionSpawn") then 
 	{
 		private _crateMoney =(missionNamespace getVariable[format["GMS_crateMoney%1",_difficulty],GMS_rewardsOrange]);
-		//diag_log format["_spawnMissionAssets(395): _crateMoney = %1",_crateMoney];
 		{
 			[_x,_difficulty,_crateMoney] call GMSCore_fnc_setMoney;
 		} forEach _crates;
@@ -380,10 +379,22 @@ if (GMS_showCountAliveAI) then
 	];
 };
 
-{
-	_x setVariable["crateSpawnPos", (getPos _x)];
-};		
+/*
+_missionData params [
+	"_coords",				// index 0 
+	"_mines",				// index 1 
+	"_objects",				// index 2 
+	"_hiddenObjects",		// index 3 
+	"_crates",				// index 4 
+	"_missionInfantry",		// index 5 
+	"_assetSpawned",		// index 6 
+	"_aiVehicles",			// index 7 
+	"_lootVehicles",		// index 8 
+	"_markers"				// index 9
+];
+*/
 #define indexMines 1 
 #define indexCrates 4
 _missionData set[indexMines, _mines]; 
 _missionData set[indexCrates, _crates];
+

@@ -25,7 +25,7 @@ for "_i" from 1 to (count _missionsList) do
 	
 	// Select a mission category (blue, red, green , etd)
 	/*
-		GMS_initializedMissionsList pushBack [_key, missionTimeoutAt, triggered, _missionData, _missionConfigs, spawnPara,_isStatic];
+		GMS_initializedMissionsList pushBack [_key, missionTimeoutAt, triggered, _missionData, _missionConfigs, _isStatic];
 	*/
 	private _el = _missionsList deleteAt 0;
 	_el params [
@@ -33,8 +33,7 @@ for "_i" from 1 to (count _missionsList) do
 		"_missionTimeoutAt",			// 1  // server time at which the mission times out.
 		"_triggered",					// 2  // integer - specifies if mission was triggered by a player or scripting such as debug setting
 		"_missionData",					// 4  //  variable containing information specific to this instance of the mission such as location and objects
-		"_missionConfigs",				// 5  // Variables regarding the configuration of the dynamic mission
-		"_spawnPara",					// 
+		"_missionConfigs",				// 5  // Variables regarding the configuration of the  mission
 		"_isStatic",					// 7 // A flag as to whether the mission is a static or dynamically spawned mission.
 		"_missionFile"
 	];
@@ -146,7 +145,7 @@ for "_i" from 1 to (count _missionsList) do
 				//  Handle mission waiting to be triggerd and player is within the range to trigger		
 				case 0: 
 				{
-					[_missionData,_missionConfigs,_spawnPara,_missionFile] call GMS_fnc_spawnMissionAssets;
+					[_missionData,_missionConfigs,_missionFile] call GMS_fnc_spawnMissionAssets;
 
 					// _el is structured as: 
 					/* 
@@ -156,7 +155,6 @@ for "_i" from 1 to (count _missionsList) do
 						"_triggered",					// 2  // integer - specifies if mission was triggered by a player or scripting such as debug setting
 						"_missionData",					// 4  //  variable containing information specific to this instance of the mission such as location and objects
 						"_missionConfigs",				// 5  // Variables regarding the configuration of the dynamic mission
-						"_spawnPara",					// 
 						"_isStatic"						// 7 // A flag as to whether the mission is a static or dynamically spawned mission.
 					];
 					*/
