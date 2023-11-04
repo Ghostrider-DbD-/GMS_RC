@@ -114,12 +114,15 @@ for "_i" from 1 to (count _missionsList) do
 			if (_endIfPlayerNear && {_playerIsNear}) then {throw 1}; // mission complete
 			if (_endIfAIKilled && {_aiKilled}) then {throw 1};			
 
-			if (_spawnPara isEqualType 0) then 
+			if (_spawnPara) then 
 			{
 				#define chancePara 0;
 				private _chancePara = _paraConfigs select chancePara;
 				_spawnPara = if (random(1) < _chancePara ) then {true} else {false};
-				_el set[spawnPara, _spawnPara];
+
+				if !(_spawnPara) then {
+					_el set[spawnPara, _spawnPara];
+				};
 			};
 			if (_spawnPara) then
 			{

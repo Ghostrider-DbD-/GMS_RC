@@ -232,8 +232,8 @@ try {
 		_markers		// index 9
 	];
 
-	#define spawnPara -1
-	GMS_initializedMissionsList pushBack [_key, missionTimeoutAt, triggered, _missionData, _missionConfigs, spawnPara,_isStatic];
+	#define spawnPara true
+	GMS_initializedMissionsList pushBack [_key, missionTimeoutAt, triggered, _missionData, _missionConfigs, spawnPara,_isStatic,_missionFile];
 
 	// Repair any damage done by prior activities.
 	{_x setDamage 0} forEach ( nearestObjects [_coords, ["Building"], 500]); 	
