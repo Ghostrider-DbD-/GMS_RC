@@ -41,6 +41,7 @@ private _missionListGreen = [/*"default","default2",/*"medicalCamp","redCamp","r
 
 private _pathOrange = "Orange";
 private _missionListOrange = [/*"default","default2","medicalCamp","redCamp","resupplyCamp","officeComplex",*/
+		/*
 		"CommandersComplex", // ***
 		"generalsCamp",
 		"colonel2",
@@ -48,6 +49,9 @@ private _missionListOrange = [/*"default","default2","medicalCamp","redCamp","re
 		"operationTakeover",
 		"dashq",  
 		"tko_camp"  
+		*/
+		//"researchComplex"
+		"survivalSupplies"
 	];
 
 private _pathStatics = "Statics";
@@ -56,7 +60,7 @@ private _missionListStatics = [
 	/// Do NOT include the extension here.
 	/// You will need to add the mission files to the statics folder. 
 	//"spatzle",
-	//"saltflatsone"
+	"saltflatsone"
 ];
 
 private _pathUMS = "UMS\dynamicMissions";

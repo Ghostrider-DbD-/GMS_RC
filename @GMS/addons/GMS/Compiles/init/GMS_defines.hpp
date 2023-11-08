@@ -67,9 +67,9 @@
 #define GMS_vehiclePlayerDetectionOdds 0.6
 #define GMS_playerDetectionRangeSubs 100
 #define GMS_playerDetectionRangeSurfaceVehicle 150
-#define GMS_simulationEnabledDistance 2500
+#define GMS_simulationEnabledDistance 3000
 #define GMS_simulationManagementOff 0
-#define GMS_useBlckeaglsSimulationManager 1
+#define GMS_useGMS_SimulationManager 1
 #define GMS_useDynamicSimulationManagement 2
 #define GMS_simulationManagementOff 0
 #define GMS_useBlckeaglsSimulationManagement 1

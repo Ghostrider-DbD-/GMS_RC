@@ -36,7 +36,9 @@ while {true} do
 	if (diag_tickTime > _timer5sec) then
 	{
 		_timer5sec = diag_tickTime + 5;
-		[] call GMS_fnc_simulationMonitor;
+
+		// Moved simulation monitoring to GMSCore since both GMS and GMSAI require it.
+		//[] call GMS_fnc_simulationMonitor;
 		[] spawn GMS_fnc_monitorSpawnedMissions;
 		[] call GMS_fnc_scanForPlayersNearVehicles;		
 		[] call GMS_fnc_vehicleMonitor;		

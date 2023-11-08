@@ -26,12 +26,15 @@
 		**************************************
 	*/
 
-	GMS_simulationManager = GMS_useBlckeaglsSimulationManager; 
+	/* Simulation management is handled by GMSCore now */
+	//GMS_simulationManager = GMS_useGMS_SimulationManager; 
+
+
 	GMS_hideRocksAndPlants = true; //  When true, any rocks, trees or bushes under enterable buildings will be 'hidden'
 
 	/*
 		GMS_simulationManagementOff  - no simulation management occurs
-		GMS_useBlckeaglsSimulationManager - simulation is enabled/disabled by periodic checks for nearby players; a 'wake' function is included when a units simulation is turned on
+		GMS_useGMS_SimulationManager - simulation is enabled/disabled by periodic checks for nearby players; a 'wake' function is included when a units simulation is turned on
 		GMS_useDynamicSimulationManagement 2 - arma dynamic simulation is used
 	*/
 	
@@ -87,8 +90,6 @@ GMS_killMessageTypesKiller = [
 ];
 	GMS_useIEDMessages = true;  // Displayes a message when a player vehicle detonates and IED (such as would happen if a player killed AI with a forbidden weapon).
 
-GMS_rewards = [[0,0],[0,0],[0,0],[0,0]];
-
 switch (GMSCore_modType) do 
 {
 	case "Epoch": {
@@ -100,6 +101,7 @@ switch (GMSCore_modType) do
 		GMS_rewardsRed = [[8,14],12,15];
 		GMS_rewardsGreen = [[10,18],[15,20]];
 		GMS_rewardsOrange = [[12,20],20,25];
+		GMS_rewards = [GMS_rewardsBlue,GMS_rewardsRed,GMS_rewardsGreen,GMS_rewardsOrange];
 
 		// Amount of tabs added to each mission crate
 		GMS_crateMoneyBlue = [100,250];
@@ -119,6 +121,7 @@ switch (GMSCore_modType) do
 		GMS_rewardsRed = [[8,14],[12,15]];
 		GMS_rewardsGreen = [[10,18],[15,20]];
 		GMS_rewardsOrange = [[12,20],[20,25]];
+		GMS_rewards = [GMS_rewardsBlue,GMS_rewardsRed,GMS_rewardsGreen,GMS_rewardsOrange];
 
 		// Amount of tabs added to each mission crate
 		GMS_crateMoneyBlue = [3000,5000];
@@ -137,6 +140,11 @@ switch (GMSCore_modType) do
 	case "default": {
 		GMS_rewardsNotifications = ["dynamicText"];
 		GMS_killstreakTimeout = 300; // 5 min
+		GMS_rewardsBlue = [[5,10],[8,12]];
+		GMS_rewardsRed = [[8,14],[12,15]];
+		GMS_rewardsGreen = [[10,18],[15,20]];
+		GMS_rewardsOrange = [[12,20],[20,25]];
+		GMS_rewards = [GMS_rewardsBlue,GMS_rewardsRed,GMS_rewardsGreen,GMS_rewardsOrange];
 	};
 };
 	///////////////////////////////
@@ -147,7 +155,8 @@ switch (GMSCore_modType) do
 	GMS_labelMapMarkers = [true,"center"];  
 	GMS_preciseMapMarkers = true;  // Map markers are/are not centered at the loot crate
 	GMS_showCountAliveAI = true;
-
+	GMS_defaultMarkerColor = "ColorYellow";
+	
 // radius within whih missions are triggered. The trigger causes the crate and AI to spawn.
 	GMS_TriggerDistance = 2000;
 	
@@ -348,13 +357,10 @@ switch (GMSCore_modType) do
 	GMS_enableRedMissions = 2;
 	GMS_enableBlueMissions = 2;
 	GMS_numberUnderwaterDynamicMissions = 0;  // Values from -1 (no UMS) to N (N Underwater missions will be spawned; static UMS units and subs will be spawned.	
-	GMS_enableStaticMissions = -1;
-
-	#ifdef GRGserver
+	GMS_enableStaticMissions = 1;
 	GMS_enableHunterMissions = 1;
 	GMS_enableScoutsMissions = 2;
 	GMS_maxcrashsites = -1;
-	#endif
 
 	////////////////////
 	// MISSION TIMERS
@@ -367,12 +373,9 @@ switch (GMSCore_modType) do
 	GMS_TMin_Red = 110; //4;
 	GMS_TMin_UMS = 105; //5;	
 	GMS_TMin_Statics = 60 * 35;  // minimum time for RESPAWN of static missions
-
-	#ifdef GRGserver
 	GMS_TMin_Hunter = 100; //6;
 	GMS_TMin_Scouts = 95; //7;
 	GMS_TMin_Crashes = 90; //8;
-	#endif
 	
 	//Maximum Spawn time between missions in seconds
 	GMS_TMax_Orange =200; //9;
@@ -383,11 +386,9 @@ switch (GMSCore_modType) do
 	GMS_TMax_Statics = GMS_TMin_Statics + 60; // Maximum time for RESAPWN of static missions
 											  // Be sure the minimum is > than the time at which objects from the previous instance of a static mission are deleted 
 											  // That is set in GMS_cleanupCompositionTimer
-	#ifdef GRGserver
 	GMS_TMax_Hunter = 140; //14;
 	GMS_TMax_Scouts = 130; //15;
 	GMS_TMax_Crashes = 100; //16;
-	#endif
 	
 	// 
 	///////////////////////////////

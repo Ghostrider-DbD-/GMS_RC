@@ -38,7 +38,7 @@ private _hiddenObjs = [];
 	_obj allowDamage true;
 	_obj enableSimulation false;
 	_obj enableSimulationGlobal false;
-	_obj enableDynamicSimulation false;
+	_obj enableDynamicSimulation true;
 	_obj setDir (_obj getRelDir _coords);
 	_newObjs pushback _obj;
 	sleep 0.1;

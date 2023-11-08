@@ -327,10 +327,11 @@ for "_i" from 1 to (count _missionsList) do
 					*/					
 					_missionConfigs set[isSpawned,false];
 					_missionConfigs set[spawnedAt,-1];
-					[format["_monitorSpawnedMissions (325): _markerMissionName %1: end of case 1 for mission completion",_markerMissionName]] call GMS_fnc_log;
-					[format["_monitorSpawnedMissions (326): _isSpawned %1 | _spawnedAt %2",_isSpawned,_spawnedAt]] call GMS_fnc_log;
-					[format["_monitorSpawnedMissions (327): #isSpawned %1 | #spawnAt %2",isSpawned,spawnedAt]] call GMS_fnc_log;
-					[format["_monitorSpawneMissions (328): _missionConfigs select %1 = %2 | _missionConfigs select %3 = %4",spawnedAt,_missionConfigs select spawnedAt, isSpawned, _missionConfigs select isSpawned]] call GMS_fnc_log;
+					//[format["_monitorSpawnedMissions (325): _markerMissionName %1: end of case 1 for mission completion",_markerMissionName]] call GMS_fnc_log;
+					//[format["_monitorSpawnedMissions (326): _isSpawned %1 | _spawnedAt %2",_isSpawned,_spawnedAt]] call GMS_fnc_log;
+					//[format["_monitorSpawnedMissions (327): #isSpawned %1 | #spawnAt %2",isSpawned,spawnedAt]] call GMS_fnc_log;
+					//[format["_monitorSpawneMissions (328): _missionConfigs select %1 = %2 | _missionConfigs select %3 = %4",spawnedAt,_missionConfigs select spawnedAt, isSpawned, _missionConfigs select isSpawned]] call GMS_fnc_log;
+					[format["_monitorSpawnedMissions(334): _missionFile %1 reached normal mission completion",_missionFile]] call GMS_fnc_log;
 				};
 
 				case 2: { // Abort, crate moved.
