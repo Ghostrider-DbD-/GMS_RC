@@ -33,7 +33,8 @@ The static loot system and dynamic loot system are gone. THese outlived thier us
 I have kept the change log as a bit of history for those interested in development of this mission system. 
 Significant Changes:
 
-Build 278 
+Build 279
+	Removed simulation management which is now handled by GMSCore.
 	Removed unused files 
 	
 Build 276 
